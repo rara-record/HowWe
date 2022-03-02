@@ -1,5 +1,5 @@
 const CampApply = () => {
-  return <div>CampApply</div>;
+  return <div>캠프 신청페이지</div>;
 };
 
 export default CampApply;
