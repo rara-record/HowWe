@@ -1,3 +1,4 @@
+import './css/style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, CampDetail, CampApply } from 'pages';
 
