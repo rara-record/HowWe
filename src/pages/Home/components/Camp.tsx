@@ -1,5 +1,11 @@
+import { CampCard } from 'components';
+
 const Camp = () => {
-  return <div>Camp</div>;
+  return (
+    <div className="camp">
+      <CampCard />
+    </div>
+  );
 };
 
 export default Camp;
