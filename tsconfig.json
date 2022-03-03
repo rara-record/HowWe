@@ -25,6 +25,5 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src" // src/를 기준으로 절대 경로로 모듈 참조가 가능해진다.
-  },
-  "include": ["src"]
+  }
 }
