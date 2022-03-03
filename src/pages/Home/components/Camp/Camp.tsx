@@ -6,11 +6,15 @@ const Camp = () => {
       <div className="inner">
         <div className="popular-camp">
           <h2 className="title">인기 부트 캠프</h2>
-          <CampCard />
+          <div className="contents">
+            <CampCard />
+          </div>
         </div>
         <div className="sale-camp">
           <h2 className="title">특가 할인 캠프</h2>
-          <CampCard />
+          <div className="contents">
+            <CampCard />
+          </div>
         </div>
       </div>
     </section>
