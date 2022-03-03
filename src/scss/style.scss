@@ -7,3 +7,10 @@
 // styles
 @import './font';
 @import './color';
+
+// global
+@import './global';
+
+// layout
+@import '../components/Header/header';
+@import '../components/Navbar/navbar';
