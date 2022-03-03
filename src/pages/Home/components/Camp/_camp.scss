@@ -1,0 +1,16 @@
+.camp {
+  width: 100%;
+  height: 100%;
+  padding-top: 7rem;
+
+  .inner {
+    > div {
+      padding-bottom: 4rem;
+
+      .title {
+        @include text-style(h2, $black);
+        padding-bottom: 1.2rem;
+      }
+    }
+  }
+}

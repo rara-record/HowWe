@@ -1,0 +1,16 @@
+.home-banner {
+  width: 100%;
+
+  .row {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    background-color: $primary1;
+
+    h1 {
+      padding-left: 4rem;
+      @include text-style(h2, $white);
+    }
+  }
+}

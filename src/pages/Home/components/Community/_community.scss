@@ -1,0 +1,12 @@
+.community {
+  padding-top: 4rem;
+
+  .title {
+    @include text-style(h2, $black);
+  }
+
+  .contents {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
