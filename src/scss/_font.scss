@@ -1,3 +1,4 @@
+// Font size
 $font-size-h1: 28px;
 $font-size-h2: 24px;
 $font-size-h3: 20px;
@@ -6,6 +7,12 @@ $font-size-body1: 16px;
 $font-size-body2: 14px;
 $font-size-caption: 12px;
 
+// Typography
+$noto: 'Noto Sans KR', sans-serif;
+$roboto: 'Roboto', sans-serif;
+$logo: 'Roboto Slab', serif;
+
+// mixin
 @mixin text-style-h1() {
   font-size: $font-size-h1;
   font-weight: bold;
