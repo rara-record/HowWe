@@ -11,6 +11,9 @@
 // global
 @import './global';
 
-// layout
+// home layout
+@import '../pages/Home/components/Visual/visual';
+
+// components layout
 @import '../components/Header/header';
 @import '../components/Navbar/navbar';
