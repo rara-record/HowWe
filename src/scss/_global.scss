@@ -16,14 +16,9 @@ img {
   width: 100%;
 }
 
-section {
-  width: 100%;
+.inner {
+  max-width: 990px;
   height: 100%;
-
-  .inner {
-    max-width: 990px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
