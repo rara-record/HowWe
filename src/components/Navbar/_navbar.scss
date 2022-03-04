@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
 
-  h1 {
+  h1 a {
     @include text-style(h1, $white);
     font-family: $logo;
   }
