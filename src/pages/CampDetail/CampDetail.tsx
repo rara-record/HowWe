@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
-import { Navbar } from 'components';
+import { Header } from 'components';
 
 const CampDetail = () => {
   return (
     <>
-      <Navbar />
-      <Link to="/camp/apply">
-        <div>신청하기</div>
-      </Link>
+      <Header />
+      <div>상세페이지</div>
+
+      <button>
+        <Link to="/camp/apply">더잘하는개발자되기</Link>
+      </button>
     </>
   );
 };
