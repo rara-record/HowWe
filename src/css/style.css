@@ -355,14 +355,11 @@ body {
 img {
   width: 100%; }
 
-section {
-  width: 100%;
-  height: 100%; }
-  section .inner {
-    max-width: 990px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 1.5rem; }
+.inner {
+  max-width: 990px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem; }
 
 .visual {
   width: 100%;
@@ -399,6 +396,9 @@ section {
       line-height: 34px;
       color: #000000;
       padding-bottom: 1.2rem; }
+    .camp .inner > div .contents {
+      display: flex;
+      flex-wrap: wrap; }
 
 .home-banner {
   width: 100%; }
@@ -417,7 +417,7 @@ section {
       color: #ffffff; }
 
 .community {
-  padding-top: 4rem; }
+  padding: 4rem 0 10rem 0; }
   .community .title {
     font-size: 24px;
     font-weight: bold;
@@ -445,12 +445,55 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center; }
-  .navbar h1 {
+  .navbar h1 a {
     font-size: 28px;
     font-weight: bold;
     letter-spacing: -0.01em;
     line-height: 38px;
     color: #ffffff;
     font-family: "Roboto Slab", serif; }
+
+footer {
+  width: 100%;
+  height: 16rem;
+  background-color: #eeeeee; }
+  footer .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  footer .info li {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 18px;
+    color: #616161; }
+    footer .info li:first-child {
+      padding-bottom: 1.5rem; }
+  footer .sns {
+    display: flex; }
+
+.camp-card {
+  flex: 1;
+  margin-right: 2rem;
+  height: 28rem;
+  background-color: #999; }
+  .camp-card a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+  .camp-card:last-child {
+    margin-right: 0; }
+
+.community-card {
+  flex: 1;
+  margin-right: 2rem;
+  height: 32rem;
+  border-radius: 1rem;
+  border: 1px solid #cccccc; }
+  .community-card a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+  .community-card:last-child {
+    margin-right: 0; }
 
 /*# sourceMappingURL=style.css.map */

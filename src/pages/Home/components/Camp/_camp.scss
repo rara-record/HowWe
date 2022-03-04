@@ -11,6 +11,11 @@
         @include text-style(h2, $black);
         padding-bottom: 1.2rem;
       }
+
+      .contents {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
   }
 }
