@@ -1,26 +1,22 @@
 import { Link } from 'react-router-dom';
+import { ICamp } from 'types/type';
 
-const CampCard = () => {
+const CampCard = ({ camp }: { camp: ICamp }) => {
   return (
     <>
-      <article className="camp-card">
-        <Link to="/camp/1">
-          <div>Camp 1</div>
-        </Link>
-      </article>
-      <article className="camp-card">
-        <Link to="/camp/2">
-          <div>Camp 2</div>
-        </Link>
-      </article>
-      <article className="camp-card">
-        <Link to="/camp/3">
-          <div>Camp 3</div>
-        </Link>
-      </article>
-      <article className="camp-card">
-        <Link to="/camp/4">
-          <div>Camp 4</div>
+      <article
+        className="camp-card"
+        style={{
+          backgroundImage: `url(${camp.thumbnail})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          padding: '20px',
+        }}
+      >
+        <Link to={`/camp/${camp.id}`}>
+          <div>{camp.status}</div>
+          <div>{camp.name}</div>
+          <div>{camp.startDate}</div>
         </Link>
       </article>
     </>
