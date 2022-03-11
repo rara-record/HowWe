@@ -1,15 +1,15 @@
-export interface Camp {
+export interface ICamp {
   id: number;
   name: string;
   type: string;
-  status: 'ready' | 'open' | 'completed';
+  status: string;
   field: string;
   skill: string;
   startDate: string;
   thumbnail: string;
 }
 
-export interface Community {
+export interface ICommunity {
   id: number;
   name: string;
   tag: string[];
