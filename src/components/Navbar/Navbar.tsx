@@ -54,6 +54,7 @@ const Navbar = () => {
 
 export default Navbar;
 
+// TODO: styled-components에 props를 받는법
 const Container = styled.nav<{ isScrolled: boolean }>`
   position: fixed;
   width: 100%;
