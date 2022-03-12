@@ -36,6 +36,7 @@ const Footer = () => {
 const Container = styled.div`
   padding: 32px;
   background-color: ${colors.gray6};
+
   footer {
     ${maxWidth};
     display: flex;

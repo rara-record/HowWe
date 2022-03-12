@@ -19,22 +19,24 @@ export default Comment;
 
 const Conatiner = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 7px;
   padding-bottom: 16px;
 
   .comment-nickname {
     ${fonts.Body2}
     font-family: 'Noto Sans';
     font-weight: bold;
-    padding-bottom: 4px;
   }
   .comment-content {
     font-family: 'Roboto';
     ${fonts.Caption}
+    margin-top: 5px;
   }
 `;
 
 const Profile = styled.figure<{ img: string }>`
+  position: relative;
+  bottom: -2px;
   background-image: url(${props => props.img});
   background-size: cover;
   background-position: center;
