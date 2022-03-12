@@ -1,6 +1,6 @@
 import { Navbar, Footer } from 'components';
-import { HeaderSection, CampSection } from './components';
-import { ICamp } from 'types/type';
+import { HeaderSection, CampSection, CommunitySection } from './components';
+import { ICamp, ICommunity } from 'types/type';
 import styled from 'styled-components';
 
 // TODO: 실서버 데이터로 변경
@@ -15,6 +15,25 @@ const campMock: ICamp = {
   thumbnail: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
 };
 
+const communityMock: ICommunity = {
+  id: 0,
+  tags: ['조회수TOP', '취업고민'],
+  title: ' 합격 메일 답장 어떻게 할까요?',
+  content: '고칠 부분이 있는지 봐주시면 감사하겠습니다!',
+  comments: [
+    {
+      profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
+      content: '와우',
+      nickname: '멘토1234',
+    },
+    {
+      profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
+      content: '와우',
+      nickname: '멘토1234',
+    },
+  ],
+};
+
 const Home = () => {
   return (
     <Container>
@@ -23,6 +42,7 @@ const Home = () => {
       <main>
         <CampSection title="인기 부트 캠프" camps={campMock} />
         <CampSection title="특가 할인 캠프" camps={campMock} isHeadField />
+        <CommunitySection title="커뮤니티" communities={communityMock} />
       </main>
       <Footer />
     </Container>
