@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ICommunity } from 'types/type';
-import fonts from 'styles/fonts';
 import { Tags, Comments } from 'components';
+
+import fonts from 'styles/fonts';
+import colors from 'styles/colors';
 
 interface IProps {
   community: ICommunity;
@@ -18,8 +20,12 @@ const CommunityCard = ({ community }: IProps) => {
           <div className="title">{community.title}</div>
           <div className="content">{community.content}</div>
         </div>
-        <Comments comments={community.comments} />
-        <button type="button">+ 더보기</button>
+        <div>
+          <Comments comments={community.comments} />
+          <button className="btn" type="button">
+            + 더보기
+          </button>
+        </div>
       </Container>
     </Link>
   );
@@ -28,7 +34,7 @@ const CommunityCard = ({ community }: IProps) => {
 export default CommunityCard;
 
 const Container = styled.article`
-  padding: 16px;
+  padding: 14px;
   height: 320px;
 
   border: 1px solid #cccccc;
@@ -55,5 +61,17 @@ const Container = styled.article`
     width: 30px;
     height: 30px;
     border-radius: 15px;
+  }
+
+  .btn {
+    color: ${colors.secondary1};
+    width: 100%;
+    background: inherit;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer;
   }
 `;
