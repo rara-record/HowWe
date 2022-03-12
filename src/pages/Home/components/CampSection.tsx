@@ -1,22 +1,26 @@
 import { CampCard } from 'components';
-import styled from 'styled-components';
-
-import fonts from 'styles/fonts';
+import { useMediaQuery } from 'react-responsive';
+import { ICamp } from 'types/type';
 import { maxWidth } from 'styles/mixin';
 
-import { ICamp } from 'types/type';
+import styled from 'styled-components';
+import fonts from 'styles/fonts';
 
 interface Props {
   title: string;
-  camps: ICamp[]; // TODO: 배열 설정을 안하고, map으로 돌리려고 해서 에러가 남
+  camps: ICamp[]; // TODO: 배열 타입 설정을 안하고, map으로 돌리려고 해서 에러가 남
   isHeadField?: boolean;
 }
 
 function CampSection({ title, camps, isHeadField = false }: Props) {
+  const isMobile = useMediaQuery({
+    query: '(max-width: 680px)',
+  });
+
   return (
     <Container>
       <div className="section-title">{title}</div>
-      <div className="cards">
+      <div className={`${isMobile ? 'm-card' : 'd-card'}`}>
         {camps.map((camp, index) => (
           <CampCard key={index} camp={camp} isHeadField={isHeadField} />
         ))}
@@ -36,8 +40,12 @@ const Container = styled.section`
     padding-bottom: 8px;
   }
 
-  .cards {
+  .d-card {
     display: flex;
     gap: 20px;
+  }
+
+  .m-card {
+    width: 100%;
   }
 `;
