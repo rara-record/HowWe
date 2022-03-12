@@ -1,9 +1,10 @@
 import { CommunityCard } from 'components';
 import { ICommunity } from 'types/type';
+import { useMediaQuery } from 'react-responsive';
+import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
-import { maxWidth } from 'styles/mixin';
 
 interface Props {
   title: string;
@@ -11,7 +12,11 @@ interface Props {
 }
 
 const CommunitySection = ({ title, communities }: Props) => {
-  return (
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 680px)',
+  });
+
+  return isDesktop ? (
     <Container>
       <div className="section-title">{title}</div>
       <div className="cards">
@@ -20,7 +25,7 @@ const CommunitySection = ({ title, communities }: Props) => {
         ))}
       </div>
     </Container>
-  );
+  ) : null;
 };
 
 export default CommunitySection;
