@@ -1,8 +1,15 @@
-import { Navbar, Footer } from 'components';
-import { HeaderSection, CampSection, CommunitySection } from './components';
+import { Navbar, Footer, Padding } from 'components';
+import {
+  HeaderSection,
+  CampSection,
+  HomeBanner,
+  CommunitySection,
+} from './components';
 import { ICamp, ICommunity } from 'types/type';
-import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { maxWidth } from 'styles/mixin';
+import { useMediaQuery } from 'react-responsive';
+import styled from 'styled-components';
 
 const campMock: ICamp = {
   id: 0,
@@ -23,26 +30,36 @@ const communityMock: ICommunity = {
   comments: [
     {
       profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
-      content: '와우',
+      content: '안녕하세요. 먼저 면접까지...',
       nickname: '멘토1234',
     },
     {
       profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
-      content: '와우',
+      content: '안녕하세요. 먼저 면접까지...',
       nickname: '멘토1234',
     },
   ],
 };
 
 const Home = () => {
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 680px)',
+  });
+
   const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
   const [saleCamps, setSaleCamps] = useState<ICamp[]>([]);
   const [communities, setCommunities] = useState<ICommunity[]>([]);
 
   useEffect(() => {
     // TODO: 실서버 데이터로 변경
-    setPopularCamps([campMock, campMock, campMock]);
-    setSaleCamps([campMock, campMock, campMock]);
+    setPopularCamps([campMock, campMock, campMock, campMock]);
+    setSaleCamps([campMock, campMock, campMock, campMock]);
+    setCommunities([
+      communityMock,
+      communityMock,
+      communityMock,
+      communityMock,
+    ]);
   }, []);
 
   return (
@@ -51,8 +68,15 @@ const Home = () => {
       <HeaderSection />
       <main>
         <CampSection title="인기 부트 캠프" camps={popularCamps} />
+        <Padding height="40px" />
         <CampSection title="특가 할인 캠프" camps={saleCamps} isHeadField />
-        <CommunitySection title="커뮤니티" communities={communityMock} />
+        <Padding height="40px" />
+        <HomeBanner
+          text={`현직자와 소통하며 배우는\n실무 스킬, 퍼스널 트레이닝`}
+        />
+        {isDesktop && <Padding height="55px" />}
+        <CommunitySection title="커뮤니티" communities={communities} />
+        {isDesktop && <Padding height="240px" />}
       </main>
       <Footer />
     </Container>
@@ -60,8 +84,10 @@ const Home = () => {
 };
 
 const Container = styled.div`
+  margin: 0 auto;
+
   main {
-    height: 200vh;
+    ${maxWidth}
   }
 `;
 
