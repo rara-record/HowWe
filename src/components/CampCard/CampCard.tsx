@@ -12,7 +12,7 @@ interface Props {
 
 const CampCard = ({ camp, isHeadField }: Props) => {
   return (
-    <Link to="/">
+    <Link to={`/camp/${camp.id}`}>
       <Container bgImg={camp.thumbnail}>
         <BgOpacityBlack />
         <div className="camp-content">
