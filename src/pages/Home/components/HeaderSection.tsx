@@ -1,9 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 
 const HeaderSection = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
+
   return (
-    <Container bgImg={require('assets/images/home_header_bg.jpg')}>
+    <Container
+      bgImg={require('assets/images/home_header_bg.jpg')}
+      isMobile={isMobile}
+    >
       <div className="header-content">
         <div className="header-text">{`개발은 \n카페인과 함께`}</div>
         <div
@@ -19,7 +25,7 @@ const HeaderSection = () => {
 
 export default HeaderSection;
 
-const Container = styled.div<{ bgImg: string }>`
+const Container = styled.div<{ bgImg: string; isMobile: boolean }>`
   background-image: url(${props => props.bgImg});
   background-size: cover;
   padding: 104px 16px 56px;
@@ -28,9 +34,14 @@ const Container = styled.div<{ bgImg: string }>`
 
   .header-content {
     ${maxWidth}
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+
+    ${props =>
+      !props.isMobile &&
+      css`
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      `}
   }
 
   .header-text {
@@ -40,6 +51,12 @@ const Container = styled.div<{ bgImg: string }>`
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        padding-bottom: 30px;
+      `}
   }
 
   .header-img {
@@ -48,5 +65,11 @@ const Container = styled.div<{ bgImg: string }>`
     background-position: center;
     background-size: cover;
     height: 400px;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        height: 300px;
+      `}
   }
 `;
