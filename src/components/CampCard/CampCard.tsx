@@ -12,8 +12,8 @@ interface Props {
 
 const CampCard = ({ camp, isHeadField }: Props) => {
   return (
-    <Link to={`/camp/${camp.id}`}>
-      <Container bgImg={camp.thumbnail}>
+    <Container bgImg={camp.thumbnail}>
+      <Link to={`/camp/${camp.id}`}>
         <BgOpacityBlack />
         <div className="camp-content">
           <div className="camp-head">
@@ -24,29 +24,36 @@ const CampCard = ({ camp, isHeadField }: Props) => {
             {dayjs(camp.startDate).format('M월 DD부터')}
           </div>
         </div>
-      </Container>
-    </Link>
+      </Link>
+    </Container>
   );
 };
 
 export default CampCard;
 
 const Container = styled.article<{ bgImg: string }>`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 280px;
-  margin-bottom: 8px;
-  background-image: url(${props => props.bgImg});
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
+  flex: 1;
+
+  a {
+    position: relative;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 280px;
+    margin-bottom: 8px;
+    background-image: url(${props => props.bgImg});
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 
   .camp-content {
     padding: 20px;
-    z-index: 1;
     color: white;
+    z-index: 1;
+    position: relative;
   }
 
   .camp-head {
