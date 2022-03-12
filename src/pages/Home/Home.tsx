@@ -2,8 +2,8 @@ import { Navbar, Footer } from 'components';
 import { HeaderSection, CampSection, CommunitySection } from './components';
 import { ICamp, ICommunity } from 'types/type';
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 
-// TODO: 실서버 데이터로 변경
 const campMock: ICamp = {
   id: 0,
   name: '업무 단순화 & 자동화로 엑셀을 실무에 더 적극 활용하기',
@@ -35,13 +35,23 @@ const communityMock: ICommunity = {
 };
 
 const Home = () => {
+  const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
+  const [saleCamps, setSaleCamps] = useState<ICamp[]>([]);
+  const [communities, setCommunities] = useState<ICommunity[]>([]);
+
+  useEffect(() => {
+    // TODO: 실서버 데이터로 변경
+    setPopularCamps([campMock, campMock, campMock]);
+    setSaleCamps([campMock, campMock, campMock]);
+  }, []);
+
   return (
     <Container>
       <Navbar />
       <HeaderSection />
       <main>
-        <CampSection title="인기 부트 캠프" camps={campMock} />
-        <CampSection title="특가 할인 캠프" camps={campMock} isHeadField />
+        <CampSection title="인기 부트 캠프" camps={popularCamps} />
+        <CampSection title="특가 할인 캠프" camps={saleCamps} isHeadField />
         <CommunitySection title="커뮤니티" communities={communityMock} />
       </main>
       <Footer />

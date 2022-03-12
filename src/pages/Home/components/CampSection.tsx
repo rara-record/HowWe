@@ -8,7 +8,7 @@ import { ICamp } from 'types/type';
 
 interface Props {
   title: string;
-  camps: ICamp;
+  camps: ICamp[]; // TODO: 배열 설정을 안하고, map으로 돌리려고 해서 에러가 남
   isHeadField?: boolean;
 }
 
@@ -16,8 +16,10 @@ function CampSection({ title, camps, isHeadField = false }: Props) {
   return (
     <Container>
       <div className="section-title">{title}</div>
-      <div>
-        <CampCard camp={camps} isHeadField={isHeadField} />
+      <div className="cards">
+        {camps.map((camp, index) => (
+          <CampCard key={index} camp={camp} isHeadField={isHeadField} />
+        ))}
       </div>
     </Container>
   );
@@ -32,5 +34,10 @@ const Container = styled.section`
   .section-title {
     ${fonts.H1};
     padding-bottom: 8px;
+  }
+
+  .cards {
+    display: flex;
+    gap: 20px;
   }
 `;
