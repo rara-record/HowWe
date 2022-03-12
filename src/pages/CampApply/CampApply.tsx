@@ -1,9 +1,9 @@
-import { Header } from 'components';
+import { Navbar } from 'components';
 
 const CampApply = () => {
   return (
     <>
-      <Header />
+      <Navbar />
       <div>캠프신청페이지</div>
     </>
   );

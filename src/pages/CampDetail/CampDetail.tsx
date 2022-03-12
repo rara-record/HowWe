@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Header } from 'components';
+import { Navbar } from 'components';
 
 const CampDetail = () => {
   return (
     <>
-      <Header />
+      <Navbar />
       <div>상세페이지</div>
 
       <button>
