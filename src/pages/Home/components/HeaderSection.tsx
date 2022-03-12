@@ -21,6 +21,7 @@ export default HeaderSection;
 
 const Container = styled.div<{ bgImg: string }>`
   background-image: url(${props => props.bgImg});
+  background-size: cover;
   padding: 104px 16px 56px;
   box-sizing: border-box;
   margin-bottom: 56px;
