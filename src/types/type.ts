@@ -11,9 +11,14 @@ export interface ICamp {
 
 export interface ICommunity {
   id: number;
-  name: string;
-  tag: string[];
+  tags: string[];
   title: string;
   content: string;
-  comments: { profile: string; nickname: string; conetent: string }[];
+  comments: IComment[];
+}
+
+export interface IComment {
+  profile: string;
+  nickname: string;
+  content: string;
 }
