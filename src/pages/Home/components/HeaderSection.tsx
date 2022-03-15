@@ -13,7 +13,7 @@ const SliderMock: ISlider = {
 
 const HeaderSection = () => {
   const [slider, setSlider] = useState<ISlider[]>([]);
-  const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     setSlider([

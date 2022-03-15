@@ -14,7 +14,7 @@ interface Props {
 
 function CampSection({ title, camps, isHeadField = false }: Props) {
   const isMobile = useMediaQuery({
-    query: '(max-width: 680px)',
+    query: '(max-width: 768px)',
   });
 
   return (
