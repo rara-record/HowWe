@@ -1,3 +1,9 @@
+export interface ISlider {
+  id: number;
+  title: string;
+  thumbnail: string;
+}
+
 export interface ICamp {
   id: number;
   name: string;
