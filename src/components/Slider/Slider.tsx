@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ISlider } from 'types/type';
 
 import { Navigation, Scrollbar } from 'swiper';
@@ -36,6 +36,17 @@ const Slider = ({ slider, isMobile }: Props) => {
 
 export default Slider;
 
+const textAnime = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  `;
+
 const Container = styled.div`
   .swiper-slide {
     display: flex;
@@ -51,6 +62,11 @@ const Container = styled.div`
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
+  }
+
+  .swiper-slide-active .slide-title {
+    animation: ${textAnime} 1s cubic-bezier(0, 0.55, 0.45, 1),
+      opacity 0.8s linear;
   }
 
   .slide-img {
