@@ -36,4 +36,43 @@ const Slider = ({ slider, isMobile }: Props) => {
 
 export default Slider;
 
-const Container = styled.div``;
+const Container = styled.div`
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .slide-title {
+    flex: 1;
+    margin-bottom: 35px;
+    white-space: pre-line;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .slide-img {
+    flex: 2;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+    height: 400px;
+  }
+
+  .swiper-scrollbar {
+    width: 225px;
+    height: 3px;
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
+
+  .swiper-scrollbar-drag {
+    background-color: #fff;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white;
+  }
+`;
