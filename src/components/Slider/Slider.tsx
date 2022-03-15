@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { ISlider } from 'types/type';
 
 import { Navigation, Scrollbar } from 'swiper';
@@ -14,7 +14,7 @@ interface Props {
 
 const Slider = ({ slider, isMobile }: Props) => {
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       <Swiper
         modules={[Navigation, Scrollbar]}
         slidesPerView={1}
@@ -47,11 +47,15 @@ const textAnime = keyframes`
   }
   `;
 
-const Container = styled.div`
+const Container = styled.div<{ isMobile: boolean }>`
   .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    ${props =>
+      !props.isMobile &&
+      css`
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      `}
   }
 
   .slide-title {
@@ -60,7 +64,7 @@ const Container = styled.div`
     white-space: pre-line;
     color: #ffffff;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 46px;
     line-height: 56px;
   }
 
@@ -70,17 +74,36 @@ const Container = styled.div`
   }
 
   .slide-img {
-    flex: 2;
-    border-radius: 10px;
-    background-position: center;
-    background-size: cover;
-    height: 400px;
+    width: 100%;
+    height: 100%;
+
+    ${props =>
+      !props.isMobile &&
+      css`
+        flex: 2;
+        border-radius: 10px;
+        background-position: center;
+        background-size: cover;
+        height: 400px;
+      `}
+
+    ${props =>
+      props.isMobile &&
+      css`
+        padding-bottom: 30px;
+      `}
   }
 
   .swiper-scrollbar {
     width: 225px;
     height: 3px;
     background-color: hsla(0, 0%, 100%, 0.1);
+
+    ${props =>
+      props.isMobile &&
+      css`
+        width: 100%;
+      `}
   }
 
   .swiper-scrollbar-drag {
