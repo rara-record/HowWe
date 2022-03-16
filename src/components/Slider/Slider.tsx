@@ -1,11 +1,12 @@
 import styled, { css, keyframes } from 'styled-components';
 import { ISlider } from 'types/type';
 
-import { Navigation, Scrollbar } from 'swiper';
+import SwiperCore, { Navigation, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
+import { useRef } from 'react';
 
 interface Props {
   slider: ISlider[];
@@ -13,23 +14,45 @@ interface Props {
 }
 
 const Slider = ({ slider, isMobile }: Props) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
+  SwiperCore.use([Navigation, Scrollbar]);
+
+  // Swiper Custom
+  const settings = {
+    navigation: { prevEl: prevRef.current, nextEl: nextRef.current },
+    scrollbar: { draggable: true, el: '.swiper-scrollbar' },
+    spaceBetween: 0, // 간격 : px
+    slidesPerView: 1, // 한 화면에 보이는 슬라이드 수
+    onBeforeInit: swiper => {
+      // 초기설정
+      swiper.params.navigation.prevEl = prevRef.current;
+      swiper.params.navigation.nextEl = nextRef.current;
+      swiper.navigation.update();
+    },
+  };
+
   return (
     <Container isMobile={isMobile}>
-      <Swiper
-        modules={[Navigation, Scrollbar]}
-        slidesPerView={1}
-        navigation
-        scrollbar={{ draggable: true }}
-      >
+      <Swiper {...settings}>
         {slider.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="slide-title">{slide.title}</div>
-            <div className="slide-img">
+            <div className="swiper-title">{slide.title}</div>
+            <figure className="swiper-img">
               <img src={slide.thumbnail} alt={`슬라이드 이미지${index}+1`} />
-            </div>
+            </figure>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="swiper-scrollbar-wapper">
+        <div className="swiper-scrollbar"></div>
+        <div className="swiper-button-wapper">
+          <button ref={prevRef}>{'<'}</button>
+          <button ref={nextRef}>{'>'}</button>
+        </div>
+      </div>
     </Container>
   );
 };
@@ -48,70 +71,84 @@ const textAnime = keyframes`
   `;
 
 const Container = styled.div<{ isMobile: boolean }>`
-  .swiper-slide {
-    ${props =>
-      !props.isMobile &&
-      css`
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-      `}
-  }
+  .swiper {
+    &-slide {
+      ${props =>
+        !props.isMobile &&
+        css`
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+        `}
+    }
 
-  .slide-title {
-    flex: 1;
-    margin-bottom: 35px;
-    white-space: pre-line;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 46px;
-    line-height: 56px;
-  }
+    &-title {
+      flex: 1;
+      margin-bottom: 35px;
+      white-space: pre-line;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 46px;
+      line-height: 56px;
+    }
 
-  .swiper-slide-active .slide-title {
-    animation: ${textAnime} 1s cubic-bezier(0, 0.55, 0.45, 1),
-      opacity 0.8s linear;
-  }
+    &-slide-active {
+      .swiper-title {
+        animation: ${textAnime} 1s cubic-bezier(0, 0.55, 0.45, 1),
+          opacity 0.8s linear;
+      }
+    }
 
-  .slide-img {
-    width: 100%;
-    height: 100%;
+    &-img {
+      width: 100%;
+      height: 100%;
 
-    ${props =>
-      !props.isMobile &&
-      css`
-        flex: 2;
-        border-radius: 10px;
-        background-position: center;
-        background-size: cover;
-        height: 400px;
-      `}
+      ${props =>
+        !props.isMobile &&
+        css`
+          flex: 2;
+          border-radius: 10px;
+          background-position: center;
+          background-size: cover;
+          height: 400px;
+        `}
 
-    ${props =>
-      props.isMobile &&
-      css`
-        padding-bottom: 30px;
-      `}
-  }
+      ${props =>
+        props.isMobile &&
+        css`
+          padding-bottom: 30px;
+        `}
+    }
 
-  .swiper-scrollbar {
-    width: 225px;
-    height: 3px;
-    background-color: hsla(0, 0%, 100%, 0.1);
+    &-scrollbar-wapper {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    ${props =>
-      props.isMobile &&
-      css`
-        width: 100%;
-      `}
-  }
+    &-scrollbar {
+      width: 225px;
+      height: 3px;
+      background-color: hsla(0, 0%, 100%, 0.1);
 
-  .swiper-scrollbar-drag {
-    background-color: #fff;
-  }
+      ${props =>
+        props.isMobile &&
+        css`
+          width: 100%;
+        `}
+    }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: white;
+    &-scrollbar-drag {
+      background-color: #fff;
+    }
+
+    &-button-wapper {
+      margin-left: 15px;
+
+      &-prev,
+      &-next {
+        color: white;
+      }
+    }
   }
 `;
