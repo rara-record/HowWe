@@ -43,7 +43,7 @@ const communityMock: ICommunity = {
 
 const Home = () => {
   const isDesktop = useMediaQuery({
-    query: '(min-width: 680px)',
+    query: '(min-width: 768px)',
   });
 
   const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
