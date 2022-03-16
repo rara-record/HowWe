@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+
 import { ISlider } from 'types/type';
 
 import SwiperCore, { Navigation, Scrollbar } from 'swiper';
@@ -23,12 +24,15 @@ const Slider = ({ slider, isMobile }: Props) => {
   const settings = {
     navigation: { prevEl: prevRef.current, nextEl: nextRef.current },
     scrollbar: { draggable: true, el: '.swiper-scrollbar' },
-    spaceBetween: 0, // 간격 : px
-    slidesPerView: 1, // 한 화면에 보이는 슬라이드 수
-    onBeforeInit: swiper => {
-      // 초기설정
-      swiper.params.navigation.prevEl = prevRef.current;
-      swiper.params.navigation.nextEl = nextRef.current;
+    spaceBetween: 0,
+    slidesPerView: 1,
+    onBeforeInit: (swiper: SwiperCore) => {
+      if (typeof swiper.params.navigation !== 'boolean') {
+        if (swiper.params.navigation) {
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
+        }
+      }
       swiper.navigation.update();
     },
   };
