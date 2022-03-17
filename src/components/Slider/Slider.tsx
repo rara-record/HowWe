@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { ISlider } from 'types/type';
 
 import SwiperCore, { Navigation, Scrollbar } from 'swiper';
@@ -50,13 +51,17 @@ const Slider = ({ slider, isMobile }: Props) => {
         ))}
       </Swiper>
 
-      <div className="swiper-scrollbar-wapper">
+      <SwiperScroll isMobile={isMobile}>
         <div className="swiper-scrollbar"></div>
-        <div className="swiper-button-wapper">
-          <button ref={prevRef}>{'<'}</button>
-          <button ref={nextRef}>{'>'}</button>
-        </div>
-      </div>
+        <ButtonWrapper>
+          <button ref={prevRef}>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </button>
+          <button ref={nextRef}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </button>
+        </ButtonWrapper>
+      </SwiperScroll>
     </Container>
   );
 };
@@ -123,45 +128,50 @@ const Container = styled.div<{ isMobile: boolean }>`
           padding-bottom: 30px;
         `}
     }
+  }
+`;
 
-    &-scrollbar-wapper {
-      display: inline-flex;
+const SwiperScroll = styled.div<{ isMobile: boolean }>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  ${props =>
+    props.isMobile &&
+    css`
+      display: flex;
       justify-content: center;
       align-items: center;
+    `}
 
-      ${props =>
-        props.isMobile &&
-        css`
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-    }
+  .swiper-scrollbar {
+    width: 225px;
+    height: 3px;
+    background-color: hsla(0, 0%, 100%, 0.1);
 
-    &-scrollbar {
-      width: 225px;
-      height: 3px;
-      background-color: hsla(0, 0%, 100%, 0.1);
+    ${props =>
+      props.isMobile &&
+      css`
+        width: 100%;
+      `}
+  }
 
-      ${props =>
-        props.isMobile &&
-        css`
-          display: flex;
-          width: 100%;
-        `}
-    }
+  .swiper-scrollbar-drag {
+    background-color: #fff;
+  }
+`;
 
-    &-scrollbar-drag {
-      background-color: #fff;
-    }
+const ButtonWrapper = styled.div`
+  display: flex;
+  margin-left: 25px;
+  grid-gap: 15px;
 
-    &-button-wapper {
-      margin-left: 15px;
+  button {
+    color: #fff;
+    font-size: 15px;
+  }
 
-      &-prev,
-      &-next {
-        color: white;
-      }
-    }
+  .swiper-button-disabled {
+    color: rgba(255, 255, 255, 0.3);
   }
 `;
