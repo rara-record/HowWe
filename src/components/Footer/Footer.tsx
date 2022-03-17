@@ -45,6 +45,11 @@ const Container = styled.div<{ isMobile: boolean }>`
   footer {
     ${maxWidth};
     display: flex;
+    flex-wrap: wrap;
+
+    .footer-logo {
+      flex: 1;
+    }
 
     .logo-img {
       width: 60px;
@@ -52,10 +57,10 @@ const Container = styled.div<{ isMobile: boolean }>`
     }
 
     .footer-info {
+      flex: 2;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      width: 100%;
 
       ${props =>
         props.isMobile &&
