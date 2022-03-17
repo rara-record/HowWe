@@ -128,6 +128,14 @@ const Container = styled.div<{ isMobile: boolean }>`
       display: inline-flex;
       justify-content: center;
       align-items: center;
+
+      ${props =>
+        props.isMobile &&
+        css`
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
     }
 
     &-scrollbar {
@@ -138,6 +146,7 @@ const Container = styled.div<{ isMobile: boolean }>`
       ${props =>
         props.isMobile &&
         css`
+          display: flex;
           width: 100%;
         `}
     }
