@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Navbar type={'home'} />
       <HeaderSection />
       <main>
         <CampSection title="인기 부트 캠프" camps={popularCamps} />

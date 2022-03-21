@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import styled, { css } from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 
-const Navbar = () => {
+interface Props {
+  type: string;
+}
+
+const Navbar = ({ type }: Props) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <Container isScrolled={isScrolled}>
+    <Container className={type} isScrolled={isScrolled} type={type}>
       <div className="main">
         <h1 className="logo">
           <Link to="/">
@@ -55,10 +60,22 @@ const Navbar = () => {
 export default Navbar;
 
 // TODO: styled-components에 props를 받는법
-const Container = styled.nav<{ isScrolled: boolean }>`
+const Container = styled.nav<{
+  isScrolled: boolean;
+  type: string;
+}>`
   position: fixed;
   width: 100%;
   z-index: 100;
+
+  ${props =>
+    props.type === 'sub'
+      ? css`
+          background-color: white;
+        `
+      : css`
+          background-color: transparent;
+        `}
 
   ${props =>
     props.isScrolled &&
@@ -67,7 +84,7 @@ const Container = styled.nav<{ isScrolled: boolean }>`
       transition: 0.5s;
     `}
 
-  .main {
+    .main {
     ${maxWidth}
     display: flex;
     justify-content: space-between;
