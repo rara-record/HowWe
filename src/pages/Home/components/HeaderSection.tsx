@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 import { Slider } from 'components';

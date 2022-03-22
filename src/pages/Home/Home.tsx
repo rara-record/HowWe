@@ -54,7 +54,7 @@ const Home = () => {
   // TODO: 비동기 함수는 바로 useEffect에서 직접적으로 state에 담는 것은 권장되는 사항이 아니기 때문에, 비동기를 처리하는 함수를 만들어서 한번 더 감싸준 후 처리해주는 것이 좋다.
   const fetchCamps = async (type: CampType) => {
     const camps = await getCampsByType(type);
-    type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps); // TODO: type별로 나누어지지 않음
+    type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps);
   };
 
   return (
