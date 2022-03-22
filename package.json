@@ -1,8 +1,8 @@
 {
-  "name": "howwe",
+  "name": "caffein",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rara-record.github.io/howwe",
+  "homepage": "https://rara-record.github.io/caffein",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
