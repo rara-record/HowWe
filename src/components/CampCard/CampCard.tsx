@@ -12,7 +12,7 @@ interface Props {
 
 const CampCard = ({ camp, isHeadField }: Props) => {
   return (
-    <Link to={`/camp/${camp.id}`}>
+    <Link to={`/camp/${camp.id}`} style={{ flex: 1 }}>
       <Container bgImg={camp.thumbnail}>
         <BgOpacityBlack />
         <div className="camp-content">
@@ -36,6 +36,7 @@ const Container = styled.article<{ bgImg: string }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  flex: 1;
   height: 280px;
   margin-bottom: 8px;
   background-image: url(${props => props.bgImg});
