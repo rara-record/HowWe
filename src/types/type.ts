@@ -1,3 +1,4 @@
+export type CampType = 'popular' | 'sale';
 export interface ISlider {
   id: number;
   title: string;
