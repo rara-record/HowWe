@@ -13,7 +13,7 @@ interface Props {
 
 const CommunitySection = ({ title, communities }: Props) => {
   const isDesktop = useMediaQuery({
-    query: '(min-width: 680px)',
+    query: '(min-width: 768px)',
   });
 
   return isDesktop ? (

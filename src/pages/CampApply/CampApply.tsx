@@ -3,7 +3,7 @@ import { Navbar } from 'components';
 const CampApply = () => {
   return (
     <>
-      <Navbar />
+      <Navbar type={'sub'} />
       <div>캠프신청페이지</div>
     </>
   );

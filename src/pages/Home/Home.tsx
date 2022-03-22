@@ -43,7 +43,7 @@ const communityMock: ICommunity = {
 
 const Home = () => {
   const isDesktop = useMediaQuery({
-    query: '(min-width: 680px)',
+    query: '(min-width: 768px)',
   });
 
   const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Navbar type={'home'} />
       <HeaderSection />
       <main>
         <CampSection title="인기 부트 캠프" camps={popularCamps} />
