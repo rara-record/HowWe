@@ -32,9 +32,6 @@ const communityMock: ICommunity = {
   ],
 };
 
-getCampsByType('popular');
-getCampsByType('sale');
-
 const Home = () => {
   const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
   const [saleCamps, setSaleCamps] = useState<ICamp[]>([]);
@@ -44,6 +41,8 @@ const Home = () => {
   });
 
   useEffect(() => {
+    featchCamps('popular');
+    featchCamps('sale');
     setCommunities([
       communityMock,
       communityMock,
@@ -51,6 +50,11 @@ const Home = () => {
       communityMock,
     ]);
   }, []);
+
+  const featchCamps = async (type: CampType) => {
+    const camps = await getCampsByType(type);
+    type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps);
+  };
 
   return (
     <Container>
