@@ -12,25 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
 import { getCampsByType } from 'apis/camp';
-
-const communityMock: ICommunity = {
-  id: 0,
-  tags: ['조회수TOP', '취업고민'],
-  title: ' 합격 메일 답장 어떻게 할까요?',
-  content: '고칠 부분이 있는지 봐주시면 감사하겠습니다!',
-  comments: [
-    {
-      profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
-      content: '안녕하세요. 먼저 면접까지...',
-      nickname: '멘토1234',
-    },
-    {
-      profile: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
-      content: '안녕하세요. 먼저 면접까지...',
-      nickname: '멘토1234',
-    },
-  ],
-};
+import { getCommunties } from 'apis/community';
 
 const Home = () => {
   const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
@@ -43,18 +25,18 @@ const Home = () => {
   useEffect(() => {
     fetchCamps('popular');
     fetchCamps('sale');
-    setCommunities([
-      communityMock,
-      communityMock,
-      communityMock,
-      communityMock,
-    ]);
+    fetchCommunities();
   }, []);
 
   // TODO: 비동기 함수는 바로 useEffect에서 직접적으로 state에 담는 것은 권장되는 사항이 아니기 때문에, 비동기를 처리하는 함수를 만들어서 한번 더 감싸준 후 처리해주는 것이 좋다.
   const fetchCamps = async (type: CampType) => {
     const camps = await getCampsByType(type);
     type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps);
+  };
+
+  const fetchCommunities = async () => {
+    const communities = await getCommunties();
+    setCommunities(communities);
   };
 
   return (
