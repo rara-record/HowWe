@@ -12,13 +12,24 @@ interface IProps {
 }
 
 const CommunityCard = ({ community }: IProps) => {
+  const truncate = (param: string, maxlength: number) => {
+    let name = param;
+    let length = name.length;
+
+    if (length > maxlength) {
+      return (name = name.slice(0, maxlength) + ' ...');
+    } else {
+      return name;
+    }
+  };
+
   return (
-    <Link to={`/community/${community.id}`}>
+    <Link to={`/community/${community.id}`} style={{ flex: 1 }}>
       <Container>
         <div>
           <Tags tags={community.tags} />
-          <div className="title">{community.title}</div>
-          <div className="content">{community.content}</div>
+          <div className="title">{truncate(community.title, 14)}</div>
+          <div className="content">{truncate(community.name, 40)}</div>
         </div>
         <div>
           <Comments comments={community.comments} />
