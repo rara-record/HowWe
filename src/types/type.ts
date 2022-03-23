@@ -20,7 +20,7 @@ export interface ICommunity {
   id: number;
   tags: string[];
   title: string;
-  content: string;
+  name: string;
   comments: IComment[];
 }
 
