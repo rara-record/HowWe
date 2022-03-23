@@ -7,7 +7,7 @@ const Comment = ({ comment }: { comment: IComment }) => {
   return (
     <Conatiner>
       <Profile img={comment.profile} />
-      <div>
+      <div style={{ flex: 1 }}>
         <strong className="comment-nickname">{comment.nickname}</strong>
         <div className="comment-content">{comment.content}</div>
       </div>
@@ -26,11 +26,18 @@ const Conatiner = styled.div`
     ${fonts.Body2}
     font-family: 'Noto Sans';
     font-weight: bold;
+    overflow: hidden;
+    width: 50px;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
+
   .comment-content {
     font-family: 'Roboto';
     ${fonts.Caption}
     margin-top: 5px;
+    overflow: hidden;
+    max-height: 14px;
   }
 `;
 
