@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <GlobalStyled />
-      <BrowserRouter basename="howwe">
+      <BrowserRouter basename="caffein">
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="camp/:id" element={<CampDetail />}></Route>
