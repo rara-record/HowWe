@@ -25,5 +25,4 @@ export default createGlobalStyle`
       overflow:visible; 
       cursor:pointer
     } 
-  }
 `;
