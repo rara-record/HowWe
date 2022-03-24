@@ -34,6 +34,7 @@ export default CampSection;
 const Container = styled.section`
   ${maxWidth}
   padding: 0 16px 40px;
+  min-height: 300px;
 
   .section-title {
     ${fonts.H1};
