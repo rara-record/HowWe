@@ -33,26 +33,18 @@ const Navbar = ({ navType }: Props) => {
       <div className="main">
         <h1 className="logo">
           <Link to="/">
-            {isScrolled ? (
-              // main header
+            {/* 스크롤을 하지 않을때 */}
+            {!isScrolled && navType === 'main' ? (
               <img
                 className="logo-img"
-                src={
-                  navType === 'main'
-                    ? require('assets/images/logo-primary.png')
-                    : require('assets/images/logo-white.png')
-                }
+                src={require('assets/images/logo-white.png')}
                 alt="로고"
               />
             ) : (
-              // sub header
+              /* 스크롤 중일때 */
               <img
                 className="logo-img"
-                src={
-                  navType === 'sub'
-                    ? require('assets/images/logo-primary.png')
-                    : require('assets/images/logo-white.png')
-                }
+                src={require('assets/images/logo-primary.png')}
                 alt="로고"
               />
             )}
@@ -60,26 +52,18 @@ const Navbar = ({ navType }: Props) => {
         </h1>
 
         <Link to="community">
-          {isScrolled ? (
-            // main header
+          {/* 스크롤을 하지 않을때 */}
+          {!isScrolled && navType === 'main' ? (
             <img
               className="ic-person"
-              src={
-                navType === 'main'
-                  ? require('assets/images/icons/ic-person-primary.png')
-                  : require('assets/images/icons/ic-person-white.png')
-              }
+              src={require('assets/images/icons/ic-person-white.png')}
               alt="프로필"
             />
           ) : (
-            // sub header
+            /* 스크롤 중일때 */
             <img
               className="ic-person"
-              src={
-                navType === 'sub'
-                  ? require('assets/images/icons/ic-person-primary.png')
-                  : require('assets/images/icons/ic-person-white.png')
-              }
+              src={require('assets/images/icons/ic-person-primary.png')}
               alt="프로필"
             />
           )}
