@@ -1,5 +1,5 @@
 import { CommunityCard } from 'components';
-import { ICommunity } from 'types/type';
+import { ICommunity } from 'types/Community';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 

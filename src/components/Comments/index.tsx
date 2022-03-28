@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IComment } from 'types/type';
+import { IComment } from 'types/Community';
 import Comment from './Comment';
 
 const Comments = ({ comments }: { comments: IComment[] }) => {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
 
-import { IComment } from 'types/type';
+import { IComment } from 'types/Community';
 
 const Comment = ({ comment }: { comment: IComment }) => {
   return (

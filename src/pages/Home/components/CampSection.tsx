@@ -1,6 +1,6 @@
 import { CampCard } from 'components';
 import { useMediaQuery } from 'react-responsive';
-import { ICamp } from 'types/type';
+import { ICamp } from 'types/Camp';
 import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';

@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { ISlider } from 'types/type';
+import { ISlider } from 'types/Slider';
 
 import SwiperCore, { Navigation, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';

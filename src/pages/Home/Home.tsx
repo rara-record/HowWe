@@ -5,7 +5,8 @@ import {
   HomeBanner,
   CommunitySection,
 } from './components';
-import { CampType, ICamp, ICommunity } from 'types/type';
+import { CampType, ICamp } from 'types/Camp';
+import { ICommunity } from 'types/Community';
 import { useEffect, useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useMediaQuery } from 'react-responsive';

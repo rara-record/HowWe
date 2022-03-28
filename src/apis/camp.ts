@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { CampType } from 'types/type';
+import { CampType } from 'types/Camp';
 
 const httpClient = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,

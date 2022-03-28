@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ICommunity } from 'types/type';
+import { ICommunity } from 'types/Community';
 import { Tags, Comments } from 'components';
 
 import fonts from 'styles/fonts';

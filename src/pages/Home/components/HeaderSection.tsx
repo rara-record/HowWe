@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 import { Slider } from 'components';
-import { ISlider } from 'types/type';
+import { ISlider } from 'types/Slider';
 import { useEffect, useState } from 'react';
 
 const SliderMock: ISlider = {
