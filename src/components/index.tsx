@@ -1,3 +1,5 @@
+export { default as MainLayout } from './Layout/MainLayout';
+export { default as SubLayout } from './Layout/SubLayout';
 export { default as Navbar } from './Navbar/Navbar';
 export { default as CampCard } from './CampCard/CampCard';
 export { default as CommunityCard } from './CommunityCard/CommunityCard';
