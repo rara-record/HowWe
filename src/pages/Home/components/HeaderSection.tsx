@@ -27,8 +27,11 @@ const HeaderSection = () => {
   }, []);
 
   return (
-    <Container bgImg={require('assets/images/home_header_bg.jpg')}>
-      <div className="header-content">
+    <Container
+      className="visual"
+      bgImg={require('assets/images/home_header_bg.jpg')}
+    >
+      <div className="visual-content">
         <Slider slider={slider} isMobile={isMobile} />
       </div>
     </Container>
@@ -44,7 +47,7 @@ const Container = styled.div<{ bgImg: string }>`
   box-sizing: border-box;
   margin-bottom: 56px;
 
-  .header-content {
+  .visual-content {
     ${maxWidth}
   }
 `;

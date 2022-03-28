@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <Container>
       <HeaderSection />
-      <main>
+      <main className="contents">
         <CampSection title="인기 부트 캠프" camps={popularCamps} />
         <Padding height="40px" />
 
