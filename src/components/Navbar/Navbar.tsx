@@ -30,10 +30,10 @@ const Navbar = ({ navType }: Props) => {
       isScrolled={isScrolled}
       navType={navType}
     >
-      <div className="main">
+      <div className="inner">
         <h1 className="logo">
           <Link to="/">
-            {/* 스크롤을 하지 않을때 */}
+            {/*  home navbar 스크롤을 하지 않을때만 로고 흰색*/}
             {!isScrolled && navType === 'main' ? (
               <img
                 className="logo-img"
@@ -41,7 +41,7 @@ const Navbar = ({ navType }: Props) => {
                 alt="로고"
               />
             ) : (
-              /* 스크롤 중일때 */
+              // 그 외
               <img
                 className="logo-img"
                 src={require('assets/images/logo-primary.png')}
@@ -52,7 +52,7 @@ const Navbar = ({ navType }: Props) => {
         </h1>
 
         <Link to="community">
-          {/* 스크롤을 하지 않을때 */}
+          {/* home navbar 스크롤을 하지 않을때만 로고 흰색 */}
           {!isScrolled && navType === 'main' ? (
             <img
               className="ic-person"
@@ -60,7 +60,7 @@ const Navbar = ({ navType }: Props) => {
               alt="프로필"
             />
           ) : (
-            /* 스크롤 중일때 */
+            // 그 외
             <img
               className="ic-person"
               src={require('assets/images/icons/ic-person-primary.png')}
@@ -97,7 +97,7 @@ const Container = styled.nav<{
       transition: 0.5s;
     `}
 
-    .main {
+    .inner {
     ${maxWidth}
     display: flex;
     justify-content: space-between;
