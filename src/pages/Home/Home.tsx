@@ -1,4 +1,4 @@
-import { Navbar, Footer, Padding } from 'components';
+import { Footer, Padding } from 'components';
 import {
   HeaderSection,
   CampSection,
@@ -41,7 +41,6 @@ const Home = () => {
 
   return (
     <Container>
-      <Navbar type={'home'} />
       <HeaderSection />
       <main>
         <CampSection title="인기 부트 캠프" camps={popularCamps} />
