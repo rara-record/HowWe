@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Navbar from 'components/Navbar/Navbar';
+import Footer from 'components/Footer/Footer';
 
 const MainLayout = () => {
   return (
@@ -12,17 +13,17 @@ const MainLayout = () => {
       <main>
         <Outlet />
       </main>
+
+      <Footer />
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-
   header {
-    position: fixed;
     width: 100%;
+    height: 100%;
+    position: fixed;
     z-index: 100;
   }
 `;

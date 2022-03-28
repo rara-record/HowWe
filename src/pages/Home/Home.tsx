@@ -1,4 +1,4 @@
-import { Navbar, Footer, Padding } from 'components';
+import { Padding } from 'components';
 import {
   HeaderSection,
   CampSection,
@@ -58,7 +58,6 @@ const Home = () => {
         <CommunitySection title="커뮤니티" communities={communities} />
         {isDesktop && <Padding height="240px" />}
       </main>
-      <Footer />
     </Container>
   );
 };
