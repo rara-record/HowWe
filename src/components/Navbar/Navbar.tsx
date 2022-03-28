@@ -5,10 +5,10 @@ import styled, { css } from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 
 interface Props {
-  type: string;
+  navType: string;
 }
 
-const Navbar = ({ type }: Props) => {
+const Navbar = ({ navType }: Props) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,32 +25,64 @@ const Navbar = ({ type }: Props) => {
   };
 
   return (
-    <Container className={type} isScrolled={isScrolled} type={type}>
+    <Container
+      className={`${navType}-navbar`}
+      isScrolled={isScrolled}
+      navType={navType}
+    >
       <div className="main">
         <h1 className="logo">
           <Link to="/">
-            <img
-              className="logo-img"
-              src={
-                isScrolled
-                  ? require('assets/images/logo-primary.png')
-                  : require('assets/images/logo-white.png')
-              }
-              alt="로고"
-            />
+            {isScrolled ? (
+              // main header
+              <img
+                className="logo-img"
+                src={
+                  navType === 'main'
+                    ? require('assets/images/logo-primary.png')
+                    : require('assets/images/logo-white.png')
+                }
+                alt="로고"
+              />
+            ) : (
+              // sub header
+              <img
+                className="logo-img"
+                src={
+                  navType === 'sub'
+                    ? require('assets/images/logo-primary.png')
+                    : require('assets/images/logo-white.png')
+                }
+                alt="로고"
+              />
+            )}
           </Link>
         </h1>
 
         <Link to="community">
-          <img
-            className="ic-person"
-            src={
-              isScrolled
-                ? require('assets/images/icons/ic-person-primary.png')
-                : require('assets/images/icons/ic-person-white.png')
-            }
-            alt="프로필"
-          />
+          {isScrolled ? (
+            // main header
+            <img
+              className="ic-person"
+              src={
+                navType === 'main'
+                  ? require('assets/images/icons/ic-person-primary.png')
+                  : require('assets/images/icons/ic-person-white.png')
+              }
+              alt="프로필"
+            />
+          ) : (
+            // sub header
+            <img
+              className="ic-person"
+              src={
+                navType === 'sub'
+                  ? require('assets/images/icons/ic-person-primary.png')
+                  : require('assets/images/icons/ic-person-white.png')
+              }
+              alt="프로필"
+            />
+          )}
         </Link>
       </div>
     </Container>
@@ -62,14 +94,11 @@ export default Navbar;
 // TODO: styled-components에 props를 받는법
 const Container = styled.nav<{
   isScrolled: boolean;
-  type: string;
+  navType: string;
 }>`
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-
+  /* sub navbar */
   ${props =>
-    props.type === 'sub'
+    props.navType === 'sub'
       ? css`
           background-color: white;
         `
