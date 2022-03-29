@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import CampDetailBanner from './components/CampDetailBanner';
 import CampDetailContents from './components/CampDetailContents';
-import CampDetailSidebar from './components/CampDetailSidebar';
+import Sidebar from '../../components/Sidebar';
 
 const CampDetail = () => {
   return (
@@ -15,7 +15,7 @@ const CampDetail = () => {
 
         <main>
           <CampDetailContents />
-          <CampDetailSidebar />
+          <Sidebar />
         </main>
       </div>
 

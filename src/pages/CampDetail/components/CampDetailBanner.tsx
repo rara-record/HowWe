@@ -27,26 +27,27 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   height: 340px;
-  padding-top: 40px;
+  padding: 40px 16px 0;
   z-index: 1;
   position: relative;
 
   .camp-detail-banner-title {
     flex: 1;
     align-self: flex-end;
-    color: white;
 
     h1 {
       ${fonts.H1};
       font-size: 32px;
       word-break: keep-all;
       margin: 12px 0 16px;
+      color: white;
     }
 
     h2 {
       ${fonts.H4}
       font-weight: normal;
       margin-bottom: 32px;
+      color: #f3f4f5;
     }
   }
 
@@ -56,7 +57,7 @@ const Container = styled.div`
 
     img {
       width: 100%;
-      height: 100%;
+      margin-top: 40px;
       object-fit: cover;
       border-radius: 4px;
     }

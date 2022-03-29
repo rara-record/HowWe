@@ -20,6 +20,7 @@ export default createGlobalStyle`
     }
     img{
       width:100%;
+      object-fit: cover;
     }
     button {
       background: inherit; 

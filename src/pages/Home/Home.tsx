@@ -16,7 +16,7 @@ import { getCampsByType } from 'apis/camp';
 import { getCommunties } from 'apis/community';
 
 const Home = () => {
-  const [popularCamps, setPopularCamps] = useState<ICamp[]>(); // 넵
+  const [popularCamps, setPopularCamps] = useState<ICamp[]>();
   const [saleCamps, setSaleCamps] = useState<ICamp[]>();
   const [communities, setCommunities] = useState<ICommunity[]>();
   const isDesktop = useMediaQuery({
