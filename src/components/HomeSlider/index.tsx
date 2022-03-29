@@ -15,7 +15,7 @@ interface Props {
   isMobile: boolean;
 }
 
-const Slider = ({ slider, isMobile }: Props) => {
+const VisualSlider = ({ slider, isMobile }: Props) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -51,7 +51,7 @@ const Slider = ({ slider, isMobile }: Props) => {
         ))}
       </Swiper>
 
-      <SwiperScroll isMobile={isMobile}>
+      <StyledSwiperScroll isMobile={isMobile}>
         <div className="swiper-scrollbar"></div>
         <ButtonWrapper>
           <button ref={prevRef}>
@@ -61,12 +61,12 @@ const Slider = ({ slider, isMobile }: Props) => {
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
         </ButtonWrapper>
-      </SwiperScroll>
+      </StyledSwiperScroll>
     </Container>
   );
 };
 
-export default Slider;
+export default VisualSlider;
 
 const textAnime = keyframes`
   0% {
@@ -80,6 +80,10 @@ const textAnime = keyframes`
   `;
 
 const Container = styled.div<{ isMobile: boolean }>`
+  width: 100%;
+  height: 100%;
+  position: relative;
+
   .swiper {
     &-slide {
       ${props =>
@@ -91,21 +95,21 @@ const Container = styled.div<{ isMobile: boolean }>`
         `}
     }
 
-    &-title {
-      flex: 1;
-      margin-bottom: 35px;
-      white-space: pre-line;
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 46px;
-      line-height: 56px;
-    }
-
     &-slide-active {
       .swiper-title {
         animation: ${textAnime} 1s cubic-bezier(0, 0.55, 0.45, 1),
           opacity 0.8s linear;
       }
+    }
+
+    &-title {
+      flex: 1;
+      margin-bottom: 50px;
+      white-space: pre-line;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 46px;
+      line-height: 56px;
     }
 
     &-img {
@@ -115,7 +119,7 @@ const Container = styled.div<{ isMobile: boolean }>`
       ${props =>
         !props.isMobile &&
         css`
-          flex: 2;
+          flex: 1.8;
           border-radius: 10px;
           background-position: center;
           background-size: cover;
@@ -127,14 +131,23 @@ const Container = styled.div<{ isMobile: boolean }>`
         css`
           padding-bottom: 30px;
         `}
+
+      img {
+        border-radius: 16px;
+        height: 100%;
+      }
     }
   }
 `;
 
-const SwiperScroll = styled.div<{ isMobile: boolean }>`
+const StyledSwiperScroll = styled.div<{ isMobile: boolean }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  left: 0;
+
+  bottom: 0;
 
   ${props =>
     props.isMobile &&
@@ -164,11 +177,13 @@ const SwiperScroll = styled.div<{ isMobile: boolean }>`
 const ButtonWrapper = styled.div`
   display: flex;
   margin-left: 25px;
-  grid-gap: 15px;
+  grid-gap: 20px;
+  z-index: 1;
+  cursor: pointer;
 
   button {
     color: #fff;
-    font-size: 15px;
+    font-size: 25px;
   }
 
   .swiper-button-disabled {

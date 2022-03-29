@@ -16,9 +16,9 @@ import { getCampsByType } from 'apis/camp';
 import { getCommunties } from 'apis/community';
 
 const Home = () => {
-  const [popularCamps, setPopularCamps] = useState<ICamp[]>([]);
-  const [saleCamps, setSaleCamps] = useState<ICamp[]>([]);
-  const [communities, setCommunities] = useState<ICommunity[]>([]);
+  const [popularCamps, setPopularCamps] = useState<ICamp[]>(); // 넵
+  const [saleCamps, setSaleCamps] = useState<ICamp[]>();
+  const [communities, setCommunities] = useState<ICommunity[]>();
   const isDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
@@ -29,9 +29,9 @@ const Home = () => {
     fetchCommunities();
   }, []);
 
-  // TODO: 비동기 함수는 바로 useEffect에서 직접적으로 state에 담는 것은 권장되는 사항이 아니기 때문에, 비동기를 처리하는 함수를 만들어서 한번 더 감싸준 후 처리해주는 것이 좋다.
   const fetchCamps = async (type: CampType) => {
     const camps = await getCampsByType(type);
+    console.log(camps);
     type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps);
   };
 
@@ -44,10 +44,16 @@ const Home = () => {
     <Container>
       <VisualSection />
       <main className="contents">
-        <CampSection title="인기 부트 캠프" camps={popularCamps} />
+        {popularCamps && (
+          <CampSection title="인기 부트 캠프" camps={popularCamps} />
+        )}
+
         <Padding height="40px" />
 
-        <CampSection title="특가 할인 캠프" camps={saleCamps} isHeadField />
+        {saleCamps && (
+          <CampSection title="특가 할인 캠프" camps={saleCamps} isHeadField />
+        )}
+
         <Padding height="40px" />
 
         <HomeBanner
@@ -55,7 +61,10 @@ const Home = () => {
         />
         {isDesktop && <Padding height="55px" />}
 
-        <CommunitySection title="커뮤니티" communities={communities} />
+        {communities && (
+          <CommunitySection title="커뮤니티" communities={communities} />
+        )}
+
         {isDesktop && <Padding height="240px" />}
       </main>
     </Container>

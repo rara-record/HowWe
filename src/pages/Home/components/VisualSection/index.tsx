@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
-import { Slider } from 'components';
 import { ISlider } from 'types/Slider';
 import { useEffect, useState } from 'react';
+import { HomeSlider } from 'components';
 
 const SliderMock: ISlider = {
   id: 0,
@@ -11,7 +11,7 @@ const SliderMock: ISlider = {
   thumbnail: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
 };
 
-const HeaderSection = () => {
+const VisualSection = () => {
   const [slider, setSlider] = useState<ISlider[]>([]);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -32,13 +32,13 @@ const HeaderSection = () => {
       bgImg={require('assets/images/home_header_bg.jpg')}
     >
       <div className="visual-content">
-        <Slider slider={slider} isMobile={isMobile} />
+        <HomeSlider slider={slider} isMobile={isMobile} />
       </div>
     </Container>
   );
 };
 
-export default HeaderSection;
+export default VisualSection;
 
 const Container = styled.div<{ bgImg: string }>`
   background-image: url(${props => props.bgImg});
