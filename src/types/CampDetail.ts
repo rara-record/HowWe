@@ -1,22 +1,23 @@
 export interface ICampDetail {
-  id: number;
-  headline1: string;
-  headline2: string;
-  thumbnail: string;
-  contentsImg: string;
-  reviews: IReviews[];
-  mento: Imento;
+  tags: string[];
+  name: string;
+  desc: string;
+  startDate: string;
+  process: string;
+  seat: string;
+  reviewMaterial: string[];
+  headerImage: string;
+  images: string[];
+  IReviews: string[];
+  IFaqs: string[];
 }
 
 export interface IReviews {
   content: string;
-  student: string;
+  reviewer: string;
 }
 
-export interface Imento {
-  title: string;
-  content: string;
-  avatar: string;
-  introduce: string[];
-  career: string;
+export interface IFaqs {
+  question: string;
+  answer: string;
 }
