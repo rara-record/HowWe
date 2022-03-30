@@ -5,35 +5,30 @@ import {
   HomeBanner,
   CommunitySection,
 } from './components';
-import { CampType, ICamp } from 'types/Camp';
 import { ICommunity } from 'types/Community';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
-import { getCampsByType } from 'apis/camp';
 import { getCommunties } from 'apis/community';
+import { observer } from 'mobx-react-lite';
+import CampStroe from 'stores/CampStroe';
 
 const Home = () => {
-  const [popularCamps, setPopularCamps] = useState<ICamp[]>();
-  const [saleCamps, setSaleCamps] = useState<ICamp[]>();
   const [communities, setCommunities] = useState<ICommunity[]>();
+
   const isDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
 
-  useEffect(() => {
-    fetchCamps('popular');
-    fetchCamps('sale');
-    fetchCommunities();
-  }, []);
+  const campStore = useContext(CampStroe);
 
-  const fetchCamps = async (type: CampType) => {
-    const camps = await getCampsByType(type);
-    console.log(camps);
-    type === 'popular' ? setPopularCamps(camps) : setSaleCamps(camps);
-  };
+  useEffect(() => {
+    campStore.fetchCampsPopular();
+    campStore.fetchCampsSale();
+    fetchCommunities();
+  }, [campStore]);
 
   const fetchCommunities = async () => {
     const communities = await getCommunties();
@@ -44,14 +39,18 @@ const Home = () => {
     <Container>
       <VisualSection />
       <main className="contents">
-        {popularCamps && (
-          <CampSection title="인기 부트 캠프" camps={popularCamps} />
+        {campStore.campPopular && (
+          <CampSection title="인기 부트 캠프" camps={campStore.campPopular} />
         )}
 
         <Padding height="40px" />
 
-        {saleCamps && (
-          <CampSection title="특가 할인 캠프" camps={saleCamps} isHeadField />
+        {campStore.campSales && (
+          <CampSection
+            title="특가 할인 캠프"
+            camps={campStore.campSales}
+            isHeadField
+          />
         )}
 
         <Padding height="40px" />
@@ -79,4 +78,4 @@ const Container = styled.div`
   }
 `;
 
-export default Home;
+export default observer(Home);
