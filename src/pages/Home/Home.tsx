@@ -5,35 +5,28 @@ import {
   HomeBanner,
   CommunitySection,
 } from './components';
-import { ICommunity } from 'types/Community';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import CampStroe from 'stores/CampsStore';
+
 import { maxWidth } from 'styles/mixin';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
-
-import { getCommunties } from 'apis/community';
-import { observer } from 'mobx-react-lite';
-import CampStroe from 'stores/CampStroe';
+import CommunityStore from 'stores/CommunityStore';
 
 const Home = () => {
-  const [communities, setCommunities] = useState<ICommunity[]>();
-
   const isDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
 
   const campStore = useContext(CampStroe);
+  const communityStore = useContext(CommunityStore);
 
   useEffect(() => {
     campStore.fetchCampsPopular();
     campStore.fetchCampsSale();
-    fetchCommunities();
-  }, [campStore]);
-
-  const fetchCommunities = async () => {
-    const communities = await getCommunties();
-    setCommunities(communities);
-  };
+    communityStore.fetchCommunites();
+  }, [campStore, communityStore]);
 
   return (
     <Container>
@@ -60,8 +53,11 @@ const Home = () => {
         />
         {isDesktop && <Padding height="55px" />}
 
-        {communities && (
-          <CommunitySection title="커뮤니티" communities={communities} />
+        {communityStore.communities && (
+          <CommunitySection
+            title="커뮤니티"
+            communities={communityStore.communities}
+          />
         )}
 
         {isDesktop && <Padding height="240px" />}
