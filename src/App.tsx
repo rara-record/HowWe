@@ -14,8 +14,8 @@ const App = () => {
           </Route>
 
           <Route element={<SubLayout />}>
-            <Route path="camp/:id" element={<CampDetail />} />
-            <Route path="community/:id" element={<Community />} />
+            <Route path="camp/:campid" element={<CampDetail />} />
+            <Route path="community/:communityid" element={<Community />} />
           </Route>
 
           <Route path="camp/apply" element={<CampApply />} />
