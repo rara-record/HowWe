@@ -24,3 +24,12 @@ export const getCampsByType = async (type: CampType) => {
       console.log(err);
     });
 };
+
+export const getCamp = async (campid: number) => {
+  return await httpClient
+    .get(`/camps/${campid}`)
+    .then(response => response.data.data)
+    .catch(err => {
+      console.log(err);
+    });
+};
