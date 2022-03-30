@@ -13,6 +13,7 @@ import { maxWidth } from 'styles/mixin';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import CommunityStore from 'stores/CommunityStore';
+import CardSectionSkeleton from 'components/Skeleton/CardSectionSkeleton';
 
 const Home = () => {
   const isDesktop = useMediaQuery({
@@ -32,18 +33,22 @@ const Home = () => {
     <Container>
       <VisualSection />
       <main className="contents">
-        {campStore.campPopular && (
+        {campStore.campPopular ? (
           <CampSection title="인기 부트 캠프" camps={campStore.campPopular} />
+        ) : (
+          <CardSectionSkeleton />
         )}
 
         <Padding height="40px" />
 
-        {campStore.campSales && (
+        {campStore.campSales ? (
           <CampSection
             title="특가 할인 캠프"
             camps={campStore.campSales}
             isHeadField
           />
+        ) : (
+          <CardSectionSkeleton />
         )}
 
         <Padding height="40px" />
@@ -53,11 +58,13 @@ const Home = () => {
         />
         {isDesktop && <Padding height="55px" />}
 
-        {communityStore.communities && (
+        {communityStore.communities ? (
           <CommunitySection
             title="커뮤니티"
             communities={communityStore.communities}
           />
+        ) : (
+          <CardSectionSkeleton />
         )}
 
         {isDesktop && <Padding height="240px" />}
