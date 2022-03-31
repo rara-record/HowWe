@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styled, { css } from 'styled-components';
+import colors from 'styles/colors';
 import { maxWidth } from 'styles/mixin';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 
 const Navbar = ({ navType }: Props) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
 
   useEffect(() => {
     changeBackground();
@@ -40,27 +42,13 @@ const Navbar = ({ navType }: Props) => {
     >
       <div className="inner">
         <h1 className="logo">
-          <Link to="/">
-            {/*  home navbar 스크롤을 하지 않을때만 로고 흰색*/}
-            {!isScrolled && navType === 'main' ? (
-              <img
-                className="logo-img"
-                src={require('assets/images/logo-white.png')}
-                alt="로고"
-              />
-            ) : (
-              // 그 외
-              <img
-                className="logo-img"
-                src={require('assets/images/logo-primary.png')}
-                alt="로고"
-              />
-            )}
+          <Link className={changeLogo} to="/">
+            caffein
           </Link>
         </h1>
 
         <Link to="community">
-          {/* home navbar 스크롤을 하지 않을때만 로고 흰색 */}
+          {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
           {!isScrolled && navType === 'main' ? (
             <img
               className="ic-person"
@@ -114,12 +102,16 @@ const Container = styled.nav<{
   }
 
   .logo {
-    width: 80px;
-    height: 32px;
-  }
+    font-size: 23px;
+    font-weight: 600;
 
-  a {
-    display: block;
+    .white {
+      color: white;
+    }
+
+    .primary {
+      color: ${colors.primary1};
+    }
   }
 
   .logo-img {
