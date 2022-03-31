@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import fonts from 'styles/fonts';
 import colors from 'styles/colors';
 
@@ -30,6 +29,7 @@ const Container = styled.div`
     color: ${colors.white};
     background-color: ${colors.primary1};
   }
+
   span:nth-child(even) {
     color: ${colors.gray1};
     background-color: ${colors.gray5};

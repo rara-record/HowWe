@@ -1,10 +1,10 @@
-import { CommunityCard } from 'components';
-import { ICommunity } from 'types/type';
+import { ICommunity } from 'types/Community';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
+import CommunityCard from 'components/CommunityCard';
 
 interface Props {
   title: string;

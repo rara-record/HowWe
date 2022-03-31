@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { CampType } from 'types/type';
+import { CampType } from 'types/Camp';
 
 const httpClient = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -20,6 +20,15 @@ export const getCampsByType = async (type: CampType) => {
   return await httpClient
     .get(`/camps?type=${type}`)
     .then(response => response.data.data) // TODO: 콘솔로 데이터가 성공적으로 불러왔는지 보려면, return No ..
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getCamp = async (campid: number) => {
+  return await httpClient
+    .get(`/camps/${campid}`)
+    .then(response => response.data.data)
     .catch(err => {
       console.log(err);
     });

@@ -1,10 +1,10 @@
-import { CampCard } from 'components';
 import { useMediaQuery } from 'react-responsive';
-import { ICamp } from 'types/type';
+import { ICamp } from 'types/Camp';
 import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
+import CampCard from 'components/CampCard';
 
 interface Props {
   title: string;
@@ -34,10 +34,11 @@ export default CampSection;
 const Container = styled.section`
   ${maxWidth}
   padding: 0 16px 40px;
+  min-height: 300px;
 
   .section-title {
     ${fonts.H1};
-    padding-bottom: 8px;
+    padding-bottom: 12px;
   }
 
   .d-card {
