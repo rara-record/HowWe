@@ -318,12 +318,17 @@ const Sidebar = styled.section`
       margin-bottom: 20px;
     }
 
-    .side-box-content.block {
-      display: block;
-    }
+    .side-box-content {
+      overflow: hidden;
+      transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-    .side-box-content.none {
-      display: none;
+      &.block {
+        height: 120px;
+      }
+
+      &.none {
+        height: 0;
+      }
     }
 
     .btn-large {
