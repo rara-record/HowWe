@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <GlobalStyled />
-      <BrowserRouter basename="caffein">
+      <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
