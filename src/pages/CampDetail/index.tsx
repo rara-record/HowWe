@@ -1,12 +1,13 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { maxWidth } from 'styles/mixin';
+import { observer } from 'mobx-react-lite';
+import { Sidebar, Skeleton } from 'components';
+import { ContentSection } from './components';
+
 import CampsStore from 'stores/CampsStore';
 import styled from 'styled-components';
 import Tags from 'components/Tags';
 import fonts from 'styles/fonts';
-import { Sidebar, Skeleton } from 'components';
-import { ContentSection } from './components';
 
 const CampDetail = () => {
   const { campId } = useParams();
@@ -19,12 +20,12 @@ const CampDetail = () => {
   if (campStore.targetCamp) {
     // TODO: Error: cannot be used as a JSX component. Its return type 'Element | undefined' is not a valid JSX element. Type 'undefined' is not assignable to type 'Element | null'. // 해결방법: if문을 써주고 else문을 써주지 않아서, 반환되는 형식이 'Element | defined' 는 될 수 없다는 오류
     return (
-      <Container className="camp-detail-container">
+      <Container>
         <BannerBackground />
 
         {/* 캠프 상세페이지 비주얼 */}
-        <VisualSection>
-          <div className="inner">
+        <div className="inner">
+          <VisualSection>
             <div className="camp-detail-visual-title">
               <Tags tags={['2기모집']} />
               <h1>{campStore.targetCamp.name}</h1>
@@ -37,17 +38,17 @@ const CampDetail = () => {
                 alt="camp-detail-visual-img"
               />
             </figure>
-          </div>
-        </VisualSection>
+          </VisualSection>
 
-        <main>
-          {/* 컨텐츠 */}
-          <ContentSection targetCamp={campStore.targetCamp} />
+          <main>
+            {/* 캠프 상세페이지 컨텐츠 */}
+            <ContentSection targetCamp={campStore.targetCamp} />
+            {/* 사이드바 */}
+            <Sidebar targetCamp={campStore.targetCamp} />
+          </main>
 
-          {/* 사이드바 */}
-          <Sidebar targetCamp={campStore.targetCamp} />
-          {/* 사이드바 */}
-        </main>
+          <div className="faq">FAQ</div>
+        </div>
       </Container>
     );
   } else {
@@ -62,17 +63,22 @@ const CampDetail = () => {
   }
 };
 
-export default CampDetail;
+export default observer(CampDetail);
 
 const Container = styled.div`
   position: relative;
 
   main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     position: relative;
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+  }
+
+  .faq {
     width: 100%;
+    height: 900px;
+    background-color: #eee;
   }
 `;
 
@@ -87,14 +93,10 @@ const BannerBackground = styled.div`
 
 const VisualSection = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 340px;
   z-index: 1;
-
-  .inner {
-    display: flex;
-    justify-content: space-between;
-    height: 340px;
-    padding: 40px 16px 0;
-  }
 
   .camp-detail-visual-title {
     flex: 1;

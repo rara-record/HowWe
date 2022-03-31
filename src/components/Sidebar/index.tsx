@@ -11,51 +11,51 @@ const Sidebar = ({ targetCamp }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(false);
   const toggeleBtn = () => setIsOn(!isOn);
+  let [tags1, tags2] = targetCamp.tags;
 
   return (
     <Container>
       {targetCamp && (
         <aside>
-          <div className="row">
-            <span className="tag">{targetCamp.tags[0]}∙</span>
-            <span className="tag">{targetCamp.tags[1]}</span>
-            <h1>{targetCamp.name}</h1>
+          <span className="tag">
+            {tags1} ∙ {tags2}
+          </span>
+          <h1>{targetCamp.name}</h1>
 
-            <div className={`side-box-content ${isOn ? 'block' : 'none'}`}>
-              <p>{targetCamp.desc}</p>
+          <div className={`side-box-content ${isOn ? 'block' : 'none'}`}>
+            <p>{targetCamp.desc}</p>
 
-              <dl className="sidebox-info">
-                <div>
-                  <dt>시작일</dt>
-                  <dl>{targetCamp.startDate}</dl>
-                </div>
+            <dl className="sidebox-info">
+              <div>
+                <dt>시작일</dt>
+                <dl>{targetCamp.startDate}</dl>
+              </div>
 
-                <div>
-                  <dt>수업과정</dt>
-                  <dl>{targetCamp.process}</dl>
-                </div>
+              <div>
+                <dt>수업과정</dt>
+                <dl>{targetCamp.process}</dl>
+              </div>
 
-                <div>
-                  <dt>정원</dt>
-                  <dl>{targetCamp.seat}</dl>
-                </div>
-              </dl>
-            </div>
-
-            <div className="detail-sidebox-info-toggle">
-              <button
-                className="toggle-btn"
-                ref={toggleBtnRef}
-                onClick={toggeleBtn}
-              >
-                버튼
-              </button>
-            </div>
-
-            <Link to="/camp/apply">
-              <button className="btn-large">더 잘하는 개발자 되기 </button>
-            </Link>
+              <div>
+                <dt>정원</dt>
+                <dl>{targetCamp.seat}</dl>
+              </div>
+            </dl>
           </div>
+
+          <div className="detail-sidebox-info-toggle">
+            <button
+              className="toggle-btn"
+              ref={toggleBtnRef}
+              onClick={toggeleBtn}
+            >
+              토글버튼
+            </button>
+          </div>
+
+          <Link to="/camp/apply">
+            <button className="btn-large">더 잘하는 개발자 되기 </button>
+          </Link>
         </aside>
       )}
     </Container>
@@ -65,20 +65,17 @@ const Sidebar = ({ targetCamp }: IProps) => {
 export default Sidebar;
 
 const Container = styled.section`
-  flex: 1;
+  width: 35%;
 
   aside {
     position: sticky;
-    top: 150px;
-    margin-top: 30px;
+    top: 100px;
+    margin: 30px 0 50px;
     padding: 24px;
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 0 6px rgb(0 0 0 / 10%);
     z-index: 1;
-
-    .row {
-    }
 
     .tag {
       font-size: 14px;
@@ -97,11 +94,9 @@ const Container = styled.section`
     .side-box-content {
       overflow: hidden;
       transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
       &.block {
         height: 120px;
       }
-
       &.none {
         height: 0;
       }

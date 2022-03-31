@@ -1,10 +1,6 @@
-import { Reviews } from 'components';
+import { Padding, Reviews } from 'components';
 import styled from 'styled-components';
 import { ICampDetail } from 'types/CampDetail';
-
-// Type 'string[]' is not assignable to type 'ICampDetail[]'.
-// Type 'string' is not assignable to type 'ICampDetail'.
-
 interface IProps {
   targetCamp: ICampDetail;
 }
@@ -12,6 +8,8 @@ interface IProps {
 const ContentSection = ({ targetCamp }: IProps) => {
   return (
     <Container>
+      {/* 상세페이지 정보 */}
+
       <Info>
         <h1>
           대답없는 VOD 강의에 <strong>라이브</strong>로 답하다.
@@ -43,14 +41,17 @@ const ContentSection = ({ targetCamp }: IProps) => {
         </div>
       </Info>
 
+      {/* 상세페이지 이미지 */}
       <Images>
         {targetCamp.images.map((img, index) => (
           <article key={index}>
             <img src={img} alt="camp-detail-img" />
+            <Padding height={'60px'} />
           </article>
         ))}
       </Images>
 
+      {/* 리뷰 */}
       <Reviews reviews={targetCamp.reviews} />
     </Container>
   );
@@ -58,8 +59,8 @@ const ContentSection = ({ targetCamp }: IProps) => {
 
 export default ContentSection;
 
-const Container = styled.section`
-  flex: 2;
+const Container = styled.div`
+  width: 65%;
   padding: 10px;
 `;
 
@@ -122,6 +123,4 @@ const Info = styled.div`
   }
 `;
 
-const Images = styled.div`
-  width: 100%;
-`;
+const Images = styled.div``;
