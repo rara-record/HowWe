@@ -14,7 +14,15 @@ const Navbar = ({ navType }: Props) => {
   useEffect(() => {
     changeBackground();
     window.addEventListener('scroll', changeBackground);
-  });
+
+    /* 
+    TODO: error: Can't perform a React state update on an unmounted component.
+    윈도우에 이벤트를 등록해놓았기 때문에, 컴포넌트가 언마운트 되어도
+    스크롤이 될때마다 changeBackground함수가 실행되어 메모리 누수가 발생할 수 있다
+    에러 해결: 컴포넌트가 언마운트 되기 직전에 이벤트를 제거 한다
+    */
+    return () => window.removeEventListener('scroll', changeBackground);
+  }, []);
 
   const changeBackground = () => {
     if (window.scrollY >= 80) {
