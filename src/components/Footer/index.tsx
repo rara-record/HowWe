@@ -53,7 +53,6 @@ const Container = styled.div<{ isMobile: boolean }>`
 
     .logo-img {
       width: 60px;
-      padding-right: 115px;
     }
 
     .footer-info {

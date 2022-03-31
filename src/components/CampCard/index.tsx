@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ICamp } from 'types/type';
+import { ICamp } from 'types/Camp';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';

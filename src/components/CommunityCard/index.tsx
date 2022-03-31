@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ICommunity } from 'types/type';
-import { Tags, Comments } from 'components';
+import { ICommunity } from 'types/Community';
+import { Tags } from 'components';
+import Comments from '../Comments';
 
 import fonts from 'styles/fonts';
 import colors from 'styles/colors';
@@ -12,15 +13,14 @@ interface IProps {
 }
 
 const CommunityCard = ({ community }: IProps) => {
+  // 글자 자르는 함수
   const truncate = (param: string, maxlength: number) => {
     let name = param;
-    let length = name.length;
+    let length = name && name.length; // TODO: Error: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function. // 해결 방법: && 연산자 사용
 
-    if (length > maxlength) {
-      return (name = name.slice(0, maxlength) + ' ...');
-    } else {
-      return name;
-    }
+    return length > maxlength
+      ? (name = name.slice(0, maxlength) + ' ...')
+      : name;
   };
 
   return (
