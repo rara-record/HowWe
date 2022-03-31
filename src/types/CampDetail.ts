@@ -8,8 +8,8 @@ export interface ICampDetail {
   reviewMaterial: string[];
   headerImage: string;
   images: string[];
-  IReviews: string[];
-  IFaqs: string[];
+  reviews: IReviews[];
+  faqs: IFaqs[];
 }
 
 export interface IReviews {
