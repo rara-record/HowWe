@@ -7,6 +7,7 @@ export { default as MainLayout } from './Layout/MainLayout';
 export { default as SubLayout } from './Layout/SubLayout';
 export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
+export { default as Sidebar } from './Sidebar';
 export { default as Tags } from './Tags';
 export { default as Padding } from './Padding';
 export { default as CardSectionSkeleton } from './Skeleton/CardSectionSkeleton';
