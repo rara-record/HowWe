@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { Sidebar, Skeleton } from 'components';
+import { Faqs, Sidebar, Skeleton } from 'components';
 import { ContentSection } from './components';
 
 import CampsStore from 'stores/CampsStore';
@@ -23,8 +23,8 @@ const CampDetail = () => {
       <Container>
         <BannerBackground />
 
-        {/* 캠프 상세페이지 비주얼 */}
         <div className="inner">
+          {/* 캠프 상세페이지 비주얼 */}
           <VisualSection>
             <div className="camp-detail-visual-title">
               <Tags tags={['2기모집']} />
@@ -40,15 +40,15 @@ const CampDetail = () => {
             </figure>
           </VisualSection>
 
-          <main>
+          <div className="gird-flex">
             {/* 캠프 상세페이지 컨텐츠 */}
             <ContentSection targetCamp={campStore.targetCamp} />
             {/* 사이드바 */}
             <Sidebar targetCamp={campStore.targetCamp} />
-          </main>
-
-          <div className="faq">FAQ</div>
+          </div>
         </div>
+
+        <Faqs faqs={campStore.targetCamp.faqs} />
       </Container>
     );
   } else {
@@ -68,17 +68,11 @@ export default observer(CampDetail);
 const Container = styled.div`
   position: relative;
 
-  main {
+  .gird-flex {
     position: relative;
     margin: 0 auto;
     display: flex;
     gap: 15px;
-  }
-
-  .faq {
-    width: 100%;
-    height: 900px;
-    background-color: #eee;
   }
 `;
 

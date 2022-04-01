@@ -10,6 +10,7 @@ interface IProps {
 const Sidebar = ({ targetCamp }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(false);
+
   const toggeleBtn = () => setIsOn(!isOn);
   let [tags1, tags2] = targetCamp.tags;
 
@@ -64,8 +65,8 @@ const Sidebar = ({ targetCamp }: IProps) => {
 
 export default Sidebar;
 
-const Container = styled.section`
-  width: 35%;
+const Container = styled.div`
+  flex: 1;
 
   aside {
     position: sticky;
