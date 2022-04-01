@@ -9,8 +9,7 @@ const ContentSection = ({ targetCamp }: IProps) => {
   return (
     <Container>
       {/* 상세페이지 정보 */}
-
-      <Info>
+      <Information>
         <h1>
           대답없는 VOD 강의에 <strong>라이브</strong>로 답하다.
         </h1>
@@ -39,7 +38,7 @@ const ContentSection = ({ targetCamp }: IProps) => {
             <p>실무 과제를 풀며 제대로 활용해요.</p>
           </article>
         </div>
-      </Info>
+      </Information>
 
       {/* 상세페이지 이미지 */}
       <Images>
@@ -60,11 +59,11 @@ const ContentSection = ({ targetCamp }: IProps) => {
 export default ContentSection;
 
 const Container = styled.div`
-  width: 65%;
+  flex: 2;
   padding: 10px;
 `;
 
-const Info = styled.div`
+const Information = styled.section`
   letter-spacing: 0.1px;
 
   h1 {
@@ -123,4 +122,4 @@ const Info = styled.div`
   }
 `;
 
-const Images = styled.div``;
+const Images = styled.section``;
