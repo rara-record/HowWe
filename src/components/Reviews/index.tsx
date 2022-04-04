@@ -9,17 +9,21 @@ interface IProps {
 const Reviews = ({ reviews }: IProps) => {
   return (
     <Container>
-      <h1>
-        먼저 트레이닝 받은 분들의
-        <br />
-        이야기를 들어보세요.
-      </h1>
+      <div className="inner">
+        <div className="wrap">
+          <h1>
+            먼저 트레이닝 받은 분들의
+            <br />
+            이야기를 들어보세요.
+          </h1>
 
-      <div className="reviews">
-        {reviews &&
-          reviews.map((review, index) => (
-            <Review key={index} review={review} />
-          ))}
+          <div className="reviews">
+            {reviews &&
+              reviews.map((review, index) => (
+                <Review key={index} review={review} />
+              ))}
+          </div>
+        </div>
       </div>
     </Container>
   );

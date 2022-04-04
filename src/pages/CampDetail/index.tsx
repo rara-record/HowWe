@@ -1,53 +1,117 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { Faqs, Sidebar, Skeleton } from 'components';
-import { ContentSection } from './components';
+import { Faqs, Skeleton } from 'components';
+// import { ContentSection } from './components';
+import { Padding, Reviews, Sidebar } from 'components';
 
 import CampsStore from 'stores/CampsStore';
 import styled from 'styled-components';
 import Tags from 'components/Tags';
 import fonts from 'styles/fonts';
+import { maxWidth } from 'styles/mixin';
 
 const CampDetail = () => {
   const { campId } = useParams();
+  const [height, setHeight] = useState<number>(0); //TODO: 추가할것: 컨텐츠 높이에 따른 sidebar height 구하기
+  const containerRef = useRef<any>(null);
   const campStore = useContext(CampsStore);
+
+  // const sidebarHeight = useCallback(() => {
+  //   console.log('sidebarHeight');
+  //   const { scrollHeight } = containerRef.current;
+  //   setHeight(scrollHeight);
+  //   console.log(scrollHeight);
+  // }, []);
 
   useEffect(() => {
     campStore.fetchCampById(Number(campId));
+    containerRef.current && console.log(containerRef.current.scrollHeight);
+    // sidebarHeight();
   }, [campId, campStore]);
 
   if (campStore.targetCamp) {
-    // TODO: Error: cannot be used as a JSX component. Its return type 'Element | undefined' is not a valid JSX element. Type 'undefined' is not assignable to type 'Element | null'. // 해결방법: if문을 써주고 else문을 써주지 않아서, 반환되는 형식이 'Element | defined' 는 될 수 없다는 오류
     return (
       <Container>
         <BannerBackground />
 
-        <div className="inner">
-          {/* 캠프 상세페이지 비주얼 */}
-          <VisualSection>
-            <div className="camp-detail-visual-title">
-              <Tags tags={['2기모집']} />
-              <h1>{campStore.targetCamp.name}</h1>
-              <h2>{campStore.targetCamp.desc}</h2>
-            </div>
+        {/* 캠프 상세페이지 비주얼 */}
+        <VisualSection>
+          <div className="camp-detail-visual-title">
+            <Tags tags={['2기모집']} />
+            <h1>{campStore.targetCamp.name}</h1>
+            <h2>{campStore.targetCamp.desc}</h2>
+          </div>
 
-            <figure className="camp-detail-visual-img">
-              <img
-                src={campStore.targetCamp.headerImage}
-                alt="camp-detail-visual-img"
-              />
-            </figure>
-          </VisualSection>
+          <figure className="camp-detail-visual-img">
+            <img
+              src={campStore.targetCamp.headerImage}
+              alt="camp-detail-visual-img"
+            />
+          </figure>
+        </VisualSection>
 
-          <div className="gird-flex">
-            {/* 캠프 상세페이지 컨텐츠 */}
-            <ContentSection targetCamp={campStore.targetCamp} />
-            {/* 사이드바 */}
+        {/* 캠프 상세페이지 컨텐츠 */}
+        <ContentsSection ref={containerRef}>
+          <div className="sidebar-inner">
             <Sidebar targetCamp={campStore.targetCamp} />
           </div>
-        </div>
 
+          {/* 상세페이지 정보 */}
+          <Information>
+            <div className="inner">
+              <div className="wrap">
+                <h1>
+                  대답없는 VOD 강의에 <strong>라이브</strong>로 답하다.
+                </h1>
+                <p>
+                  React만큼은 실무에 제대로 활용할 수 있도록, <br></br>
+                  오프라인 강의와 온라인 VOD의 장점만 모았습니다.
+                </p>
+
+                <div className="info-box">
+                  <article>
+                    <h2>LIVE CLASS</h2>
+                    <p>라이브로 묻고 해답을 얻으세요.</p>
+                  </article>
+
+                  <hr className="line" />
+
+                  <article>
+                    <h2>KEEP DOING</h2>
+                    <p>미루지 말고 실시간으로 만나요.</p>
+                  </article>
+
+                  <hr className="line" />
+
+                  <article>
+                    <h2>CAN DO</h2>
+                    <p>실무 과제를 풀며 제대로 활용해요.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </Information>
+
+          {/* 상세페이지 이미지 */}
+          <Images>
+            <div className="inner">
+              <div className="wrap">
+                {campStore.targetCamp.images.map((img, index) => (
+                  <article key={index}>
+                    <img src={img} alt="camp-detail-img" />
+                    <Padding height={'60px'} />
+                  </article>
+                ))}
+              </div>
+            </div>
+          </Images>
+
+          {/* 리뷰 */}
+          <Reviews reviews={campStore.targetCamp.reviews} />
+        </ContentsSection>
+
+        {/* 캠프 상세페이지 FAQ */}
         <Faqs faqs={campStore.targetCamp.faqs} />
       </Container>
     );
@@ -67,13 +131,6 @@ export default observer(CampDetail);
 
 const Container = styled.div`
   position: relative;
-
-  .gird-flex {
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    gap: 15px;
-  }
 `;
 
 const BannerBackground = styled.div`
@@ -91,6 +148,7 @@ const VisualSection = styled.div`
   justify-content: space-between;
   height: 340px;
   z-index: 1;
+  ${maxWidth};
 
   .camp-detail-visual-title {
     flex: 1;
@@ -124,3 +182,71 @@ const VisualSection = styled.div`
     }
   }
 `;
+
+const ContentsSection = styled.div`
+  .sidebar-inner {
+    position: relative;
+    ${maxWidth};
+  }
+`;
+
+const Information = styled.section`
+  letter-spacing: 0.1px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    margin: 20px 0;
+    color: #040505;
+
+    strong {
+      color: #971818;
+    }
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 25px;
+    color: #3c4144;
+  }
+
+  .info-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    margin-top: 20px;
+    background-color: #fcfcfc;
+
+    article {
+      position: relative;
+
+      h2 {
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 30px;
+        color: #202325;
+      }
+
+      p {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        color: #595f63;
+        letter-spacing: 0.2px;
+      }
+    }
+  }
+
+  .line {
+    border-left: 1px;
+    border-color: #eaecee;
+    height: inherit;
+  }
+`;
+
+const Images = styled.section``;
