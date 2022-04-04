@@ -10,9 +10,10 @@ interface IProps {
 const Sidebar = ({ targetCamp }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(false);
+  let [tags1, tags2] = targetCamp.tags;
+  let { name, desc, startDate, process, seat } = targetCamp;
 
   const toggeleBtn = () => setIsOn(!isOn);
-  let [tags1, tags2] = targetCamp.tags;
 
   return (
     <Container>
@@ -21,25 +22,25 @@ const Sidebar = ({ targetCamp }: IProps) => {
           <span className="tag">
             {tags1} ∙ {tags2}
           </span>
-          <h1>{targetCamp.name}</h1>
+          <h1>{name}</h1>
 
           <div className={`side-box-content ${isOn ? 'block' : 'none'}`}>
-            <p>{targetCamp.desc}</p>
+            <p>{desc}</p>
 
             <dl className="sidebox-info">
               <div>
                 <dt>시작일</dt>
-                <dl>{targetCamp.startDate}</dl>
+                <dl>{startDate}</dl>
               </div>
 
               <div>
                 <dt>수업과정</dt>
-                <dl>{targetCamp.process}</dl>
+                <dl>{process}</dl>
               </div>
 
               <div>
                 <dt>정원</dt>
-                <dl>{targetCamp.seat}</dl>
+                <dl>{seat}</dl>
               </div>
             </dl>
           </div>
@@ -66,12 +67,16 @@ const Sidebar = ({ targetCamp }: IProps) => {
 export default Sidebar;
 
 const Container = styled.div`
-  flex: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 33%;
+  height: 3700px;
 
   aside {
     position: sticky;
     top: 100px;
-    margin: 30px 0 50px;
+    margin: 15px 0 40px;
     padding: 24px;
     background-color: white;
     border-radius: 6px;
