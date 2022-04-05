@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { IReviews } from 'types/CampDetail';
-import Review from './Review';
+import ReviewCard from 'components/ReviewCard';
 
 interface IProps {
   reviews: IReviews[];
 }
 
-const Reviews = ({ reviews }: IProps) => {
+const DetailReviews = ({ reviews }: IProps) => {
   return (
     <Container>
       <div className="inner">
@@ -20,7 +20,7 @@ const Reviews = ({ reviews }: IProps) => {
           <div className="reviews">
             {reviews &&
               reviews.map((review, index) => (
-                <Review key={index} review={review} />
+                <ReviewCard key={index} review={review} />
               ))}
           </div>
         </div>
@@ -29,13 +29,12 @@ const Reviews = ({ reviews }: IProps) => {
   );
 };
 
-export default Reviews;
+export default DetailReviews;
 
 const Container = styled.section`
   position: relative;
   width: 100%;
-  margin: 40px 0;
-  padding: 24px;
+  padding: 60px 0;
   background-color: rgba(0, 132, 173, 0.06);
 
   h1 {
@@ -45,8 +44,23 @@ const Container = styled.section`
   }
 
   .reviews {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    column-count: 2;
+    column-gap: 16px;
+
+    article:first-child {
+      padding-bottom: 20px;
+      &::before {
+        content: '⭐️';
+        font-size: 22px;
+      }
+    }
+
+    article:last-child {
+      padding-bottom: 20px;
+      &::before {
+        content: '👍';
+        font-size: 22px;
+      }
+    }
   }
 `;

@@ -16,7 +16,6 @@ interface IProps {
 const CommunityCard = ({ community }: IProps) => {
   const { id, tags, title, name, comments } = community;
 
-  // 글자 자르는 함수
   const truncate = useCallback((text: string, maxlength: number) => {
     let name: string = text;
     let length: number | string = name && name.length;
