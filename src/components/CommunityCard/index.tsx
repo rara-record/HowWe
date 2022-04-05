@@ -18,8 +18,8 @@ const CommunityCard = ({ community }: IProps) => {
 
   // 글자 자르는 함수
   const truncate = useCallback((text: string, maxlength: number) => {
-    let name = text;
-    let length = name && name.length;
+    let name: string = text;
+    let length: number | string = name && name.length;
 
     return length > maxlength
       ? (name = name.slice(0, maxlength) + ' ...')
