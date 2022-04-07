@@ -15,4 +15,4 @@ Demo는 ❤️ [Demo](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서
 | 5주차 | `상태관리`,`MobX`,`AWS `                                                                                                                                             | ✔️ MobX 적용 <br/>✔️ AWS 프론트엔드 시스템을 구축<br/>✔️ 캠프 디테일 상세페이지 제작 시작              | [Milestone #5](https://github.com/rara-record/caffein/milestone/5?closed=1) |
 | 6주차 | `상세페이지 기능 구현 및 구조 수정`                                                                                                                                  | ✔️ CampDetail 상세 페이지 기능 구현 및 수정 <br/>                                                      | [Milestone#6](https://github.com/rara-record/caffein/milestone/6)           |
 
-#Documentations
+# Documentations
