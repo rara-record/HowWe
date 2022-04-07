@@ -1,8 +1,8 @@
 # Overview
 
-`TypeScript 기반의 React 프로젝트입니다`
-Caffein은 IT 관련 강의를 게시하고 수강 신청할 수 있는 플랫폼입니다.
-Demo는 ❤️ [Demo](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서 확인할 수 있습니다.
+`TypeScript 기반의 React 프로젝트입니다`&nbsp;
+Caffein은 IT 관련 강의를 게시하고 수강 신청할 수 있는 플랫폼입니다.&nbsp;
+Demo는 ❤️ [Demo](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서 확인할 수 있습니다.&nbsp;
 
 # Milestone
 
