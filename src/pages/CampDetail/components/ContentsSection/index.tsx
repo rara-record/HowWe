@@ -72,15 +72,16 @@ const ContentsSection = ({ targetCamp }: IProps) => {
             </article>
           </InfoBox>
 
-          <ImageBox ref={imgRef}>
-            {targetCamp.images &&
-              targetCamp.images.map((img, index) => (
+          {targetCamp && (
+            <ImageBox ref={imgRef}>
+              {targetCamp.images.map((img, index) => (
                 <article key={index}>
                   <img src={img} alt="camp-detail-img" />
                   <Padding height={'60px'} />
                 </article>
               ))}
-          </ImageBox>
+            </ImageBox>
+          )}
         </div>
       </div>
       <DetailReviews reviews={targetCamp.reviews} />
@@ -90,7 +91,7 @@ const ContentsSection = ({ targetCamp }: IProps) => {
 
 export default ContentsSection;
 
-const Container = styled.div`
+const Container = styled.section`
   letter-spacing: 0.1px;
 
   h1 {
