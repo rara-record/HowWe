@@ -1,4 +1,5 @@
-import { Faq } from 'components';
+import { FAQ } from 'components';
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { IFaqs } from 'types/CampDetail';
@@ -7,22 +8,22 @@ interface IProps {
   faqs: IFaqs[];
 }
 
-const Faqs = ({ faqs }: IProps) => {
+const DetailFaqs = ({ faqs }: IProps) => {
   return (
     <Container>
       <div className="inner">
         <h4>FAQ</h4>
         {faqs.map((faq, index) => (
-          <Faq key={index} faq={faq}></Faq>
+          <FAQ key={index} faq={faq}></FAQ>
         ))}
       </div>
     </Container>
   );
 };
 
-export default Faqs;
+export default DetailFaqs;
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 60px 0;
   background-color: rgb(252, 252, 252);
 
