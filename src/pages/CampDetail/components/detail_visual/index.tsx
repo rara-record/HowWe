@@ -28,7 +28,7 @@ const DetailVisual = ({ targetCamp }: IProps) => {
 
 export default DetailVisual;
 
-const Container = styled.div`
+const Container = styled.section`
   position: relative;
   display: flex;
   justify-content: space-between;

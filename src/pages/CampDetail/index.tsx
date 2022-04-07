@@ -1,21 +1,14 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Skeleton } from 'components';
 
 import styled from 'styled-components';
 import CampsStore from 'stores/CampsStore';
-import {
-  DetailInfo,
-  DetailSidebar,
-  DetailVisual,
-  DetailReviews,
-  DetailFaqs,
-} from './components';
+import { ContentsSection, DetailVisual, DetailFaqs } from './components';
 
 const CampDetail = () => {
   const { campId } = useParams();
-  const containerRef = useRef<any>(null);
   const campStore = useContext(CampsStore);
 
   useEffect(() => {
@@ -27,13 +20,7 @@ const CampDetail = () => {
       <Container>
         <BannerBackground />
         <DetailVisual targetCamp={campStore.targetCamp} />
-
-        <div className="contents-container">
-          <DetailSidebar targetCamp={campStore.targetCamp} />
-          <DetailInfo images={campStore.targetCamp.images} />
-          <DetailReviews reviews={campStore.targetCamp.reviews} />
-        </div>
-
+        <ContentsSection targetCamp={campStore.targetCamp}></ContentsSection>
         <DetailFaqs faqs={campStore.targetCamp.faqs} />
       </Container>
     );

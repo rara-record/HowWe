@@ -6,6 +6,8 @@ interface IProps {
 }
 
 const DetailInfo = ({ images }: IProps) => {
+  console.log('DetailInfo');
+
   return (
     <Container>
       <div className="inner">

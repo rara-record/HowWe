@@ -1,4 +1,5 @@
 import { FAQ } from 'components';
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { IFaqs } from 'types/CampDetail';
@@ -22,7 +23,7 @@ const DetailFaqs = ({ faqs }: IProps) => {
 
 export default DetailFaqs;
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 60px 0;
   background-color: rgb(252, 252, 252);
 

@@ -31,7 +31,7 @@ const DetailReviews = ({ reviews }: IProps) => {
 
 export default DetailReviews;
 
-const Container = styled.section`
+const Container = styled.div`
   position: relative;
   width: 100%;
   padding: 60px 0;

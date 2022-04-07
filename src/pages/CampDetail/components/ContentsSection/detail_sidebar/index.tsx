@@ -6,18 +6,22 @@ import { useRef, useState } from 'react';
 
 interface IProps {
   targetCamp: ICampDetail;
+  sidebarheight: number;
 }
 
-const DetailSidebar = ({ targetCamp }: IProps) => {
+const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(false);
   let [tags1, tags2] = targetCamp.tags;
   let { name, desc, startDate, process, seat } = targetCamp;
+  console.log(`sidebarheight ${sidebarheight}`);
 
   const toggeleBtn = () => setIsOn(!isOn);
 
+  console.log('DetailSidebar');
+
   return (
-    <Container>
+    <Container sidebarheight={sidebarheight}>
       <div className="row">
         {targetCamp && (
           <aside>
@@ -69,7 +73,7 @@ const DetailSidebar = ({ targetCamp }: IProps) => {
 
 export default DetailSidebar;
 
-const Container = styled.div`
+const Container = styled.div<{ sidebarheight: number }>`
   position: relative;
   ${maxWidth};
 
@@ -78,7 +82,7 @@ const Container = styled.div`
     right: 0;
     top: 0;
     max-width: 33%;
-    height: 3700px;
+    height: ${props => props.sidebarheight}px;
   }
 
   aside {
@@ -96,10 +100,12 @@ const Container = styled.div`
       line-height: 20px;
       font-weight: 400;
       display: inline-flex;
+      color: #3c4144;
     }
 
     h1 {
       font-size: 22px;
+      font-weight: 600;
       line-height: 28px;
       color: #040505;
       margin-bottom: 20px;
@@ -108,6 +114,22 @@ const Container = styled.div`
     .side-box-content {
       overflow: hidden;
       transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+      p {
+        background-color: #fcfcfc;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        color: #3c4144;
+
+        &::before {
+          content: '☘️';
+          font-size: 18px;
+          padding-right: 5px;
+        }
+      }
+
       &.block {
         height: 120px;
       }
