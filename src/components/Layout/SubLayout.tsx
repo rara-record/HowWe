@@ -21,6 +21,8 @@ const SubLayout = () => {
 };
 
 const Container = styled.div`
+  position: relative;
+
   header {
     width: 100%;
     position: fixed;

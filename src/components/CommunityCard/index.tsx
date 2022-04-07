@@ -7,32 +7,34 @@ import Comments from '../Comments';
 
 import fonts from 'styles/fonts';
 import colors from 'styles/colors';
+import { useCallback } from 'react';
 
 interface IProps {
   community: ICommunity;
 }
 
 const CommunityCard = ({ community }: IProps) => {
-  // 글자 자르는 함수
-  const truncate = (param: string, maxlength: number) => {
-    let name = param;
-    let length = name && name.length; // TODO: Error: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function. // 해결 방법: && 연산자 사용
+  const { id, tags, title, name, comments } = community;
+
+  const truncate = useCallback((text: string, maxlength: number) => {
+    let name: string = text;
+    let length: number | string = name && name.length;
 
     return length > maxlength
       ? (name = name.slice(0, maxlength) + ' ...')
       : name;
-  };
+  }, []);
 
   return (
-    <Link to={`/community/${community.id}`} style={{ flex: 1 }}>
+    <Link to={`/community/${id}`} style={{ flex: 1 }}>
       <Container>
         <div>
-          <Tags tags={community.tags} />
-          <div className="title">{truncate(community.title, 14)}</div>
-          <div className="content">{truncate(community.name, 40)}</div>
+          <Tags tags={tags} />
+          <div className="title">{truncate(title, 20)}</div>
+          <div className="content">{truncate(name, 40)}</div>
         </div>
         <div>
-          <Comments comments={community.comments} />
+          <Comments comments={comments} />
           <button className="btn" type="button">
             + 더보기
           </button>

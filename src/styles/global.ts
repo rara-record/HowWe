@@ -35,4 +35,8 @@ export default createGlobalStyle`
     .inner {
       ${maxWidth};
     }
+    .wrap {
+      width: 67%;
+      padding-right: 20px;
+    }
 `;
