@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { ICampDetail } from 'types/CampDetail';
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {
   targetCamp: ICampDetail;
@@ -11,17 +14,17 @@ interface IProps {
 
 const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
   const toggleBtnRef = useRef(null);
-  const [isOn, setIsOn] = useState<boolean>(false);
+  const [isOn, setIsOn] = useState<boolean>(true);
   let [tags1, tags2] = targetCamp.tags;
   let { name, desc, startDate, process, seat } = targetCamp;
-  console.log(`sidebarheight ${sidebarheight}`);
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   const toggeleBtn = () => setIsOn(!isOn);
 
-  console.log('DetailSidebar');
-
   return (
-    <Container sidebarheight={sidebarheight}>
+    <Container sidebarheight={sidebarheight} isMobile={isMobile}>
       <div className="row">
         {targetCamp && (
           <aside>
@@ -36,29 +39,35 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
               <dl className="sidebox-info">
                 <div>
                   <dt>시작일</dt>
-                  <dl>{startDate}</dl>
+                  <dd>{startDate}</dd>
                 </div>
 
                 <div>
                   <dt>수업과정</dt>
-                  <dl>{process}</dl>
+                  <dd>{process}</dd>
                 </div>
 
                 <div>
                   <dt>정원</dt>
-                  <dl>{seat}</dl>
+                  <dd>{seat}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="detail-sidebox-info-toggle">
+            <div className="sidebox-info-toggle">
               <button
                 className="toggle-btn"
                 ref={toggleBtnRef}
                 onClick={toggeleBtn}
               >
-                토글버튼
+                <FontAwesomeIcon
+                  className={`${isOn ? 'click-active' : 'click-none'}`}
+                  icon={faAngleDown}
+                  size="xs"
+                  color="#555"
+                />
               </button>
+              <hr className="horizontal-line" />
             </div>
 
             <Link to="/camp/apply">
@@ -73,22 +82,29 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
 
 export default DetailSidebar;
 
-const Container = styled.div<{ sidebarheight: number }>`
+const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
   position: relative;
   ${maxWidth};
 
   .row {
-    position: absolute;
-    right: 0;
-    top: 0;
-    max-width: 33%;
-    height: ${props => props.sidebarheight}px;
+    height: 0;
+
+    ${props =>
+      props.isMobile === false &&
+      css`
+        height: ${props.sidebarheight}px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 33%;
+        padding: 0 16px;
+      `}
   }
 
   aside {
     position: sticky;
     top: 100px;
-    margin: 15px 0 40px;
+    margin-bottom: 40px;
     padding: 24px;
     background-color: white;
     border-radius: 6px;
@@ -109,6 +125,8 @@ const Container = styled.div<{ sidebarheight: number }>`
       line-height: 28px;
       color: #040505;
       margin-bottom: 20px;
+      word-break: keep-all;
+      word-wrap: break-word;
     }
 
     .side-box-content {
@@ -117,6 +135,7 @@ const Container = styled.div<{ sidebarheight: number }>`
 
       p {
         background-color: #fcfcfc;
+        margin-bottom: 24px;
         padding: 10px;
         font-size: 14px;
         line-height: 20px;
@@ -131,10 +150,55 @@ const Container = styled.div<{ sidebarheight: number }>`
       }
 
       &.block {
-        height: 120px;
+        height: 165px;
       }
       &.none {
         height: 0;
+      }
+
+      .sidebox-info > div {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 10px;
+        line-height: 20px;
+
+        dt {
+          color: rgb(148, 155, 160);
+        }
+
+        dd {
+          color: rgb(60, 65, 68);
+        }
+      }
+    }
+
+    .sidebox-info-toggle {
+      position: relative;
+      margin-bottom: 30px;
+
+      .toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 16px;
+        width: 16px;
+        background-color: #fff;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 6px rgb(0 0 0 / 10%);
+      }
+
+      .horizontal-line {
+        border-top: 1px;
+        border-color: #eaecee;
+        height: inherit;
+        width: inherit;
       }
     }
 
@@ -148,6 +212,7 @@ const Container = styled.div<{ sidebarheight: number }>`
       line-height: 25px;
       font-weight: 600;
       background-color: #2a7de1;
+      color: #fff;
     }
   }
 `;

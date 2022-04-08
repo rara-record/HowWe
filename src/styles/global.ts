@@ -34,9 +34,24 @@ export default createGlobalStyle`
     } 
     .inner {
       ${maxWidth};
+      padding: 0 16px;
     }
     .wrap {
       width: 67%;
-      padding-right: 20px;
+      
+      @media (max-width: 768px) {
+        width: 100%;
+    }
+      
+    }
+
+    .click-active {
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: rotate(180deg);
+    }
+
+    .click-none {
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: rotate(0deg);
     }
 `;
