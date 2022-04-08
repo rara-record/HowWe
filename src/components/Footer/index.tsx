@@ -39,7 +39,7 @@ const Footer = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  padding: 32px;
+  padding: 32px 16px;
   background-color: ${colors.gray6};
 
   footer {

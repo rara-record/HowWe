@@ -33,6 +33,7 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   height: 340px;
+  padding: 0 16px;
   z-index: 1;
   ${maxWidth};
 

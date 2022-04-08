@@ -83,6 +83,7 @@ const Container = styled.div<{ sidebarheight: number }>`
     top: 0;
     max-width: 33%;
     height: ${props => props.sidebarheight}px;
+    padding: 0 16px;
   }
 
   aside {

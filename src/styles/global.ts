@@ -34,9 +34,9 @@ export default createGlobalStyle`
     } 
     .inner {
       ${maxWidth};
+      padding: 0 16px;
     }
     .wrap {
       width: 67%;
-      padding-right: 20px;
     }
 `;
