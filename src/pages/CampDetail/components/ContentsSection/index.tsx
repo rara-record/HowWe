@@ -15,11 +15,6 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   const imgRef = useRef<any>(null);
   const [height, setHeight] = useState<number>(0);
 
-  const getHeight = () => {
-    const newHeight = containerRef.current.clientHeight;
-    setHeight(newHeight);
-  };
-
   // TODO: 리팩토링 필요
   const onloadImages = useCallback(() => {
     const imgs = imgRef.current.querySelectorAll('img');
@@ -32,10 +27,22 @@ const ContentsSection = ({ targetCamp }: IProps) => {
         if (count === len) getHeight();
       };
     }
+    console.log('onloadImages');
   }, []);
 
+  const getHeight = () => {
+    const newHeight = containerRef.current.clientHeight;
+    setHeight(newHeight);
+    console.log('getHeight');
+  };
+
   useEffect(() => {
+    console.log('resize');
     targetCamp && onloadImages();
+    window.addEventListener('resize', getHeight);
+    return () => {
+      window.removeEventListener('resize', getHeight);
+    };
   }, [onloadImages, targetCamp]);
 
   return (
