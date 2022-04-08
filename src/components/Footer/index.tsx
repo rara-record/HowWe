@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { maxWidth } from 'styles/mixin';
 import colors from 'styles/colors';
@@ -12,11 +13,7 @@ const Footer = () => {
     <Container isMobile={isMobile}>
       <footer>
         <div className="footer-logo">
-          <img
-            className="logo-img"
-            src={require('assets/images/logo-primary.png')}
-            alt="로고"
-          />
+          <Link to="/">caffein</Link>
         </div>
         <div className="footer-info">
           <div className="content">
@@ -39,7 +36,7 @@ const Footer = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  padding: 32px;
+  padding: 32px 16px;
   background-color: ${colors.gray6};
 
   footer {
@@ -49,10 +46,9 @@ const Container = styled.div<{ isMobile: boolean }>`
 
     .footer-logo {
       flex: 1;
-    }
-
-    .logo-img {
-      width: 60px;
+      font-size: 23px;
+      font-weight: 600;
+      color: ${colors.primary1};
     }
 
     .footer-info {
@@ -69,8 +65,11 @@ const Container = styled.div<{ isMobile: boolean }>`
     }
 
     .content {
-      flex: 1; // 남은 공간만큼 꽉 채우기
-      ${fonts.Caption}
+      flex: 1;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: -0.01em;
+      font-weight: normal;
       color: ${colors.gray2};
 
       ${props =>
