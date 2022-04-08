@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { ICampDetail } from 'types/CampDetail';
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,12 +17,14 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
   const [isOn, setIsOn] = useState<boolean>(true);
   let [tags1, tags2] = targetCamp.tags;
   let { name, desc, startDate, process, seat } = targetCamp;
-  console.log(`sidebarheight ${sidebarheight}`);
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   const toggeleBtn = () => setIsOn(!isOn);
 
   return (
-    <Container sidebarheight={sidebarheight}>
+    <Container sidebarheight={sidebarheight} isMobile={isMobile}>
       <div className="row">
         {targetCamp && (
           <aside>
@@ -79,17 +82,23 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
 
 export default DetailSidebar;
 
-const Container = styled.div<{ sidebarheight: number }>`
+const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
   position: relative;
   ${maxWidth};
 
   .row {
-    position: absolute;
-    right: 0;
-    top: 0;
-    max-width: 33%;
-    height: ${props => props.sidebarheight}px;
-    padding: 0 16px;
+    height: 0;
+
+    ${props =>
+      props.isMobile === false &&
+      css`
+        height: ${props.sidebarheight}px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 33%;
+        padding: 0 16px;
+      `}
   }
 
   aside {
@@ -141,7 +150,7 @@ const Container = styled.div<{ sidebarheight: number }>`
       }
 
       &.block {
-        height: 160px;
+        height: 165px;
       }
       &.none {
         height: 0;

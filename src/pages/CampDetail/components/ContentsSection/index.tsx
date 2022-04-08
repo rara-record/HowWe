@@ -27,7 +27,6 @@ const ContentsSection = ({ targetCamp }: IProps) => {
         if (count === len) getHeight();
       };
     }
-    console.log('onloadImages');
   }, []);
 
   const getHeight = () => {
@@ -37,7 +36,6 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   };
 
   useEffect(() => {
-    console.log('resize');
     targetCamp && onloadImages();
     window.addEventListener('resize', getHeight);
     return () => {
@@ -102,6 +100,7 @@ export default ContentsSection;
 
 const Container = styled.section`
   letter-spacing: 0.1px;
+  min-height: 100vh;
 
   .inner {
     h1 {

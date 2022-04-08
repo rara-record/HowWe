@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import { useMediaQuery } from 'react-responsive';
 import { Skeleton } from 'components';
 
 import styled from 'styled-components';
@@ -10,6 +11,9 @@ import { ContentsSection, DetailVisual, DetailFaqs } from './components';
 const CampDetail = () => {
   const { campId } = useParams();
   const campStore = useContext(CampsStore);
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   useEffect(() => {
     campStore.fetchCampById(Number(campId));
@@ -18,7 +22,7 @@ const CampDetail = () => {
   if (campStore.targetCamp) {
     return (
       <Container>
-        <BannerBackground />
+        {!isMobile && <BannerBackground />}
         <DetailVisual targetCamp={campStore.targetCamp} />
         <ContentsSection targetCamp={campStore.targetCamp}></ContentsSection>
         <DetailFaqs faqs={campStore.targetCamp.faqs} />

@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ICampDetail } from 'types/CampDetail';
+import { useMediaQuery } from 'react-responsive';
+
 import Tags from 'components/Tags';
 import fonts from 'styles/fonts';
 import { maxWidth } from 'styles/mixin';
@@ -10,9 +12,12 @@ interface IProps {
 
 const DetailVisual = ({ targetCamp }: IProps) => {
   const { name, desc, headerImage } = targetCamp;
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       <div className="camp-detail-visual-title">
         <Tags tags={['2기모집']} />
         <h1>{name}</h1>
@@ -28,7 +33,7 @@ const DetailVisual = ({ targetCamp }: IProps) => {
 
 export default DetailVisual;
 
-const Container = styled.section`
+const Container = styled.section<{ isMobile: boolean }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -37,9 +42,22 @@ const Container = styled.section`
   z-index: 1;
   ${maxWidth};
 
+  ${props =>
+    props.isMobile &&
+    css`
+      flex-direction: column;
+      padding: 0;
+    `}
+
   .camp-detail-visual-title {
     flex: 1;
     align-self: flex-end;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        display: none;
+      `}
 
     h1 {
       ${fonts.H1};
@@ -66,6 +84,12 @@ const Container = styled.section`
       margin-top: 40px;
       object-fit: cover;
       border-radius: 4px;
+
+      ${props =>
+        props.isMobile &&
+        css`
+          margin-top: 0;
+        `}
     }
   }
 `;

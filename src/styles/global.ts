@@ -38,6 +38,11 @@ export default createGlobalStyle`
     }
     .wrap {
       width: 67%;
+      
+      @media (max-width: 768px) {
+        width: 100%;
+    }
+      
     }
 
     .click-active {
