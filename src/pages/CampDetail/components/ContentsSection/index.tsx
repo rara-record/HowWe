@@ -1,5 +1,3 @@
-/* eslint-disable no-loop-func */
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ICampDetail } from 'types/CampDetail';
@@ -18,13 +16,11 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   // TODO: 리팩토링 필요
   const onloadImages = useCallback(() => {
     const imgs = imgRef.current.querySelectorAll('img');
-    const len: number = imgs.length;
-    let count: number = 0;
 
-    for (let img of imgs) {
-      img.onload = () => {
-        count++;
-        if (count === len) getHeight();
+    for (let i = 0; i < imgs.length; i++) {
+      console.log(typeof imgs[i]);
+      imgs[i].onload = () => {
+        if (i === imgs.length - 1) getHeight();
       };
     }
   }, []);
@@ -32,7 +28,6 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   const getHeight = () => {
     const newHeight = containerRef.current.clientHeight;
     setHeight(newHeight);
-    console.log('getHeight');
   };
 
   useEffect(() => {
@@ -46,6 +41,7 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   return (
     <Container ref={containerRef}>
       <DetailSidebar targetCamp={targetCamp} sidebarheight={height} />
+
       <div className="inner">
         <div className="wrap">
           <h1>
@@ -91,6 +87,7 @@ const ContentsSection = ({ targetCamp }: IProps) => {
           )}
         </div>
       </div>
+
       <DetailReviews reviews={targetCamp.reviews} />
     </Container>
   );
