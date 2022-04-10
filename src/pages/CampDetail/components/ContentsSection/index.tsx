@@ -9,11 +9,10 @@ interface IProps {
 }
 
 const ContentsSection = ({ targetCamp }: IProps) => {
-  const containerRef = useRef<any>(null); // TODO: type 뭘로?
-  const imgRef = useRef<any>(null);
+  const containerRef = useRef() as React.MutableRefObject<HTMLElement>;
+  const imgRef = useRef() as React.MutableRefObject<HTMLElement>;
   const [height, setHeight] = useState<number>(0);
 
-  // TODO: 리팩토링 필요
   const onloadImages = useCallback(() => {
     const imgs = imgRef.current.querySelectorAll('img');
 
