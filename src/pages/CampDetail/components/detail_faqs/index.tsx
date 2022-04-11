@@ -1,5 +1,4 @@
 import { FAQ } from 'components';
-import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { IFaqs } from 'types/CampDetail';
@@ -12,10 +11,12 @@ const DetailFaqs = ({ faqs }: IProps) => {
   return (
     <Container>
       <div className="inner">
-        <h4>FAQ</h4>
-        {faqs.map((faq, index) => (
-          <FAQ key={index} faq={faq}></FAQ>
-        ))}
+        <div className="wrap">
+          <h4>FAQ</h4>
+          {faqs.map((faq, index) => (
+            <FAQ key={index} faq={faq}></FAQ>
+          ))}
+        </div>
       </div>
     </Container>
   );

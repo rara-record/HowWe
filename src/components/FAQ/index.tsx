@@ -22,6 +22,7 @@ const Faq = ({ faq }) => {
                 className={`${isOn ? 'click-active' : 'click-none'}`}
                 icon={faAngleDown}
                 size="1x"
+                color="#555"
               />
             </button>
           </div>
@@ -60,7 +61,6 @@ const Container = styled.div`
     display: flex;
     font-weight: 400;
     color: rgb(60, 65, 68);
-
     transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
 
@@ -71,21 +71,15 @@ const Container = styled.div`
     &.none {
       height: 0;
     }
+
+    span {
+      padding-right: 4px;
+    }
   }
 
   .btn-icon-toggle {
     position: absolute;
     right: 0;
     fill: rgb(118, 125, 130);
-
-    .click-active {
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: rotate(180deg);
-    }
-
-    .click-none {
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: rotate(0deg);
-    }
   }
 `;
