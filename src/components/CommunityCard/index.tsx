@@ -5,7 +5,6 @@ import { ICommunity } from 'types/Community';
 import { Tags } from 'components';
 import Comments from '../Comments';
 
-import fonts from 'styles/fonts';
 import colors from 'styles/colors';
 import { useCallback } from 'react';
 
@@ -14,7 +13,7 @@ interface IProps {
 }
 
 const CommunityCard = ({ community }: IProps) => {
-  const { id, tags, title, name, comments } = community;
+  const { id, tags, title, content, comments } = community;
 
   const truncate = useCallback((text: string, maxlength: number) => {
     let name: string = text;
@@ -31,7 +30,7 @@ const CommunityCard = ({ community }: IProps) => {
         <div>
           <Tags tags={tags} />
           <div className="title">{truncate(title, 20)}</div>
-          <div className="content">{truncate(name, 40)}</div>
+          <div className="content">{truncate(content, 40)}</div>
         </div>
         <div>
           <Comments comments={comments} />
@@ -59,13 +58,24 @@ const Container = styled.article`
   justify-content: space-between;
 
   .title {
-    padding-top: 8px;
-    ${fonts.Body1};
+    height: 36px;
+    padding-top: 10px;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
     font-weight: bold;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
   }
   .content {
-    padding-top: 10px;
-    ${fonts.Body1};
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; */
   }
 
   img {
