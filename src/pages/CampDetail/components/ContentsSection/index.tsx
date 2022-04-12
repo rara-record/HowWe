@@ -98,7 +98,6 @@ export default ContentsSection;
 
 const Container = styled.section`
   letter-spacing: 0.1px;
-  min-height: 100vh;
 
   .inner {
     h1 {

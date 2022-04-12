@@ -4,7 +4,6 @@ import { useMediaQuery } from 'react-responsive';
 
 import Tags from 'components/Tags';
 import fonts from 'styles/fonts';
-import { maxWidth } from 'styles/mixin';
 
 interface IProps {
   targetCamp: ICampDetail;
@@ -18,15 +17,17 @@ const DetailVisual = ({ targetCamp }: IProps) => {
 
   return (
     <Container isMobile={isMobile}>
-      <div className="camp-detail-visual-title">
-        <Tags tags={['2기모집']} />
-        <h1>{name}</h1>
-        <h2>{desc}</h2>
-      </div>
+      <div className="inner">
+        <div className="camp-detail-visual-title">
+          <Tags tags={['2기모집']} />
+          <h1>{name}</h1>
+          <h2>{desc}</h2>
+        </div>
 
-      <figure className="camp-detail-visual-img">
-        <img src={headerImage} alt="camp-detail-visual-img" />
-      </figure>
+        <figure className="camp-detail-visual-img">
+          <img src={headerImage} alt="camp-detail-visual-img" />
+        </figure>
+      </div>
     </Container>
   );
 };
@@ -34,13 +35,8 @@ const DetailVisual = ({ targetCamp }: IProps) => {
 export default DetailVisual;
 
 const Container = styled.section<{ isMobile: boolean }>`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  height: 340px;
-  padding: 0 16px;
-  z-index: 1;
-  ${maxWidth};
+  background-color: #0084ad;
+  overflow: hidden;
 
   ${props =>
     props.isMobile &&
@@ -48,6 +44,18 @@ const Container = styled.section<{ isMobile: boolean }>`
       flex-direction: column;
       padding: 0;
     `}
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    max-height: 340px;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        padding: 0;
+      `}
+  }
 
   .camp-detail-visual-title {
     flex: 1;
