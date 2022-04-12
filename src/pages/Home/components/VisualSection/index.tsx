@@ -56,5 +56,6 @@ const Container = styled.div<{ bgImg: string; isMobile: boolean }>`
 
   .visual-content {
     ${maxWidth}
+    padding: 0 16px;
   }
 `;
