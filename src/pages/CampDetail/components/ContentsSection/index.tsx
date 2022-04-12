@@ -9,14 +9,13 @@ interface IProps {
 }
 
 const ContentsSection = ({ targetCamp }: IProps) => {
-  const containerRef = useRef<HTMLElement | null>(null);
-  const imgRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLElement>(null);
   const [height, setHeight] = useState<number>(0);
 
   const onloadImages = useCallback(() => {
     if (imgRef.current) {
       const imgs = imgRef.current.querySelectorAll('img');
-
       for (let i = 0; i < imgs.length; i++) {
         imgs[i].onload = () => {
           if (i === imgs.length - 1) getHeight();
@@ -26,9 +25,8 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   }, []);
 
   const getHeight = () => {
-    if (containerRef.current) {
+    containerRef.current && //
       setHeight(containerRef.current.clientHeight);
-    }
   };
 
   useEffect(() => {
