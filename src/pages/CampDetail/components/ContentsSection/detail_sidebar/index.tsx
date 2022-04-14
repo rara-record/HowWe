@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import Button from 'components/Button';
+import { Tag } from 'components';
 
 interface IProps {
   targetCamp: ICampDetail;
@@ -16,8 +17,8 @@ interface IProps {
 const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(true);
+  let { name, desc, startDate, process, seat, reviewMaterial } = targetCamp;
   let [tags1, tags2] = targetCamp.tags;
-  let { name, desc, startDate, process, seat } = targetCamp;
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
@@ -51,6 +52,17 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
                 <div>
                   <dt>정원</dt>
                   <dd>{seat}</dd>
+                </div>
+
+                <div>
+                  <dt>제공 자료</dt>
+                  <dd>
+                    {reviewMaterial.map((material, index) => (
+                      <Tag key={index} color="gray5" font="gray2" size="medium">
+                        {material}
+                      </Tag>
+                    ))}
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -150,6 +162,7 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
     }
 
     .side-box-content {
+      margin-bottom: 20px;
       overflow: hidden;
       transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -170,7 +183,7 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
       }
 
       &.block {
-        height: 165px;
+        height: 190px;
       }
       &.none {
         height: 0;
@@ -196,7 +209,7 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
 
     .sidebox-info-toggle {
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
 
       .toggle-btn {
         display: flex;

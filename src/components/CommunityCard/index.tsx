@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { ICommunity } from 'types/Community';
-import { Tags } from 'components';
+import Tag from 'components/Tag';
 import Comments from '../Comments';
-
 import colors from 'styles/colors';
 import { useCallback } from 'react';
 
@@ -13,7 +11,8 @@ interface IProps {
 }
 
 const CommunityCard = ({ community }: IProps) => {
-  const { id, tags, title, content, comments } = community;
+  const { id, title, content, comments } = community;
+  const [tag1, tag2] = community.tags;
 
   const truncate = useCallback((text: string, maxlength: number) => {
     let name: string = text;
@@ -28,10 +27,18 @@ const CommunityCard = ({ community }: IProps) => {
     <Link to={`/community/${id}`} style={{ flex: 1 }}>
       <Container>
         <div>
-          <Tags tags={tags} />
+          <TagGroup>
+            <Tag color="primary" size="medium">
+              {tag1}
+            </Tag>
+            <Tag color="gray5" font="gray1" size="medium">
+              {tag2}
+            </Tag>
+          </TagGroup>
           <div className="title">{truncate(title, 20)}</div>
           <div className="content">{truncate(content, 40)}</div>
         </div>
+
         <div>
           <Comments comments={comments} />
           <button className="btn" type="button">
@@ -98,3 +105,5 @@ const Container = styled.article`
     cursor: pointer;
   }
 `;
+
+const TagGroup = styled.div``;

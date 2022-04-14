@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { ICampDetail } from 'types/CampDetail';
 import { useMediaQuery } from 'react-responsive';
 
-import Tags from 'components/Tags';
 import fonts from 'styles/fonts';
+import { Tag } from 'components';
 
 interface IProps {
   targetCamp: ICampDetail;
@@ -19,7 +19,9 @@ const DetailVisual = ({ targetCamp }: IProps) => {
     <Container isMobile={isMobile}>
       <div className="inner">
         <div className="camp-detail-visual-title">
-          <Tags tags={['2기모집']} />
+          <Tag color="white" size="medium" outline>
+            2기모집
+          </Tag>
           <h1>{name}</h1>
           <h2>{desc}</h2>
         </div>
