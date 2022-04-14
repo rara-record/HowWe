@@ -55,27 +55,31 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
               </dl>
             </div>
 
-            <div className="sidebox-info-toggle">
-              <button
-                className="toggle-btn"
-                ref={toggleBtnRef}
-                onClick={toggeleBtn}
-              >
-                <FontAwesomeIcon
-                  className={`${isOn ? 'click-active' : 'click-none'}`}
-                  icon={faAngleDown}
-                  size="xs"
-                  color="#555"
-                />
-              </button>
-              <hr className="horizontal-line" />
-            </div>
+            {!isMobile && (
+              <>
+                <div className="sidebox-info-toggle">
+                  <button
+                    className="toggle-btn"
+                    ref={toggleBtnRef}
+                    onClick={toggeleBtn}
+                  >
+                    <FontAwesomeIcon
+                      className={`${isOn ? 'click-active' : 'click-none'}`}
+                      icon={faAngleDown}
+                      size="xs"
+                      color="#555"
+                    />
+                  </button>
+                  <hr className="horizontal-line" />
+                </div>
 
-            <Link to="/camp/apply">
-              <Button color="blue" size="large" fullWidth>
-                더 잘하는 개발자 되기
-              </Button>
-            </Link>
+                <Link to="/camp/apply">
+                  <Button color="blue" size="large" fullWidth>
+                    더 잘하는 개발자 되기
+                  </Button>
+                </Link>
+              </>
+            )}
           </aside>
         )}
       </div>
