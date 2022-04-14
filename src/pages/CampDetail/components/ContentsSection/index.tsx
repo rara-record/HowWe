@@ -16,6 +16,7 @@ const ContentsSection = ({ targetCamp }: IProps) => {
   const onloadImages = useCallback(() => {
     if (imgRef.current) {
       const imgs = imgRef.current.querySelectorAll('img');
+
       for (let i = 0; i < imgs.length; i++) {
         imgs[i].onload = () => {
           if (i === imgs.length - 1) getHeight();

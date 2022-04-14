@@ -235,6 +235,7 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
         border-top: 1px;
         width: inherit;
         height: 0;
+        margin: 0;
       }
 
       .btn-row {
