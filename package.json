@@ -20,6 +20,7 @@
     "@types/styled-components": "^5.1.24",
     "axios": "^0.26.1",
     "dayjs": "^1.10.8",
+    "firebase": "^9.6.10",
     "mobx": "^6.5.0",
     "mobx-react": "^7.3.0",
     "mobx-react-lite": "^3.3.0",
