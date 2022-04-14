@@ -80,6 +80,19 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
                 </Link>
               </>
             )}
+
+            {isMobile && (
+              <section className="camp-mobile-btn">
+                <hr />
+                <div className="btn-row">
+                  <Link to="/camp/apply">
+                    <Button color="blue" size="large" fullWidth>
+                      더 잘하는 개발자 되기
+                    </Button>
+                  </Link>
+                </div>
+              </section>
+            )}
           </aside>
         )}
       </div>
@@ -206,6 +219,27 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
         border-color: #eaecee;
         height: inherit;
         width: inherit;
+      }
+    }
+
+    .camp-mobile-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+
+      hr {
+        border-color: rgb(234, 236, 238);
+        border-style: solid;
+        border-top: 1px;
+        width: inherit;
+        height: 0;
+      }
+
+      .btn-row {
+        background-color: white;
+        padding: 15px 16px;
       }
     }
   }
