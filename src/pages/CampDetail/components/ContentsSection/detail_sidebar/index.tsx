@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import Button from 'components/Button';
 
 interface IProps {
   targetCamp: ICampDetail;
@@ -71,7 +72,9 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
             </div>
 
             <Link to="/camp/apply">
-              <button className="btn-large">더 잘하는 개발자 되기 </button>
+              <Button color="blue" size="large" fullWidth>
+                더 잘하는 개발자 되기
+              </Button>
             </Link>
           </aside>
         )}
@@ -120,7 +123,7 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 600;
       line-height: 28px;
       color: #040505;
@@ -200,19 +203,6 @@ const Container = styled.div<{ sidebarheight: number; isMobile: boolean }>`
         height: inherit;
         width: inherit;
       }
-    }
-
-    .btn-large {
-      width: 100%;
-      height: 48px;
-      padding: 0 14px;
-      min-width: 56px;
-      border-radius: 8px;
-      font-size: 16px;
-      line-height: 25px;
-      font-weight: 600;
-      background-color: #2a7de1;
-      color: #fff;
     }
   }
 `;
