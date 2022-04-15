@@ -12,7 +12,7 @@ const CampDetail = () => {
   const campStore = useContext(CampsStore);
 
   useEffect(() => {
-    campStore.fetchCampById(Number(campId));
+    campStore.fetchCampById(String(campId));
   }, [campId, campStore]);
 
   if (campStore.targetCamp) {

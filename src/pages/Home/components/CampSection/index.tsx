@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
-import { ICamp } from 'types/Camp';
+import { ICampList } from 'types/Camp';
 import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import CampCard from 'components/CampCard';
 
 interface Props {
   title: string;
-  camps: ICamp[]; // TODO: 배열 타입 설정을 안하고, map으로 돌리려고 해서 에러가 남
+  camps: ICampList[];
   isHeadField?: boolean;
 }
 

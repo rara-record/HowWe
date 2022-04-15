@@ -1,13 +1,13 @@
 import { getCamp, getCampsByType } from 'apis/camp';
 import { makeObservable, observable } from 'mobx';
 import { createContext } from 'react';
-import { ICamp } from 'types/Camp';
+import { ICampList } from 'types/Camp';
 import { ICampDetail } from 'types/CampDetail';
 
 class CampsStore {
   // 변수 선언
-  @observable campPopular: ICamp[] | null = null;
-  @observable campSales: ICamp[] | null = null;
+  @observable campPopular: ICampList[] | null = null;
+  @observable campSales: ICampList[] | null = null;
   @observable targetCamp: ICampDetail | null = null;
 
   // 고정
@@ -25,7 +25,7 @@ class CampsStore {
     this.campSales = data;
   };
 
-  fetchCampById = async (id: number) => {
+  fetchCampById = async (id: string) => {
     const data = await getCamp(id);
     this.targetCamp = data;
   };
