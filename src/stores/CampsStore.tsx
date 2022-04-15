@@ -25,7 +25,7 @@ class CampsStore {
     this.campSales = data;
   };
 
-  fetchCampById = async (id: number) => {
+  fetchCampById = async (id: string) => {
     const data = await getCamp(id);
     this.targetCamp = data;
   };
