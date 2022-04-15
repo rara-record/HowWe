@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { maxWidth } from 'styles/mixin';
 import { ISlider } from 'types/Slider';
@@ -28,6 +28,7 @@ const VisualSection = () => {
 
   return (
     <Container
+      isMobile={isMobile}
       className="visual"
       bgImg={require('assets/images/home_header_bg.jpg')}
     >
@@ -40,14 +41,21 @@ const VisualSection = () => {
 
 export default VisualSection;
 
-const Container = styled.div<{ bgImg: string }>`
+const Container = styled.div<{ bgImg: string; isMobile: boolean }>`
   background-image: url(${props => props.bgImg});
   background-size: cover;
   padding: 104px 16px 56px;
   box-sizing: border-box;
   margin-bottom: 56px;
 
+  ${props =>
+    props.isMobile &&
+    css`
+      padding: 104px 16px 20px;
+    `}
+
   .visual-content {
     ${maxWidth}
+    padding: 0 16px;
   }
 `;

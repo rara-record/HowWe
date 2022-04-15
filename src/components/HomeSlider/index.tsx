@@ -53,7 +53,7 @@ const VisualSlider = ({ slider, isMobile }: Props) => {
 
       <StyledSwiperScroll isMobile={isMobile}>
         <div className="swiper-scrollbar"></div>
-        <ButtonWrapper>
+        <ButtonWrapper isMobile={isMobile}>
           <button ref={prevRef}>
             <FontAwesomeIcon icon={faAngleLeft} />
           </button>
@@ -174,12 +174,18 @@ const StyledSwiperScroll = styled.div<{ isMobile: boolean }>`
   }
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div<{ isMobile: boolean }>`
   display: flex;
   margin-left: 25px;
   grid-gap: 20px;
   z-index: 1;
   cursor: pointer;
+
+  ${props =>
+    props.isMobile &&
+    css`
+      display: none;
+    `}
 
   button {
     color: #fff;

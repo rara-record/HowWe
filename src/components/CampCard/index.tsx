@@ -11,17 +11,19 @@ interface Props {
 }
 
 const CampCard = ({ camp, isHeadField }: Props) => {
+  const { thumbnail, field, skill, status, startDate, name } = camp;
+
   return (
     <Link to={`/camp/${camp.id}`} style={{ flex: 1 }}>
-      <Container bgImg={camp.thumbnail}>
+      <Container bgImg={thumbnail}>
         <BgOpacityBlack />
         <div className="camp-content">
           <div className="camp-head">
-            {isHeadField ? `${camp.field}/${camp.skill}` : camp.status}
+            {isHeadField ? `${field}/${skill}` : `${status}`}
           </div>
-          <div className="camp-name">{camp.name}</div>
+          <div className="camp-name">{name}</div>
           <div className="camp-start-date">
-            {dayjs(camp.startDate).format('M월 DD부터')}
+            {dayjs(startDate).format('M월 DD부터')}
           </div>
         </div>
       </Container>
