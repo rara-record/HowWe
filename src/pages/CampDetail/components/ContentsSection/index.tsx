@@ -9,24 +9,25 @@ interface IProps {
 }
 
 const ContentsSection = ({ targetCamp }: IProps) => {
-  const containerRef = useRef() as React.MutableRefObject<HTMLElement>;
-  const imgRef = useRef() as React.MutableRefObject<HTMLElement>;
+  const containerRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLElement>(null);
   const [height, setHeight] = useState<number>(0);
 
   const onloadImages = useCallback(() => {
-    const imgs = imgRef.current.querySelectorAll('img');
+    if (imgRef.current) {
+      const imgs = imgRef.current.querySelectorAll('img');
 
-    for (let i = 0; i < imgs.length; i++) {
-      console.log(typeof imgs[i]);
-      imgs[i].onload = () => {
-        if (i === imgs.length - 1) getHeight();
-      };
+      for (let i = 0; i < imgs.length; i++) {
+        imgs[i].onload = () => {
+          if (i === imgs.length - 1) getHeight();
+        };
+      }
     }
   }, []);
 
   const getHeight = () => {
-    const newHeight = containerRef.current.clientHeight;
-    setHeight(newHeight);
+    containerRef.current && //
+      setHeight(containerRef.current.clientHeight);
   };
 
   useEffect(() => {
@@ -96,7 +97,6 @@ export default ContentsSection;
 
 const Container = styled.section`
   letter-spacing: 0.1px;
-  min-height: 100vh;
 
   .inner {
     h1 {

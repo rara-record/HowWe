@@ -9,7 +9,7 @@ export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
 export { default as Review } from './ReviewCard';
 export { default as FAQ } from './FAQ';
-export { default as Tags } from './Tags';
+export { default as Tag } from './Tag';
 export { default as Padding } from './Padding';
 export { default as CardSectionSkeleton } from './Skeleton/CardSectionSkeleton';
 export { default as Skeleton } from './Skeleton';

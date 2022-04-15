@@ -32,6 +32,10 @@ const Container = styled.div`
   .fake-header {
     height: 72px;
   }
+
+  main {
+    min-height: 100vh;
+  }
 `;
 
 export default SubLayout;

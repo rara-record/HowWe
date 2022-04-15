@@ -2,7 +2,7 @@ export interface ICommunity {
   id: number;
   tags: string[];
   title: string;
-  name: string;
+  content: string;
   comments: IComment[];
 }
 
