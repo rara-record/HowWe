@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import { ICampList } from 'types/Camp';
+import { ICamp } from 'types/Camp';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
 import dayjs from 'dayjs';
 
 interface Props {
-  camp: ICampList;
+  camp: ICamp;
   isHeadField: boolean;
 }
 
 const CampCard = ({ camp, isHeadField }: Props) => {
-  const { thumbnail, field, skill, status, startDate, name } = camp.data;
+  const { thumbnail, field, skill, status, startDate, name } = camp;
 
   return (
     <Link to={`/camp/${camp.id}`} style={{ flex: 1 }}>

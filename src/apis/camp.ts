@@ -1,28 +1,24 @@
 import { ICampDetail } from './../types/CampDetail';
-import { ICampList } from './../types/Camp';
+import { ICamp } from './../types/Camp';
 import { CampType } from 'types/Camp';
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 export const getCampsByType = async (type: CampType) => {
-  const data: ICampList[] = [];
+  const data: ICamp[] = [];
   const q = query(collection(db, 'camps'), where('type', '==', type));
   const camps = await getDocs(q);
 
   camps.docs.map(doc =>
     data.push({
-      id: doc.id,
-
-      data: {
-        id: doc.data().id,
-        name: doc.data().name,
-        type: doc.data().type,
-        status: doc.data().status,
-        field: doc.data().field,
-        skill: doc.data().skill,
-        startDate: doc.data().startDate,
-        thumbnail: doc.data().thumbnail,
-      },
+      id: doc.data().id,
+      name: doc.data().name,
+      type: doc.data().type,
+      status: doc.data().status,
+      field: doc.data().field,
+      skill: doc.data().skill,
+      startDate: doc.data().startDate,
+      thumbnail: doc.data().thumbnail,
     })
   );
   return data;
@@ -45,8 +41,8 @@ export const getCamp = async (id: string) => {
   const q = query(collection(db, 'campDetail'), where('type', '==', id));
   const campId = await getDocs(q);
 
-  campId.docs.forEach(doc => {
-    data = {
+  campId.docs.map(doc => {
+    return (data = {
       tags: doc.data().tags,
       name: doc.data().name,
       desc: doc.data().desc,
@@ -58,8 +54,7 @@ export const getCamp = async (id: string) => {
       images: doc.data().images,
       reviews: doc.data().reviews,
       faqs: doc.data().faqs,
-    };
-    return data;
+    });
   });
   return data;
 };

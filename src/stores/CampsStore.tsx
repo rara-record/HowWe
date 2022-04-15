@@ -1,13 +1,13 @@
 import { getCamp, getCampsByType } from 'apis/camp';
 import { makeObservable, observable } from 'mobx';
 import { createContext } from 'react';
-import { ICampList } from 'types/Camp';
+import { ICamp } from 'types/Camp';
 import { ICampDetail } from 'types/CampDetail';
 
 class CampsStore {
   // 변수 선언
-  @observable campPopular: ICampList[] | null = null;
-  @observable campSales: ICampList[] | null = null;
+  @observable campPopular: ICamp[] | null = null;
+  @observable campSales: ICamp[] | null = null;
   @observable targetCamp: ICampDetail | null = null;
 
   // 고정

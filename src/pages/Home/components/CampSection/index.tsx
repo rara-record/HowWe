@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
-import { ICampList } from 'types/Camp';
+import { ICamp } from 'types/Camp';
 import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import CampCard from 'components/CampCard';
 
 interface Props {
   title: string;
-  camps: ICampList[];
+  camps: ICamp[];
   isHeadField?: boolean;
 }
 
