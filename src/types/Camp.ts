@@ -10,3 +10,8 @@ export interface ICamp {
   startDate: string;
   thumbnail: string;
 }
+
+export interface ICampList {
+  id: string;
+  data: ICamp;
+}
