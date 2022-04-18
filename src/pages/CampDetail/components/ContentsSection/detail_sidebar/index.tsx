@@ -17,7 +17,8 @@ interface IProps {
 const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
   const toggleBtnRef = useRef(null);
   const [isOn, setIsOn] = useState<boolean>(true);
-  let { name, desc, startDate, process, seat, reviewMaterial } = targetCamp;
+  let { name, desc, startDate, process, seat, reviewMaterial, buttonName } =
+    targetCamp;
   let [tags1, tags2] = targetCamp.tags;
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
@@ -99,7 +100,7 @@ const DetailSidebar = ({ targetCamp, sidebarheight }: IProps) => {
                 <div className="btn-row">
                   <Link to="/camp/apply">
                     <Button color="blue" size="large" fullWidth>
-                      더 잘하는 개발자 되기
+                      {buttonName}
                     </Button>
                   </Link>
                 </div>

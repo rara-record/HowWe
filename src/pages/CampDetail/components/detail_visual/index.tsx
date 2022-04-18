@@ -11,12 +11,14 @@ interface IProps {
 
 const DetailVisual = ({ targetCamp }: IProps) => {
   const { name, desc, headerImage } = targetCamp;
+  const { headerColor } = targetCamp.theme[0];
+
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
 
   return (
-    <Container isMobile={isMobile}>
+    <Container isMobile={isMobile} headerColor={headerColor}>
       <div className="inner">
         <div className="camp-detail-visual-title">
           <Tag color="white" size="medium" outline>
@@ -36,9 +38,14 @@ const DetailVisual = ({ targetCamp }: IProps) => {
 
 export default DetailVisual;
 
-const Container = styled.section<{ isMobile: boolean }>`
-  background-color: #0084ad;
+const Container = styled.section<{ isMobile: boolean; headerColor: string }>`
   overflow: hidden;
+
+  ${props =>
+    props.headerColor &&
+    css`
+      background-color: ${props.headerColor};
+    `}
 
   ${props =>
     props.isMobile &&

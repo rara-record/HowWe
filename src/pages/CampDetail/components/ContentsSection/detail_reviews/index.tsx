@@ -1,14 +1,17 @@
-import styled from 'styled-components';
-import { IReviews } from 'types/CampDetail';
+import styled, { css } from 'styled-components';
+import { IReviews, ITheme } from 'types/CampDetail';
 import ReviewCard from 'components/ReviewCard';
 
 interface IProps {
   reviews: IReviews[];
+  theme: ITheme[];
 }
 
-const DetailReviews = ({ reviews }: IProps) => {
+const DetailReviews = ({ reviews, theme }: IProps) => {
+  const { reviewColor } = theme[0];
+
   return (
-    <Container>
+    <Container reviewColor={reviewColor}>
       <div className="inner">
         <div className="wrap">
           <h1>
@@ -31,11 +34,16 @@ const DetailReviews = ({ reviews }: IProps) => {
 
 export default DetailReviews;
 
-const Container = styled.div`
+const Container = styled.div<{ reviewColor: string }>`
   position: relative;
   width: 100%;
   padding: 60px 0;
-  background-color: rgba(0, 132, 173, 0.06);
+
+  ${props =>
+    props.reviewColor &&
+    css`
+      background-color: ${props.reviewColor};
+    `}
 
   h1 {
     font-size: 22px;

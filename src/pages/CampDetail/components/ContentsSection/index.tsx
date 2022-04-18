@@ -88,7 +88,7 @@ const ContentsSection = ({ targetCamp }: IProps) => {
         </div>
       </div>
 
-      <DetailReviews reviews={targetCamp.reviews} />
+      <DetailReviews reviews={targetCamp.reviews} theme={targetCamp.theme} />
     </Container>
   );
 };
