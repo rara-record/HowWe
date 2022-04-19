@@ -72,12 +72,10 @@ const Navbar = ({ navType }: Props) => {
 
 export default observer(Navbar);
 
-// TODO: styled-components에 props를 받는법
 const Container = styled.nav<{
   isScrolled: boolean;
   navType: string;
 }>`
-  /* sub navbar */
   ${props =>
     props.navType === 'sub'
       ? css`
