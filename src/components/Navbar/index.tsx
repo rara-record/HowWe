@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import styled, { css } from 'styled-components';
-import colors from 'styles/colors';
 import { maxWidth } from 'styles/mixin';
+import { observer } from 'mobx-react-lite';
+import { useEffect, useState } from 'react';
+import { SignInWithSocialMedia } from '../../service/auth';
+import { Providers } from '../../service/firebase';
+
+import colors from 'styles/colors';
+import styled, { css } from 'styled-components';
 
 interface Props {
   navType: string;
@@ -11,7 +14,6 @@ interface Props {
 
 const Navbar = ({ navType }: Props) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
 
   useEffect(() => {
     changeBackground();
@@ -27,6 +29,8 @@ const Navbar = ({ navType }: Props) => {
     }
   };
 
+  const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
+
   return (
     <Container
       className={`${navType}-navbar`}
@@ -34,27 +38,31 @@ const Navbar = ({ navType }: Props) => {
       navType={navType}
     >
       <div className="inner">
-        <h1 className="logo">
+        <Logo>
           <Link className={changeLogo} to="/">
             caffein
           </Link>
-        </h1>
+        </Logo>
 
-        <Link to="community">
+        <Link to={`/`} onClick={() => SignInWithSocialMedia(Providers.google)}>
           {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
           {!isScrolled && navType === 'main' ? (
-            <img
-              className="ic-person"
-              src={require('assets/images/icons/ic-person-white.png')}
-              alt="프로필"
-            />
+            <Button>
+              <img
+                className="ic-person"
+                src={require('assets/images/icons/ic-person-white.png')}
+                alt="프로필"
+              />
+            </Button>
           ) : (
             // 그 외
-            <img
-              className="ic-person"
-              src={require('assets/images/icons/ic-person-primary.png')}
-              alt="프로필"
-            />
+            <Button>
+              <img
+                className="ic-person"
+                src={require('assets/images/icons/ic-person-primary.png')}
+                alt="프로필"
+              />
+            </Button>
           )}
         </Link>
       </div>
@@ -62,14 +70,12 @@ const Navbar = ({ navType }: Props) => {
   );
 };
 
-export default Navbar;
+export default observer(Navbar);
 
-// TODO: styled-components에 props를 받는법
 const Container = styled.nav<{
   isScrolled: boolean;
   navType: string;
 }>`
-  /* sub navbar */
   ${props =>
     props.navType === 'sub'
       ? css`
@@ -93,26 +99,22 @@ const Container = styled.nav<{
     padding: 20px;
     gap: 20px;
   }
+`;
 
-  .logo {
-    font-size: 23px;
-    font-weight: 600;
+const Logo = styled.h1`
+  font-size: 23px;
+  font-weight: 600;
 
-    .white {
-      color: white;
-    }
-
-    .primary {
-      color: ${colors.primary1};
-    }
+  .white {
+    color: white;
   }
 
-  .logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  .primary {
+    color: ${colors.primary1};
   }
+`;
 
+const Button = styled.button`
   .ic-person {
     width: 24px;
     height: 24px;
