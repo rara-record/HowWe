@@ -1,4 +1,4 @@
-import { getCamp, getCampsByType } from 'apis/camp';
+import { getCamp, getCampsByType } from 'data/camp';
 import { makeObservable, observable } from 'mobx';
 import { createContext } from 'react';
 import { ICamp } from 'types/Camp';
@@ -28,6 +28,7 @@ class CampsStore {
   fetchCampById = async (id: string) => {
     const data = await getCamp(id);
     this.targetCamp = data;
+    console.log(data);
   };
 }
 
