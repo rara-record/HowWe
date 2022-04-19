@@ -10,6 +10,8 @@ export interface ICampDetail {
   images: string[];
   reviews: IReviews[];
   faqs: IFaqs[];
+  theme: ITheme[];
+  buttonName: string;
 }
 
 export interface IReviews {
@@ -20,4 +22,9 @@ export interface IReviews {
 export interface IFaqs {
   question: string;
   answer: string;
+}
+
+export interface ITheme {
+  headerColor: string;
+  reviewColor: string;
 }

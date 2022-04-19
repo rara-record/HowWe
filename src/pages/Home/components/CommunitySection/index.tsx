@@ -4,7 +4,7 @@ import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
-import CommunityCard from 'components/CommunityCard';
+import CommunityCard from 'components/Card/CommunityCard';
 
 interface Props {
   title: string;
