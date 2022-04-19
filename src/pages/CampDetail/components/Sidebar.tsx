@@ -117,7 +117,7 @@ const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
   border-bottom: 1px solid #eee;
 
   ${props =>
-    props.isMobile === false &&
+    !props.isMobile &&
     css`
       height: ${props.sidebarheight}px;
       position: absolute;
@@ -127,15 +127,19 @@ const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
     `}
 
   aside {
-    position: sticky;
-    top: 100px;
-    margin: 32px 0 35px;
-    max-width: 332px;
-    padding: 24px;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 0 6px rgb(0 0 0 / 10%);
-    z-index: 1;
+    ${props =>
+      !props.isMobile &&
+      css`
+        position: sticky;
+        top: 100px;
+        margin: 32px 0 35px;
+        max-width: 332px;
+        padding: 24px;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgb(0 0 0 / 10%);
+        z-index: 1;
+      `}
   }
 `;
 
