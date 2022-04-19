@@ -10,25 +10,26 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {
   targetCamp: ICampDetail;
+  sidebarheight: number;
 }
 
-const Sidebar = ({ targetCamp }: IProps) => {
-  const toggleBtnRef = useRef(null);
-  const [isOn, setIsOn] = useState<boolean>(true);
+const Sidebar = ({ targetCamp, sidebarheight }: IProps) => {
+  let [tags1, tags2] = targetCamp.tags;
   let { name, desc, startDate, process, seat, reviewMaterial, buttonName } =
     targetCamp;
-  let [tags1, tags2] = targetCamp.tags;
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
+  const [isOn, setIsOn] = useState<boolean>(true);
+
+  const toggeleBtn = () => setIsOn(!isOn);
 
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
 
-  const toggeleBtn = () => setIsOn(!isOn);
-
   return (
-    <Container isMobile={isMobile}>
+    <Container isMobile={isMobile} sidebarheight={sidebarheight}>
       {targetCamp && (
-        <>
+        <aside>
           <Badge>
             {tags1} ∙ {tags2}
           </Badge>
@@ -104,7 +105,7 @@ const Sidebar = ({ targetCamp }: IProps) => {
               </div>
             </MobileButtonSection>
           )}
-        </>
+        </aside>
       )}
     </Container>
   );
@@ -112,22 +113,34 @@ const Sidebar = ({ targetCamp }: IProps) => {
 
 export default Sidebar;
 
-const Container = styled.aside<{ isMobile: boolean }>`
+const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
   border-bottom: 1px solid #eee;
 
   ${props =>
     !props.isMobile &&
     css`
-      flex: 0 0 calc(100% - 66.6666% - 2.5%);
+      height: ${props.sidebarheight}px;
+      position: absolute;
+      right: 0;
+      top: 0;
       max-width: 332px;
-      position: fixed;
-      margin: 20px 0 40px;
-      padding: 24px;
-      background-color: white;
-      border-radius: 6px;
-      box-shadow: 0 0 6px rgb(0 0 0 / 10%);
-      z-index: 1;
     `}
+
+  aside {
+    ${props =>
+      !props.isMobile &&
+      css`
+        position: sticky;
+        top: 100px;
+        margin: 32px 0 35px;
+        max-width: 332px;
+        padding: 24px;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgb(0 0 0 / 10%);
+        z-index: 1;
+      `}
+  }
 `;
 
 const Badge = styled.span`

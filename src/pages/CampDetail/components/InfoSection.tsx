@@ -6,9 +6,10 @@ import { useMediaQuery } from 'react-responsive';
 
 interface IProps {
   targetCamp: ICampDetail;
+  sidebarheight: number;
 }
 
-const InfoSection = ({ targetCamp }: IProps) => {
+const InfoSection = ({ targetCamp, sidebarheight }: IProps) => {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
@@ -48,7 +49,7 @@ const InfoSection = ({ targetCamp }: IProps) => {
 
       {/* sidebar */}
       <SidebarSection>
-        <Sidebar targetCamp={targetCamp} />
+        <Sidebar targetCamp={targetCamp} sidebarheight={sidebarheight} />
       </SidebarSection>
     </Container>
   );
@@ -81,7 +82,7 @@ const InfoBox = styled.div<{ isMobile: boolean }>`
     font-size: 22px;
     font-weight: 600;
     line-height: 28px;
-    margin: 20px 0;
+    margin: 32px 0;
     color: #040505;
 
     strong {
@@ -135,4 +136,7 @@ const InfoList = styled.ul<{ isMobile: boolean }>`
   }
 `;
 
-const SidebarSection = styled.div``;
+const SidebarSection = styled.div`
+  position: relative;
+  flex: 0 0 calc(100% - 66.6666% - 2.5%);
+`;
