@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ICommunity } from 'types/Community';
 import Tag from 'components/Tag';
-import Comments from '../Comments';
+import Comments from '../../Comments';
 import colors from 'styles/colors';
 import { useCallback } from 'react';
 
