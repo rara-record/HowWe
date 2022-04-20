@@ -23,36 +23,45 @@ const AuthForm = () => {
       const enteredPassword = passwordInputRef.current.value;
 
       setIsLoading(true);
-
+      let url: string;
       if (isLogin) {
+        url =
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCBRnJ3uv0KX0sxVGEDvpRrw6kMvfG6nfo';
       } else {
-        fetch(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCBRnJ3uv0KX0sxVGEDvpRrw6kMvfG6nfo',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              email: enteredEmail,
-              password: enteredPassword,
-              returnSecureToken: true,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        ).then(res => {
+        url =
+          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCBRnJ3uv0KX0sxVGEDvpRrw6kMvfG6nfo';
+      }
+
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+          returnSecureToken: true,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(async res => {
           setIsLoading(false);
           if (res.ok) {
-            //...
+            return res.json();
           } else {
-            return res.json().then(data => {
-              if (data && data.error && data.error.message) {
-                let errorMessage = data.error.message;
-                alert(errorMessage);
-              }
-            });
+            const data = await res.json();
+            let errorMessage: string | undefined;
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+            throw new Error(errorMessage);
           }
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(err => {
+          alert(err.message);
         });
-      }
     }
   };
 
