@@ -1,11 +1,15 @@
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
+import Button from 'components/UI/Button';
+import colors from 'styles/colors';
+import fonts from 'styles/fonts';
 
 const AuthForm = () => {
   console.log('authfrom');
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin(prevState => !prevState);
@@ -17,6 +21,8 @@ const AuthForm = () => {
     if (emailInputRef.current && passwordInputRef.current) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
+
+      setIsLoading(true);
 
       if (isLogin) {
       } else {
@@ -34,12 +40,15 @@ const AuthForm = () => {
             },
           }
         ).then(res => {
+          setIsLoading(false);
           if (res.ok) {
             //...
           } else {
             return res.json().then(data => {
-              // TODO: show an error modal
-              console.log(data);
+              if (data && data.error && data.error.message) {
+                let errorMessage = data.error.message;
+                alert(errorMessage);
+              }
             });
           }
         });
@@ -52,11 +61,11 @@ const AuthForm = () => {
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <Control>
-          <label htmlFor="email">Your Email</label>
+          <label htmlFor="email">email</label>
           <input type="email" id="email" required ref={emailInputRef} />
         </Control>
         <Control>
-          <label htmlFor="password">Your Password</label>
+          <label htmlFor="password">password</label>
           <input
             type="password"
             id="password"
@@ -65,12 +74,13 @@ const AuthForm = () => {
           />
         </Control>
         <Actions>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
-          <button
-            type="button"
-            className="toggle"
-            onClick={switchAuthModeHandler}
-          >
+          {!isLoading && (
+            <Button color="blue" size="large" fullWidth>
+              {isLogin ? 'Login' : 'Create Account'}
+            </Button>
+          )}
+          {isLoading && <p className="loading">Loading...</p>}
+          <button className="toggle" onClick={switchAuthModeHandler}>
             {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
         </Actions>
@@ -86,12 +96,13 @@ const Container = styled.section`
   width: 95%;
   max-width: 25rem;
   border-radius: 6px;
-  background-color: #38015c;
+  background-color: ${colors.primary3};
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  text-align: center;
+  color: ${colors.white};
 
   h1 {
+    ${fonts.H1};
     text-align: center;
     color: white;
   }
@@ -101,16 +112,16 @@ const Control = styled.div`
   margin-bottom: 0.5rem;
 
   label {
+    ${fonts.Body1};
+    margin-top: 10px;
     display: block;
     color: white;
-    font-weight: bold;
     margin-bottom: 0.5rem;
   }
 
   input {
-    font: inherit;
-    background-color: #f1e1fc;
-    color: #38015c;
+    ${fonts.Body1};
+    color: ${colors.primary3};
     border-radius: 4px;
     border: 1px solid white;
     width: 100%;
@@ -129,27 +140,20 @@ const Actions = styled.div`
     cursor: pointer;
     font: inherit;
     color: white;
-    background-color: #9f5ccc;
-    border: 1px solid #9f5ccc;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;
-
-    &:hover {
-      background-color: #873abb;
-      border-color: #873abb;
-    }
   }
 
   .toggle {
     margin-top: 1rem;
     background-color: transparent;
-    color: #9f5ccc;
+    color: ${colors.black};
     border: none;
     padding: 0.15rem 1.5rem;
 
     &:hover {
       background-color: transparent;
-      color: #ae82cc;
+      color: ${colors.white};
     }
   }
 `;
