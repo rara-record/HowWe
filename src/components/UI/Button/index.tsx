@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
-import button from '../../styles/button';
+import button from '../../../styles/button';
 
 interface IProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;

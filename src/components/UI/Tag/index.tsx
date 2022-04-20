@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import tags from '../../styles/tags';
+import tags from '../../../styles/tags';
 
 interface IProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
