@@ -1,7 +1,7 @@
 import { maxWidth } from 'styles/mixin';
 import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-import ReviewCard from 'components/Card/ReviewCard';
+import ReviewCard from 'components/UI/Card/ReviewCard';
 import { IReviews, ITheme } from 'types/CampDetail';
 
 interface IProps {

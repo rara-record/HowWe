@@ -4,7 +4,7 @@ import { maxWidth } from 'styles/mixin';
 
 import styled from 'styled-components';
 import fonts from 'styles/fonts';
-import CampCard from 'components/Card/CampCard';
+import CampCard from 'components/UI/Card/CampCard';
 
 interface Props {
   title: string;

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainLayout, SubLayout } from 'components';
-import { Home, CampDetail, CampApply, Community } from 'pages';
+import { Home, CampDetail, CampApply, Community, AuthPage } from 'pages';
 import GlobalStyled from 'styles/global';
 
 const App = () => {
@@ -16,9 +16,9 @@ const App = () => {
           <Route element={<SubLayout />}>
             <Route path="/camp/:campId" element={<CampDetail />} />
             <Route path="community/:communityId" element={<Community />} />
+            <Route path="camp/apply" element={<CampApply />} />
+            <Route path="/auth" element={<AuthPage />} />
           </Route>
-
-          <Route path="camp/apply" element={<CampApply />} />
         </Routes>
       </BrowserRouter>
     </>

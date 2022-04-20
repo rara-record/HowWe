@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Button from 'components/Button';
+import Button from 'components/UI/Button';
 import { Tag } from 'components';
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';

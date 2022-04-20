@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Skeleton from 'components/Skeleton';
+import Skeleton from 'components/UI/Skeleton';
 import fonts from 'styles/fonts';
 
 const CardSectionSkeleton = () => {
