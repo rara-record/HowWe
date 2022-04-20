@@ -23,7 +23,7 @@ const CampCard = ({ camp, isHeadField }: Props) => {
           </div>
           <div className="camp-name">{name}</div>
           <div className="camp-start-date">
-            {dayjs(startDate).format('M월 DD부터')}
+            {dayjs(startDate).format('M월 D일 시작')}
           </div>
         </div>
       </Container>

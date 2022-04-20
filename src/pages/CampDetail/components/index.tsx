@@ -1,6 +1,5 @@
-export { default as ContentsSection } from './ContentsSection';
-export { default as DetailSidebar } from './ContentsSection/detail_sidebar';
-export { default as DetailInfo } from './ContentsSection/detail_info';
-export { default as DetailReviews } from './ContentsSection/detail_reviews';
-export { default as DetailVisual } from './detail_visual';
-export { default as DetailFaqs } from './detail_faqs';
+export { default as HeaderSection } from './HeaderSection';
+export { default as InfoSection } from './InfoSection';
+export { default as ReviewSection } from './ReviewSection';
+export { default as FaqSection } from './FaqSection';
+export { default as Sidebar } from './Sidebar';

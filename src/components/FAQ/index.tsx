@@ -12,74 +12,75 @@ const Faq = ({ faq }) => {
 
   return (
     <Container>
-      <ul>
-        <li ref={toggleRef} onClick={onClickToggle}>
-          <div className="question">
-            <span>Q.</span>
-            <p>{faq.question}</p>
-            <button className="btn-icon-toggle">
-              <FontAwesomeIcon
-                className={`${isOn ? 'click-active' : 'click-none'}`}
-                icon={faAngleDown}
-                size="1x"
-                color="#555"
-              />
-            </button>
-          </div>
+      <ListItem ref={toggleRef} onClick={onClickToggle}>
+        <Question>
+          <span>Q.&nbsp;</span>
+          <p>{faq.question}</p>
 
-          <div className={`answer ${isOn ? 'block' : 'none'}`}>
-            <span>A.</span>
-            <p>{faq.answer}</p>
-          </div>
-        </li>
-      </ul>
+          <ButtonToggle>
+            <FontAwesomeIcon
+              className={`${isOn ? 'click-active' : 'click-none'}`}
+              icon={faAngleDown}
+              size="1x"
+              color="#555"
+            />
+          </ButtonToggle>
+        </Question>
+
+        <Answer className={` ${isOn ? 'block' : 'none'}`}>
+          <span>A.</span>
+          <p>{faq.answer}</p>
+        </Answer>
+      </ListItem>
     </Container>
   );
 };
 
 export default Faq;
 
-const Container = styled.div`
+const Container = styled.ul`
   ${maxWidth}
   font-size: 16px;
   line-height: 25px;
   letter-spacing: 0.02em;
+`;
 
-  .question {
-    position: relative;
-    display: flex;
-    padding: 18px 0;
-    margin-bottom: 12px;
-    font-weight: 600;
-    color: rgb(32, 35, 37);
-    border-bottom: 1px solid #eaecee;
-    cursor: pointer;
+const ListItem = styled.li``;
+
+const Question = styled.div`
+  position: relative;
+  display: flex;
+  padding: 18px 0;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: rgb(32, 35, 37);
+  border-bottom: 1px solid #eaecee;
+  cursor: pointer;
+`;
+
+const Answer = styled.div`
+  position: relative;
+  display: flex;
+  font-weight: 400;
+  color: rgb(60, 65, 68);
+  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.block {
+    height: 100px;
   }
 
-  .answer {
-    position: relative;
-    display: flex;
-    font-weight: 400;
-    color: rgb(60, 65, 68);
-    transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-
-    &.block {
-      height: 100px;
-    }
-
-    &.none {
-      height: 0;
-    }
-
-    span {
-      padding-right: 4px;
-    }
+  &.none {
+    height: 0;
   }
 
-  .btn-icon-toggle {
-    position: absolute;
-    right: 0;
-    fill: rgb(118, 125, 130);
+  span {
+    padding-right: 4px;
   }
+`;
+
+const ButtonToggle = styled.button`
+  position: absolute;
+  right: 0;
+  fill: rgb(118, 125, 130);
 `;

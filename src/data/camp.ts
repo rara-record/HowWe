@@ -1,15 +1,15 @@
-import { ICampDetail } from './../types/CampDetail';
-import { ICamp } from './../types/Camp';
+import { ICampDetail } from '../types/CampDetail';
+import { ICamp } from '../types/Camp';
 import { CampType } from 'types/Camp';
-import { db } from '../utils/firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../service/firebase';
+import { query, where, collection, getDocs } from 'firebase/firestore';
 
 export const getCampsByType = async (type: CampType) => {
   const data: ICamp[] = [];
   const q = query(collection(db, 'camps'), where('type', '==', type));
   const camps = await getDocs(q);
 
-  camps.docs.map(doc =>
+  camps.docs.forEach(doc =>
     data.push({
       id: doc.data().id,
       name: doc.data().name,
@@ -37,8 +37,10 @@ export const getCamp = async (id: string) => {
     images: [],
     reviews: [],
     faqs: [],
+    theme: [],
+    buttonName: '',
   };
-  const q = query(collection(db, 'campDetail'), where('type', '==', id));
+  const q = query(collection(db, 'campDetail'), where('id', '==', id));
   const campId = await getDocs(q);
 
   campId.docs.map(doc => {
@@ -54,6 +56,8 @@ export const getCamp = async (id: string) => {
       images: doc.data().images,
       reviews: doc.data().reviews,
       faqs: doc.data().faqs,
+      theme: doc.data().theme,
+      buttonName: doc.data().buttonName,
     });
   });
   return data;
