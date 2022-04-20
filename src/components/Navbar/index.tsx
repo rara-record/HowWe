@@ -44,7 +44,10 @@ const Navbar = ({ navType }: Props) => {
           </Link>
         </Logo>
 
-        <Link to={`/`} onClick={() => SignInWithSocialMedia(Providers.google)}>
+        <Link
+          to={`/auth`}
+          // onClick={() => SignInWithSocialMedia(Providers.google)}
+        >
           {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
           {!isScrolled && navType === 'main' ? (
             <Button>

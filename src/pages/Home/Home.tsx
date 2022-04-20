@@ -13,7 +13,7 @@ import { maxWidth } from 'styles/mixin';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import CommunityStore from 'stores/CommunityStore';
-import CardSectionSkeleton from 'components/Skeleton/CardSectionSkeleton';
+import CardSectionSkeleton from 'components/UI/Skeleton/CardSectionSkeleton';
 
 const Home = () => {
   const isDesktop = useMediaQuery({
