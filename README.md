@@ -2,7 +2,11 @@
 
 `TypeScript 기반의 React 프로젝트입니다` <br/>
 Caffein은 IT 관련 강의를 게시하고 수강 신청할 수 있는 플랫폼입니다. <br/>
-Demo는 ❤️ [Demo](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서 확인할 수 있습니다. <br/>
+배포 사이트는 ❤️ [프로젝트 구경하기](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서 확인할 수 있습니다. <br/>
+
+# Documentations
+
+[✨ API 명세서 확인하기](https://documenter.getpostman.com/view/18386784/UVyn2K1y#fc8787f3-d968-4d9d-a68f-d0ab854dc91f)
 
 # Milestone
 
@@ -14,6 +18,5 @@ Demo는 ❤️ [Demo](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서
 | 4주차 | `RestfulAPI`, `axios`                                                                                                                                                | ✔️ axios를 활용한 API 연동 <br/>✔️ 직접 API 명세서를 작성하기 <br/>✔️ mock(가짜) server를 만들기 <br/> | [Milestone #4](https://github.com/rara-record/caffein/milestone/4?closed=1) |
 | 5주차 | `상태관리`,`MobX`,`AWS `                                                                                                                                             | ✔️ MobX 적용 <br/>✔️ AWS 프론트엔드 시스템을 구축<br/>✔️ 캠프 디테일 상세페이지 제작 시작              | [Milestone #5](https://github.com/rara-record/caffein/milestone/5?closed=1) |
 | 6주차 | `상세페이지 기능 구현 및 구조 수정`                                                                                                                                  | ✔️ CampDetail 상세 페이지 기능 구현 및 수정 <br/>                                                      | [Milestone #6](https://github.com/rara-record/caffein/milestone/6)          |
-| 7주차 | `캠프 상세페이지 반응형 작업`,`재사용 컴포넌트 만들기`,                                                                                                              | ✔️ Camp상세 페이지 재사용 컴포넌트 만들기 <br/>                                                        | [Milestone #7](https://github.com/rara-record/caffein/milestone/7)          |
-
-# Documentations
+| 7주차 | `캠프 상세페이지 반응형 작업`<br>`재사용 컴포넌트 만들기`                                                                                                            | ✔️ Camp상세 페이지 재사용 컴포넌트 만들기 <br/>                                                        | [Milestone #7](https://github.com/rara-record/caffein/milestone/7)          |
+| 8주차 | `캠프 상세페이지 구조문제 수정`<br>` 로그인/회원가입 구현`                                                                                                           | ✔️ 파이어베이스를 활용한 회원가입, 이메일 로그인, 소셜로그인 구현하기 <br/>                            | [Milestone #8](https://github.com/rara-record/caffein/milestone/8)          |
