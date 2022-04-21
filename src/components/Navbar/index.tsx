@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
 import { maxWidth } from 'styles/mixin';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SignInWithSocialMedia } from '../../service/auth';
 import { Providers } from '../../service/firebase';
 
 import colors from 'styles/colors';
 import styled, { css } from 'styled-components';
+import AuthStore from 'stores/AuthStore';
 
 interface Props {
   navType: string;
 }
 
 const Navbar = ({ navType }: Props) => {
+  const authStore = useContext(AuthStore);
+  const isLoggedIn = authStore.isLoggedIn;
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
+  console.log(isLoggedIn);
   useEffect(() => {
     changeBackground();
     window.addEventListener('scroll', changeBackground);
@@ -44,30 +47,36 @@ const Navbar = ({ navType }: Props) => {
           </Link>
         </Logo>
 
-        <Link
-          to={`/auth`}
-          // onClick={() => SignInWithSocialMedia(Providers.google)}
-        >
-          {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
-          {!isScrolled && navType === 'main' ? (
-            <Button>
-              <img
-                className="ic-person"
-                src={require('assets/images/icons/ic-person-white.png')}
-                alt="프로필"
-              />
-            </Button>
-          ) : (
-            // 그 외
-            <Button>
-              <img
-                className="ic-person"
-                src={require('assets/images/icons/ic-person-primary.png')}
-                alt="프로필"
-              />
-            </Button>
-          )}
-        </Link>
+        {!isLoggedIn && <Link to="/auth">가입/로그인</Link>}
+
+        {isLoggedIn && (
+          <Link
+            to={`/profile`}
+            // onClick={() => SignInWithSocialMedia(Providers.google)}
+          >
+            {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
+            {!isScrolled && navType === 'main' ? (
+              <Profile>
+                <img
+                  className="ic-person"
+                  src={require('assets/images/icons/ic-person-white.png')}
+                  alt="프로필"
+                />
+              </Profile>
+            ) : (
+              // 그 외
+              <Profile>
+                <img
+                  className="ic-person"
+                  src={require('assets/images/icons/ic-person-primary.png')}
+                  alt="프로필"
+                />
+              </Profile>
+            )}
+          </Link>
+        )}
+
+        {isLoggedIn && <button>로그아웃</button>}
       </div>
     </Container>
   );
@@ -117,7 +126,7 @@ const Logo = styled.h1`
   }
 `;
 
-const Button = styled.button`
+const Profile = styled.button`
   .ic-person {
     width: 24px;
     height: 24px;
