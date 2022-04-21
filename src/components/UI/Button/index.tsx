@@ -71,6 +71,7 @@ const sizeStyles = css<{ size: string }>`
   ${({ size }) => css`
     height: ${button.sizes[size].height};
     font-size: ${button.sizes[size].fontSize};
+    font-weight: ${button.sizes[size].fontWeight};
   `}
 `;
 
@@ -100,7 +101,6 @@ const StyledButton = styled.button<{
   outline: none;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
   cursor: pointer;
 
   /* 크기 */

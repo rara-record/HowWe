@@ -1,4 +1,4 @@
-import { getCommunties } from 'data/community';
+import { getCommunties } from 'api/community';
 import { makeObservable, observable } from 'mobx';
 import { createContext } from 'react';
 import { ICommunity } from 'types/Community';

@@ -1,4 +1,4 @@
-import AuthForm from 'components/AuthForm';
+import AuthForm from './components/AuthForm';
 import styled from 'styled-components';
 
 const AuthPage = () => {
