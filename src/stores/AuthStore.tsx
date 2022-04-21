@@ -1,49 +1,26 @@
-import React, { useState } from 'react';
+import { getSignIn, getSignOut } from 'data/auth';
+import { makeObservable, observable } from 'mobx';
+import { createContext } from 'react';
 
-interface IAuthStore {
-  token: string | null;
-  isLoggedIn: boolean;
-  login: (token: string) => void;
-  logout: () => void;
+class AuthStore2 {
+  @observable token: string | null = '';
+  @observable isLoggedIn: boolean = false;
+
+  constructor() {
+    makeObservable(this);
+  }
+
+  loginHandler = async (email: string, password: string) => {
+    const data = await getSignIn(email, password);
+    this.token = data;
+    this.isLoggedIn = true;
+  };
+
+  logoutHandler = async (email: string, password: string) => {
+    await getSignOut(email, password);
+    this.token = null;
+    this.isLoggedIn = false;
+  };
 }
 
-interface IProps {
-  children: React.ReactChild;
-}
-
-const AuthStore = React.createContext<IAuthStore>({
-  token: '',
-  isLoggedIn: false,
-  login: (token: string) => {},
-  logout: () => {},
-});
-
-export const AuthStoreProvider = (props: IProps) => {
-  const [token, setToken] = useState<string | null>(null);
-
-  // TODO: !! => null, undefined 등과 같은 정의 되지 않은 변수들을 강제 변환
-  const userIsLoggedIn = !!token;
-
-  const loginHandler = (token: string) => {
-    token && setToken(token);
-  };
-
-  const logoutHandler = () => {
-    setToken(null);
-  };
-
-  const contextValue = {
-    token: token,
-    isLoggedIn: userIsLoggedIn,
-    login: loginHandler,
-    logout: logoutHandler,
-  };
-
-  return (
-    <AuthStore.Provider value={contextValue}>
-      {props.children}
-    </AuthStore.Provider>
-  );
-};
-
-export default AuthStore;
+export default createContext(new AuthStore2());
