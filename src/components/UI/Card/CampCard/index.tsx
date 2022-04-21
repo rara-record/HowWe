@@ -39,7 +39,7 @@ const Container = styled.article<{ bgImg: string }>`
   flex-direction: column;
   justify-content: flex-end;
   flex: 1;
-  height: 280px;
+  height: 300px;
   margin-bottom: 8px;
   background-image: url(${props => props.bgImg});
   background-size: cover;

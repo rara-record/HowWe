@@ -53,7 +53,7 @@ const Question = styled.div`
   padding: 18px 0;
   margin-bottom: 12px;
   font-weight: 600;
-  color: rgb(32, 35, 37);
+
   border-bottom: 1px solid #eaecee;
   cursor: pointer;
 `;
@@ -62,7 +62,7 @@ const Answer = styled.div`
   position: relative;
   display: flex;
   font-weight: 400;
-  color: rgb(60, 65, 68);
+  color: #3c4144;
   transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 

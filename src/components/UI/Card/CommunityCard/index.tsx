@@ -55,11 +55,9 @@ export default CommunityCard;
 const Container = styled.article`
   padding: 14px;
   height: 320px;
-
   border: 1px solid #cccccc;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -11,18 +11,22 @@ export default createGlobalStyle`
       text-decoration: none;
       color: inherit;
     }
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
+
+    html,body {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      color:#202325;
       background-color: white;
-      letter-spacing: -0.5px;
+      letter-spacing: 0.5px;
       touch-action: pan-y;
       -webkit-font-smoothing: antialiased;
-      box-sizing: border-box;
+
     }
+
     img{
       width:100%;
       object-fit: cover;
     }
+
     button {
       background: inherit; 
       border:none; 
@@ -32,17 +36,23 @@ export default createGlobalStyle`
       overflow:visible; 
       cursor:pointer
     } 
+
+    a:focus,
+      button:focus,
+      input:focus,
+      :focus {
+        outline: none;
+      }
+      a::-moz-focus-inner,
+      button::-moz-focus-inner,
+      input::-moz-focus-inner,
+      ::-moz-focus-inner {
+        border: 0;
+    }
+
     .inner {
       ${maxWidth};
       padding: 0 16px;
-    }
-    .wrap {
-      width: 67%;
-      
-      @media (max-width: 768px) {
-        width: 100%;
-    }
-      
     }
 
     .click-active {
