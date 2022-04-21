@@ -1,11 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import Button from 'components/UI/Button';
 import colors from 'styles/colors';
 import fonts from 'styles/fonts';
+import AuthStore from 'stores/AuthStore';
 
 const AuthForm = () => {
-  console.log('authfrom');
+  const authStore = useContext(AuthStore);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [isLogin, setIsLogin] = useState(true);
@@ -21,48 +22,15 @@ const AuthForm = () => {
     if (emailInputRef.current && passwordInputRef.current) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
-
       setIsLoading(true);
-      let url: string;
-      if (isLogin) {
-        url =
-          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCBRnJ3uv0KX0sxVGEDvpRrw6kMvfG6nfo';
-      } else {
-        url =
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCBRnJ3uv0KX0sxVGEDvpRrw6kMvfG6nfo';
-      }
 
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(async res => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          } else {
-            const data = await res.json();
-            let errorMessage: string | undefined;
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            throw new Error(errorMessage);
-          }
-        })
-        .then(data => {
-          console.log(data);
-        })
-        .catch(err => {
-          alert(err.message);
-        });
+      if (isLogin) {
+        authStore.loginHandler(enteredEmail, enteredPassword);
+      } else {
+        authStore.logoutHandler(enteredEmail, enteredPassword);
+      }
     }
+    setIsLoading(false);
   };
 
   return (
@@ -82,17 +50,20 @@ const AuthForm = () => {
             ref={passwordInputRef}
           />
         </Control>
+
         <Actions>
           {!isLoading && (
             <Button color="blue" size="large" fullWidth>
               {isLogin ? 'Login' : 'Create Account'}
             </Button>
           )}
-          {isLoading && <p className="loading">Loading...</p>}
+
           <button className="toggle" onClick={switchAuthModeHandler}>
             {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
         </Actions>
+
+        {isLoading && <p className="loading">Loading...</p>}
       </form>
     </Container>
   );
