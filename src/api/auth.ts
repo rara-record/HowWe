@@ -16,7 +16,23 @@ httpClient.interceptors.response.use(
   }
 );
 
-export const getSignIn = async (
+export const getSignUp = async (
+  enteredEmail: string,
+  enteredPassword: string
+) => {
+  return await httpClient
+    .post(`/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API_KEY}`, {
+      email: enteredEmail,
+      password: enteredPassword,
+      returnSecureToken: true,
+    })
+    .then(response => response.data.idToken)
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getLogin = async (
   enteredEmail: string,
   enteredPassword: string
 ) => {
@@ -35,15 +51,12 @@ export const getSignIn = async (
     });
 };
 
-export const getSignOut = async (
-  enteredEmail: string,
-  enteredPassword: string
-) => {
+export const changeNewPassword = async (token: string, newPassword: string) => {
   return await httpClient
-    .post(`/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API_KEY}`, {
-      email: enteredEmail,
-      password: enteredPassword,
-      returnSecureToken: true,
+    .post(`/accounts:update?key=${process.env.REACT_APP_FIREBASE_API_KEY}`, {
+      idToken: token,
+      password: newPassword,
+      returnSecureToken: false,
     })
     .then(response => response.data.idToken)
     .catch(err => {
