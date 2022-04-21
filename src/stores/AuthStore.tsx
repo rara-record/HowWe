@@ -1,4 +1,4 @@
-import { getSignUp, getLogin } from 'api/auth';
+import { getSignUp, getLogin, changeNewPassword } from 'api/auth';
 import { makeObservable, observable } from 'mobx';
 import { createContext } from 'react';
 
@@ -21,6 +21,13 @@ class AuthStore {
     if (data) {
       this.token = data;
       this.isLoggedIn = true;
+    }
+  };
+
+  newPassword = async (token: string | null, enterdNewPassword: string) => {
+    if (token) {
+      await changeNewPassword(token, enterdNewPassword);
+      this.isLoggedIn = false;
     }
   };
 

@@ -1,16 +1,39 @@
-import Button from 'components/UI/Button';
-import styled from 'styled-components';
 import fonts from 'styles/fonts';
+import styled from 'styled-components';
+import AuthStore from 'stores/AuthStore';
+import Button from 'components/UI/Button';
+import { useContext, useRef, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 const ProfileForm = () => {
+  let navigate = useNavigate();
+  const authStore = useContext(AuthStore);
+  const newPasswordInputRef = useRef<HTMLInputElement>(null);
+
+  const submitHandler = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    if (newPasswordInputRef.current) {
+      const enterdNewPassword = newPasswordInputRef.current.value;
+      authStore.newPassword(authStore.token, enterdNewPassword);
+      navigate('/');
+    }
+  };
+
   return (
     <Container>
       <h1>내 클래스룸</h1>
 
-      <form>
+      <form onSubmit={submitHandler}>
         <Control>
           <label htmlFor="new-password">비밀번호 변경하기</label>
-          <input type="password" id="new-password" />
+          <input
+            type="password"
+            id="new-password"
+            minLength={7}
+            ref={newPasswordInputRef}
+          />
         </Control>
         <Action>
           <Button fullWidth size="medium">
