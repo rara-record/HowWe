@@ -3,3 +3,5 @@ export { default as CampDetail } from './CampDetail';
 export { default as CampApply } from './CampApply/CampApply';
 export { default as Community } from './Community/Community';
 export { default as AuthPage } from './AuthPage';
+export { default as Profile } from './Profile';
+export { default as NotFound } from './NotFound';

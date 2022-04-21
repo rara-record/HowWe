@@ -11,6 +11,7 @@ export default {
     large: {
       height: '48px',
       fontSize: '16px',
+      fontWeight: 'bold',
       lineHeight: '25px',
       padding: '0 14px',
       minWidth: '56px',

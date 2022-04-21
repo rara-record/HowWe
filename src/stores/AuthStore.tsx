@@ -10,12 +10,12 @@ class AuthStore {
     makeObservable(this);
   }
 
-  signUpHandler = async (email: string, password: string) => {
+  signUp = async (email: string, password: string) => {
     const data = await getSignUp(email, password);
     this.token = data;
   };
 
-  loginHandler = async (email: string, password: string) => {
+  login = async (email: string, password: string) => {
     const data = await getLogin(email, password);
 
     if (data) {
@@ -31,11 +31,18 @@ class AuthStore {
     }
   };
 
-  // logoutHandler = async (email: string, password: string) => {
-  //   await getSignIn(email, password);
-  //   this.token = null;
-  //   this.isLoggedIn = false;
-  // };
+  logout = () => {
+    this.token = null;
+    this.isLoggedIn = false;
+  };
 }
+
+// export const AuthContextProvider = props => {
+//   return (
+//     <AuthContext.Provider value={contextValue}>
+//       {props.children}
+//     </AuthContext.Provider>
+//   );
+// };
 
 export default createContext(new AuthStore());

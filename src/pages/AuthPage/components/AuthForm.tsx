@@ -1,36 +1,42 @@
-import { useState, useRef, useContext } from 'react';
-import styled from 'styled-components';
-import Button from 'components/UI/Button';
-import colors from 'styles/colors';
-import fonts from 'styles/fonts';
 import AuthStore from 'stores/AuthStore';
 
+import { observer } from 'mobx-react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useContext } from 'react';
+
+import fonts from 'styles/fonts';
+import colors from 'styles/colors';
+import styled from 'styled-components';
+import Button from 'components/UI/Button';
+
 const AuthForm = () => {
+  let navigate = useNavigate();
   const authStore = useContext(AuthStore);
+
+  const [isLogin, setIsLogin] = useState(true);
+
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
-  const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin(prevState => !prevState);
   };
 
+  // TODO: loading 로직 구현하기
   const submitHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (emailInputRef.current && passwordInputRef.current) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
-      setIsLoading(true);
 
       if (isLogin) {
-        authStore.loginHandler(enteredEmail, enteredPassword);
+        authStore.login(enteredEmail, enteredPassword);
+        navigate('/');
       } else {
-        authStore.logoutHandler(enteredEmail, enteredPassword);
+        authStore.signUp(enteredEmail, enteredPassword);
       }
     }
-    setIsLoading(false);
   };
 
   return (
@@ -52,24 +58,20 @@ const AuthForm = () => {
         </Control>
 
         <Actions>
-          {!isLoading && (
-            <Button color="blue" size="large" fullWidth>
-              {isLogin ? 'Login' : 'Create Account'}
-            </Button>
-          )}
+          <Button color="blue" size="large" fullWidth>
+            {isLogin ? 'Login' : 'Create Account'}
+          </Button>
 
           <button className="toggle" onClick={switchAuthModeHandler}>
             {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
         </Actions>
-
-        {isLoading && <p className="loading">Loading...</p>}
       </form>
     </Container>
   );
 };
 
-export default AuthForm;
+export default observer(AuthForm);
 
 const Container = styled.section`
   margin: 3rem auto;

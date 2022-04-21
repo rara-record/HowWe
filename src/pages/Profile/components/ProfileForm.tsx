@@ -2,8 +2,9 @@ import fonts from 'styles/fonts';
 import styled from 'styled-components';
 import AuthStore from 'stores/AuthStore';
 import Button from 'components/UI/Button';
-import { useContext, useRef, useState } from 'react';
 
+import { observer } from 'mobx-react';
+import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ProfileForm = () => {
@@ -45,7 +46,7 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default observer(ProfileForm);
 
 const Container = styled.section`
   h1 {

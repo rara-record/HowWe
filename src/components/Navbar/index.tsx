@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { maxWidth } from 'styles/mixin';
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { SignInWithSocialMedia } from '../../service/auth';
 import { Providers } from '../../service/firebase';
@@ -14,10 +15,12 @@ interface Props {
 }
 
 const Navbar = ({ navType }: Props) => {
+  const navigate = useNavigate();
   const authStore = useContext(AuthStore);
   const isLoggedIn = authStore.isLoggedIn;
+
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  console.log(isLoggedIn);
+
   useEffect(() => {
     changeBackground();
     window.addEventListener('scroll', changeBackground);
@@ -30,6 +33,10 @@ const Navbar = ({ navType }: Props) => {
     } else {
       setIsScrolled(false);
     }
+  };
+
+  const logoutHandler = () => {
+    authStore.logout();
   };
 
   const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
@@ -47,36 +54,48 @@ const Navbar = ({ navType }: Props) => {
           </Link>
         </Logo>
 
-        {!isLoggedIn && <Link to="/auth">가입/로그인</Link>}
-
-        {isLoggedIn && (
-          <Link
-            to={`/profile`}
-            // onClick={() => SignInWithSocialMedia(Providers.google)}
-          >
-            {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
-            {!isScrolled && navType === 'main' ? (
-              <Profile>
-                <img
-                  className="ic-person"
-                  src={require('assets/images/icons/ic-person-white.png')}
-                  alt="프로필"
-                />
-              </Profile>
-            ) : (
-              // 그 외
-              <Profile>
-                <img
-                  className="ic-person"
-                  src={require('assets/images/icons/ic-person-primary.png')}
-                  alt="프로필"
-                />
-              </Profile>
-            )}
-          </Link>
+        {!isLoggedIn && (
+          <GuestContainer>
+            <Link to="/auth">회원가입/로그인</Link>
+          </GuestContainer>
         )}
 
-        {isLoggedIn && <button>로그아웃</button>}
+        {isLoggedIn && (
+          <UserContainer>
+            <UserLoginIcon>
+              <Link
+                to={`/profile`}
+                // onClick={() => SignInWithSocialMedia(Providers.google)}
+              >
+                {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
+                {!isScrolled && navType === 'main' ? (
+                  <Profile>
+                    <img
+                      className="ic-person"
+                      src={require('assets/images/icons/ic-person-white.png')}
+                      alt="프로필"
+                    />
+                  </Profile>
+                ) : (
+                  // 그 외
+                  <Profile>
+                    <img
+                      className="ic-person"
+                      src={require('assets/images/icons/ic-person-primary.png')}
+                      alt="프로필"
+                    />
+                  </Profile>
+                )}
+              </Link>
+            </UserLoginIcon>
+
+            <UserLogOut>
+              <Link to="/">
+                <button onClick={logoutHandler}>로그아웃</button>
+              </Link>
+            </UserLogOut>
+          </UserContainer>
+        )}
       </div>
     </Container>
   );
@@ -132,3 +151,11 @@ const Profile = styled.button`
     height: 24px;
   }
 `;
+
+const GuestContainer = styled.div``;
+
+const UserContainer = styled.ul``;
+
+const UserLoginIcon = styled.li``;
+
+const UserLogOut = styled.li``;
