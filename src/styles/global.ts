@@ -43,6 +43,7 @@ export default createGlobalStyle`
       :focus {
         outline: none;
       }
+      
       a::-moz-focus-inner,
       button::-moz-focus-inner,
       input::-moz-focus-inner,
@@ -54,6 +55,15 @@ export default createGlobalStyle`
       ${maxWidth};
       padding: 0 16px;
     }
+
+    .ir_wa {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px; 
+  }
 
     .click-active {
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
