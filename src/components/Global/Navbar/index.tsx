@@ -36,7 +36,10 @@ const Navbar = ({ navType }: Props) => {
   };
 
   const logoutHandler = () => {
-    authStore.logout();
+    authStore.signOut();
+    if (!authStore.isLoggedIn) {
+      navigate('/');
+    }
   };
 
   const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
@@ -56,7 +59,7 @@ const Navbar = ({ navType }: Props) => {
 
         {!isLoggedIn && (
           <GuestContainer>
-            <Link to="/auth">회원가입/로그인</Link>
+            <Link to="/auth">가입/로그인</Link>
           </GuestContainer>
         )}
 
