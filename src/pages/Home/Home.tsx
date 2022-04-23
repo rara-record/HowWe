@@ -1,6 +1,6 @@
 import { Padding } from 'components';
 import {
-  VisualSection,
+  HeaderSection,
   CampSection,
   HomeBanner,
   CommunitySection,
@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <Container>
-      <VisualSection />
+      <HeaderSection />
       <main className="contents">
         {campStore.campPopular ? (
           <CampSection title="인기 부트 캠프" camps={campStore.campPopular} />

@@ -3,8 +3,8 @@ import { maxWidth } from 'styles/mixin';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { SignInWithSocialMedia } from '../../service/auth';
-import { Providers } from '../../service/firebase';
+import { SignInWithSocialMedia } from '../../../service/auth';
+import { Providers } from '../../../service/firebase';
 
 import colors from 'styles/colors';
 import styled, { css } from 'styled-components';
