@@ -3,12 +3,10 @@ import { maxWidth } from 'styles/mixin';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { SignInWithSocialMedia } from '../../../service/auth';
-import { Providers } from '../../../service/firebase';
 
 import colors from 'styles/colors';
-import styled, { css } from 'styled-components';
 import AuthStore from 'stores/AuthStore';
+import styled, { css } from 'styled-components';
 
 interface Props {
   navType: string;
@@ -66,10 +64,7 @@ const Navbar = ({ navType }: Props) => {
         {isLoggedIn && (
           <UserContainer>
             <UserLoginIcon>
-              <Link
-                to={`/profile`}
-                // onClick={() => SignInWithSocialMedia(Providers.google)}
-              >
+              <Link to={`/profile`}>
                 {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
                 {!isScrolled && navType === 'main' ? (
                   <Profile>

@@ -6,6 +6,7 @@ const httpClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
+const { REACT_APP_FIREBASE_API_KEY } = process.env;
 
 httpClient.interceptors.response.use(
   response => {
@@ -21,15 +22,13 @@ export const getSignUp = async (
   enteredPassword: string
 ) => {
   return await httpClient
-    .post(`/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API_KEY}`, {
+    .post(`/accounts:signUp?key=${REACT_APP_FIREBASE_API_KEY}`, {
       email: enteredEmail,
       password: enteredPassword,
       returnSecureToken: true,
     })
-    .then(response => response.data.idToken)
-    .catch(err => {
-      console.log(err);
-    });
+    .then(response => response)
+    .catch(err => console.log(err));
 };
 
 export const getSignIn = async (
@@ -37,15 +36,12 @@ export const getSignIn = async (
   enteredPassword: string
 ) => {
   return await httpClient
-    .post(
-      `/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
-      {
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }
-    )
-    .then(response => response.data.idToken)
+    .post(`/accounts:signInWithPassword?key=${REACT_APP_FIREBASE_API_KEY}`, {
+      email: enteredEmail,
+      password: enteredPassword,
+      returnSecureToken: true,
+    })
+    .then(response => response)
     .catch(err => {
       console.log(err);
     });
@@ -53,7 +49,7 @@ export const getSignIn = async (
 
 export const changeNewPassword = async (token: string, newPassword: string) => {
   return await httpClient
-    .post(`/accounts:update?key=${process.env.REACT_APP_FIREBASE_API_KEY}`, {
+    .post(`/accounts:update?key=${REACT_APP_FIREBASE_API_KEY}`, {
       idToken: token,
       password: newPassword,
       returnSecureToken: false,
