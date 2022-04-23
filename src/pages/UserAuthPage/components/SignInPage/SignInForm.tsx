@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from 'styled-components';
@@ -15,6 +15,7 @@ interface IFormValues {
 
 const SignInForm = () => {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const authStore = useContext(AuthStore);
 
   const schema = yup.object().shape({
@@ -51,9 +52,8 @@ const SignInForm = () => {
         <input type="password" {...register('pwd')} />
 
         <div>
-          <button type="submit">로그인 하기</button>
+          <button type="submit">로그인하기</button>
         </div>
-
         <Link to="/signUp">회원가입 하기</Link>
       </form>
     </Container>

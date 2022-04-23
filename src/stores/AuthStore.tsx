@@ -6,7 +6,6 @@ class AuthStore {
   @observable token: string | null = '';
   @observable isLoggedIn: boolean = false;
   @observable isAuthFail: boolean = false;
-  @observable errorMessage: string = '';
 
   constructor() {
     makeObservable(this);
@@ -18,23 +17,20 @@ class AuthStore {
     if (apiRes && apiRes.status === 200) {
       const apiData = await apiRes.data;
       this.token = apiData.idToken;
-      this.errorMessage = '';
     } else {
       this.isAuthFail = true;
-      this.errorMessage = '이미 존재하는 이메일입니다.';
     }
   };
 
   @action signIn = async (email: string, password: string) => {
     const apiRes = await getSignIn(email, password);
-    console.log(apiRes);
+
     if (apiRes && apiRes.status === 200) {
       const apiData = await apiRes.data;
       this.token = apiData.idToken;
       this.isLoggedIn = true;
     } else {
       this.isAuthFail = true;
-      this.errorMessage = '아이디 및 비밀번호가 일치하지 않습니다.';
     }
   };
 

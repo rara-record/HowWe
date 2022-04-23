@@ -44,9 +44,6 @@ const SignUpForm = () => {
 
   return (
     <Container>
-      {!authStore.isLoggedIn && authStore.isAuthFail && (
-        <div>{authStore.errorMessage}</div>
-      )}
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">이메일</label>
