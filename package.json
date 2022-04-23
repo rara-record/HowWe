@@ -9,6 +9,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
+    "@hookform/resolvers": "^2.8.8",
     "@react-query-firebase/firestore": "^0.4.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
@@ -38,7 +39,8 @@
     "swiper": "^8.0.7",
     "typescript": "^4.5.5",
     "usehooks-ts": "^2.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
