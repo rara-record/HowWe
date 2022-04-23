@@ -39,11 +39,14 @@ const SignUpForm = () => {
     const enteredEmail = data.email;
     const enteredPassword = data.pwd;
     await authStore.signUp(enteredEmail, enteredPassword);
-    !authStore.isLoggedIn && navigate('/signIn');
+    !authStore.isLoggedIn && !authStore.isAuthFail && navigate('/signIn');
   };
 
   return (
     <Container>
+      {!authStore.isLoggedIn && authStore.isAuthFail && (
+        <div>{authStore.errorMessage}</div>
+      )}
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">이메일</label>
