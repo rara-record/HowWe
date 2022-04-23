@@ -1,6 +1,6 @@
-import { getSignUp, getLogin, changeNewPassword } from 'api/auth';
-import { makeObservable, observable, action } from 'mobx';
 import { createContext } from 'react';
+import { makeObservable, observable, action } from 'mobx';
+import { getSignUp, getSignIn, changeNewPassword } from 'api/userAuth';
 
 class AuthStore {
   @observable token: string | null = '';
@@ -13,15 +13,21 @@ class AuthStore {
   @action signUp = async (email: string, password: string) => {
     const data = await getSignUp(email, password);
     this.token = data;
+    this.isLoggedIn = false;
   };
 
-  @action login = async (email: string, password: string) => {
-    const data = await getLogin(email, password);
+  @action signIn = async (email: string, password: string) => {
+    const data = await getSignIn(email, password);
 
     if (data) {
       this.token = data;
       this.isLoggedIn = true;
     }
+  };
+
+  @action signOut = () => {
+    this.token = null;
+    this.isLoggedIn = false;
   };
 
   @action newPassword = async (
@@ -33,19 +39,6 @@ class AuthStore {
       this.isLoggedIn = false;
     }
   };
-
-  @action logout = () => {
-    this.token = null;
-    this.isLoggedIn = false;
-  };
 }
-
-// export const AuthContextProvider = props => {
-//   return (
-//     <AuthContext.Provider value={contextValue}>
-//       {props.children}
-//     </AuthContext.Provider>
-//   );
-// };
 
 export default createContext(new AuthStore());
