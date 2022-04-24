@@ -11,7 +11,7 @@ const SliderMock: ISlider = {
   thumbnail: 'https://cdn.comento.kr/images/pt/tmp/prefix_44UsYDVNuM.jpg',
 };
 
-const VisualSection = () => {
+const HeaderSection = () => {
   const [slider, setSlider] = useState<ISlider[]>([]);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -39,7 +39,7 @@ const VisualSection = () => {
   );
 };
 
-export default VisualSection;
+export default HeaderSection;
 
 const Container = styled.div<{ bgImg: string; isMobile: boolean }>`
   background-image: url(${props => props.bgImg});

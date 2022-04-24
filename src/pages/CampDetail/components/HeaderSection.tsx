@@ -52,6 +52,7 @@ const Container = styled.section<{ isMobile: boolean; headerColor: string }>`
     css`
       flex-direction: column;
       padding: 0;
+      background-color: none;
     `}
 
   .inner {
@@ -99,14 +100,13 @@ const ImageBox = styled.figure<{ isMobile: boolean }>`
 
   img {
     width: 100%;
-    margin-top: 40px;
     object-fit: cover;
-    border-radius: 4px;
 
     ${props =>
-      props.isMobile &&
+      !props.isMobile &&
       css`
-        margin-top: 0;
+        margin-top: 40px;
+        border-radius: 4px;
       `}
   }
 `;

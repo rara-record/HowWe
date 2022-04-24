@@ -18,7 +18,7 @@ const ProfileForm = () => {
     if (newPasswordInputRef.current) {
       const enterdNewPassword = newPasswordInputRef.current.value;
       authStore.newPassword(authStore.token, enterdNewPassword);
-      navigate('/');
+      !authStore.isLoggedIn && !authStore.isAuthFail && navigate('/signIn');
     }
   };
 
@@ -33,6 +33,7 @@ const ProfileForm = () => {
             type="password"
             id="new-password"
             minLength={7}
+            maxLength={12}
             ref={newPasswordInputRef}
           />
         </Control>

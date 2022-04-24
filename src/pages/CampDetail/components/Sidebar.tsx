@@ -127,6 +127,8 @@ const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
     `}
 
   aside {
+    margin-top: 25px;
+
     ${props =>
       !props.isMobile &&
       css`
@@ -192,16 +194,13 @@ const SidebarItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 4px;
   font-size: 14px;
   margin-bottom: 10px;
   line-height: 20px;
 
   dt {
     color: rgb(148, 155, 160);
-  }
-
-  dd {
-    color: rgb(60, 65, 68);
   }
 `;
 

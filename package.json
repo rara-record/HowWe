@@ -9,6 +9,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
+    "@hookform/resolvers": "^2.8.8",
     "@react-query-firebase/firestore": "^0.4.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
@@ -28,6 +29,7 @@
     "polished": "^4.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.30.0",
     "react-query": "^3.35.0",
     "react-responsive": "^9.0.0-beta.6",
     "react-router-dom": "^6.2.2",
@@ -37,7 +39,8 @@
     "swiper": "^8.0.7",
     "typescript": "^4.5.5",
     "usehooks-ts": "^2.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -64,11 +67,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/eslint-parser": "^7.17.0",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.4.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
