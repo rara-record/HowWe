@@ -24,7 +24,6 @@ const Conatiner = styled.div`
 
   .comment-nickname {
     ${fonts.Body2}
-    font-family: 'Noto Sans';
     font-weight: bold;
     overflow: hidden;
     width: 50px;
@@ -33,7 +32,6 @@ const Conatiner = styled.div`
   }
 
   .comment-content {
-    font-family: 'Roboto';
     ${fonts.Caption}
     margin-top: 5px;
     overflow: hidden;

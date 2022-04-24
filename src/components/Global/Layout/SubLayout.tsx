@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import Navbar from 'components/Global/Navbar';
+import Footer from 'components/Global/Footer';
 
-const MainLayout = () => {
+const SubLayout = () => {
   return (
     <Container>
       <header>
-        <Navbar navType={'main'} />
+        <Navbar navType={'sub'} />
       </header>
+      <div className="fake-header"></div>
 
       <main>
         <Outlet />
@@ -20,11 +21,21 @@ const MainLayout = () => {
 };
 
 const Container = styled.div`
+  position: relative;
+
   header {
     width: 100%;
     position: fixed;
     z-index: 100;
   }
+
+  .fake-header {
+    height: 72px;
+  }
+
+  main {
+    min-height: 100vh;
+  }
 `;
 
-export default MainLayout;
+export default SubLayout;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Button from 'components/Button';
+import Button from 'components/UI/Button';
 import { Tag } from 'components';
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
@@ -117,7 +117,7 @@ const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
   border-bottom: 1px solid #eee;
 
   ${props =>
-    props.isMobile === false &&
+    !props.isMobile &&
     css`
       height: ${props.sidebarheight}px;
       position: absolute;
@@ -127,15 +127,21 @@ const Container = styled.div<{ isMobile: boolean; sidebarheight: number }>`
     `}
 
   aside {
-    position: sticky;
-    top: 100px;
-    margin: 32px 0 35px;
-    max-width: 332px;
-    padding: 24px;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 0 6px rgb(0 0 0 / 10%);
-    z-index: 1;
+    margin-top: 25px;
+
+    ${props =>
+      !props.isMobile &&
+      css`
+        position: sticky;
+        top: 100px;
+        margin: 32px 0 35px;
+        max-width: 332px;
+        padding: 24px;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgb(0 0 0 / 10%);
+        z-index: 1;
+      `}
   }
 `;
 
@@ -188,16 +194,13 @@ const SidebarItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 4px;
   font-size: 14px;
   margin-bottom: 10px;
   line-height: 20px;
 
   dt {
     color: rgb(148, 155, 160);
-  }
-
-  dd {
-    color: rgb(60, 65, 68);
   }
 `;
 

@@ -12,18 +12,18 @@ export default {
 
   sizes: {
     large: {
-      fontSize: '14px',
+      fontSize: '15px',
       padding: '6px 8px',
       fontWeight: '500',
       lineHeight: '10px',
     },
     medium: {
-      fontSize: '12px',
+      fontSize: '13px',
       padding: '4px 6px',
       lineHeight: '14px',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '12px',
       height: '16px',
       padding: '1.5px 4px',
       lineHeight: '16px',

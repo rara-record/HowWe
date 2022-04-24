@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-  black: '#000000',
+  black: '#040505',
   white: '#FFFFFF',
   gray1: '#212121',
   gray2: '#616161',

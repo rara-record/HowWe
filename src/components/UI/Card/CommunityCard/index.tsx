@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ICommunity } from 'types/Community';
-import Tag from 'components/Tag';
-import Comments from '../../Comments';
+import Tag from 'components/UI/Tag';
+import Comments from '../../../Comments';
 import colors from 'styles/colors';
 import { useCallback } from 'react';
 
@@ -55,11 +55,9 @@ export default CommunityCard;
 const Container = styled.article`
   padding: 14px;
   height: 320px;
-
   border: 1px solid #cccccc;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
