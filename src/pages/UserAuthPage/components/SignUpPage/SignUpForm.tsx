@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from 'styled-components';
@@ -17,6 +17,7 @@ interface IFormValues {
 const SignUpForm = () => {
   let navigate = useNavigate();
   const authStore = useContext(AuthStore);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -38,8 +39,10 @@ const SignUpForm = () => {
   const onSubmit = async (data: IFormValues) => {
     const enteredEmail = data.email;
     const enteredPassword = data.pwd;
+    setIsLoading(true);
     await authStore.signUp(enteredEmail, enteredPassword);
-    !authStore.isLoggedIn && !authStore.isAuthFail && navigate('/signIn');
+    setIsLoading(false);
+    !authStore.isLoggedIn && navigate('/signIn');
   };
 
   return (
@@ -58,9 +61,12 @@ const SignUpForm = () => {
         <input type="password" {...register('checkPwd')} />
         <span>{errors.checkPwd && '비밀번호가 맞지 습니다.'}</span>
 
-        <div>
-          <button type="submit">회원가입</button>
-        </div>
+        {isLoading && <p>로딩중...</p>}
+        {!isLoading && (
+          <div>
+            <button type="submit">회원가입</button>
+          </div>
+        )}
       </form>
     </Container>
   );
