@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { maxWidth } from 'styles/mixin';
 import colors from 'styles/colors';
-import fonts from 'styles/fonts';
 import { useMediaQuery } from 'react-responsive';
 
 const Footer = () => {
@@ -17,11 +16,9 @@ const Footer = () => {
         </div>
         <div className="footer-info">
           <div className="content">
-            <p>
-              대표: 내이름. 서울특별시 중구 한강대로 416, 서울스퀘어 15층 101호
-            </p>
+            <p>대표: 김보라</p>
             <br />
-            <p> Copyright by (주)카페인.</p>
+            <p> Copyright by (주)카페인 &copy; {new Date().getFullYear()}</p>
             <p> All right reserved. 이용약관 개인정보처리방침</p>
           </div>
           <ul className="sns">

@@ -42,7 +42,7 @@ const SignInForm = () => {
 
   return (
     <Container>
-      {errors.email || errors.pwd ? (
+      {errors?.email || errors?.pwd ? (
         <span>이메일과 비밀번호 형식을 확인해주세요.</span>
       ) : null}
 

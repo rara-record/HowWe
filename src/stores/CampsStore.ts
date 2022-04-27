@@ -6,8 +6,8 @@ import { ICampDetail } from 'types/CampDetail';
 
 class CampsStore {
   // 변수 선언
-  @observable campPopular: ICamp[] | null = null;
-  @observable campSales: ICamp[] | null = null;
+  @observable campPopular: ICamp[] | null | void = [];
+  @observable campSales: ICamp[] | null | void = [];
   @observable targetCamp: ICampDetail | null = null;
 
   // 고정

@@ -8,12 +8,6 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
-export const Firebase = firebase.initializeApp(firebaseConfig);
+export const app = firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
-
-export const Providers = {
-  google: new firebase.auth.GoogleAuthProvider(),
-};
-
-export const auth = firebase.auth();
-export default Firebase;
+export const authService = firebase.auth();
