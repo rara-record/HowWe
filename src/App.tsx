@@ -1,3 +1,4 @@
+import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
 import { useContext } from 'react';
@@ -14,6 +15,7 @@ import {
   Profile,
   NotFound,
 } from 'pages';
+
 const App = () => {
   const AuthStroe = useContext(AuthStore);
 
