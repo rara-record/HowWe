@@ -5,6 +5,8 @@ export { default as Review } from './UI/Card/ReviewCard';
 export { default as LoginForm } from './UI/Form/LoginForm';
 export { default as RegisterUserForm } from './UI/Form/RegisterUserForm';
 
+export { default as Checkbox } from './UI/Checkbox';
+
 export { default as Comments } from './Comments';
 export { default as Comment } from './Comments/Comment';
 export { default as HomeSlider } from './HomeSlider';

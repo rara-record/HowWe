@@ -107,6 +107,11 @@ const InputWrapper = styled.div`
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #ddd;
+
+    &::placeholder {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
   }
 `;
 
