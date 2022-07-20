@@ -68,15 +68,15 @@ const Navbar = ({ navType }: Props) => {
 
         {isLoggedIn && (
           <UserContainer>
-            <UserLoginIcon>
-              <Link to={`/profile`}>
+            <Link to="/profile">
+              <UserLoginIcon>
                 {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
                 {!isScrolled && navType === 'main' ? (
                   <Profile>
                     <img
                       className="ic-person"
                       src={require('assets/images/icons/ic-person-white.png')}
-                      alt="프로필"
+                      alt="회원 아이콘"
                     />
                   </Profile>
                 ) : (
@@ -85,12 +85,12 @@ const Navbar = ({ navType }: Props) => {
                     <img
                       className="ic-person"
                       src={require('assets/images/icons/ic-person-primary.png')}
-                      alt="프로필"
+                      alt="회원 아이콘"
                     />
                   </Profile>
                 )}
-              </Link>
-            </UserLoginIcon>
+              </UserLoginIcon>
+            </Link>
 
             <UserLogOut>
               <Link to="/">
@@ -212,7 +212,12 @@ const GuestContainer = styled.div<{
   }
 `;
 
-const UserContainer = styled.ul``;
+const UserContainer = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
 
 const UserLoginIcon = styled.li``;
 

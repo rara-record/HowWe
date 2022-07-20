@@ -1,7 +1,8 @@
-import { createContext } from 'react';
-import { makeObservable, observable, action } from 'mobx';
-import { getSignUp, getSignIn } from 'api/userAuth';
 import firebase from 'firebase/compat/app';
+
+import { createContext } from 'react';
+import { makeObservable, observable } from 'mobx';
+import { getSignUp, getSignIn } from 'api/userAuth';
 
 class AuthStore {
   @observable user: firebase.User | null | firebase.auth.UserCredential | void =
@@ -13,18 +14,18 @@ class AuthStore {
     makeObservable(this);
   }
 
-  @action signUp = async (name: string, email: string, password: string) => {
+  signUp = async (name: string, email: string, password: string) => {
     const userInfo = await getSignUp(name, email, password);
-    this.user = userInfo;
-    console.log(this.user);
+    console.log(userInfo);
   };
 
-  @action signIn = async (email: string, password: string) => {
+  signIn = async (email: string, password: string) => {
     const apiRes = await getSignIn(email, password);
     console.log(apiRes);
+    apiRes ? (this.isLoggedIn = true) : (this.isLoggedIn = false);
   };
 
-  @action signOut = () => {
+  signOut = () => {
     this.user = null;
     this.isLoggedIn = false;
   };

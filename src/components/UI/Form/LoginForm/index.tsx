@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,6 +18,8 @@ interface IFormValues {
 const LoginForm = () => {
   let navigate = useNavigate();
   const authStore = useContext(AuthStore);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -35,48 +37,59 @@ const LoginForm = () => {
   const onSubmit = async (data: IFormValues) => {
     const enteredEmail = data.email;
     const enteredPassword = data.pwd;
+    setIsLoading(true);
     await authStore.signIn(enteredEmail, enteredPassword);
-    authStore.isLoggedIn && navigate('/');
+    setIsLoading(false);
+    authStore.isLoggedIn && !isLoading && navigate('/');
   };
 
   return (
     <Container>
-      <h1 className="login-logo">
-        <Link to="/">Caffein</Link>
-      </h1>
+      {!isLoading && (
+        <>
+          <h1 className="login-logo">
+            <Link to="/">Caffein</Link>
+          </h1>
 
-      <h2 className="login-title">안녕하세요! 👋</h2>
-      <p className="login-desc">
-        CAFFEIN 에서 당신의 아이디어를 <br />
-        현실로 만들 수 있습니다.
-      </p>
+          <h2 className="login-title">안녕하세요! 👋</h2>
+          <p className="login-desc">
+            CAFFEIN 에서 당신의 아이디어를 <br />
+            현실로 만들 수 있습니다.
+          </p>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <InputWrapper>
-          <input type="email" {...register('email')} placeholder="이메일" />
-          {errors.email && (
-            <span className="error-text">
-              올바른 이메일 형식을 입력해주세요.
-            </span>
-          )}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <InputWrapper>
+              <input type="email" {...register('email')} placeholder="이메일" />
+              {errors.email && (
+                <span className="error-text">
+                  올바른 이메일 형식을 입력해주세요.
+                </span>
+              )}
 
-          <input type="password" {...register('pwd')} placeholder="비밀번호" />
-          {errors.pwd && (
-            <span className="error-text">
-              비밀번호는 7자리 이상 12자리 이하입니다.
-            </span>
-          )}
-        </InputWrapper>
+              <input
+                type="password"
+                {...register('pwd')}
+                placeholder="비밀번호"
+              />
+              {errors.pwd && (
+                <span className="error-text">
+                  비밀번호는 7자리 이상 12자리 이하입니다.
+                </span>
+              )}
+            </InputWrapper>
 
-        <ButtonWrapper>
-          <button type="submit" className="login-btn">
-            로그인하기
-          </button>
-          <button className="register-btn">
-            <Link to="/user/register">회원가입 하기</Link>
-          </button>
-        </ButtonWrapper>
-      </form>
+            <ButtonWrapper>
+              <button type="submit" className="login-btn">
+                로그인하기
+              </button>
+              <button className="register-btn">
+                <Link to="/user/register">회원가입 하기</Link>
+              </button>
+            </ButtonWrapper>
+          </form>
+        </>
+      )}
+      {isLoading && <div>로딩중 (스피너 작업중)</div>}
     </Container>
   );
 };

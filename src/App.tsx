@@ -1,3 +1,4 @@
+import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
 

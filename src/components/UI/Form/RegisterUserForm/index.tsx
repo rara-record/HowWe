@@ -29,15 +29,8 @@ const RegisterUserForm = () => {
   let navigate = useNavigate();
   const resolver = yupResolver(schema);
   const authStore = useContext(AuthStore);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormValues>({
-    resolver,
-  });
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isCheckAll, setIsCheckAll] = useState<boolean>(false);
   const [isCheck, setIsCheck] = useState<string[]>([]);
   const [list, setList] = useState<any>([]);
@@ -45,6 +38,14 @@ const RegisterUserForm = () => {
   useEffect(() => {
     setList(CheckList);
   }, [list]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormValues>({
+    resolver,
+  });
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
@@ -139,9 +140,8 @@ const RegisterUserForm = () => {
 
         <CheckBoxList>
           {list.map(({ id, name }) => (
-            <li>
+            <li key={id}>
               <Checkbox
-                key={id}
                 type="checkbox"
                 name={name}
                 id={id}
@@ -156,7 +156,7 @@ const RegisterUserForm = () => {
         <ButtonWrapper>
           {isLoading ? (
             <button type="submit" className="register-btn">
-              로딩중
+              로딩중..
             </button>
           ) : (
             <button type="submit" className="register-btn">
