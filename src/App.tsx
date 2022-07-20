@@ -1,20 +1,22 @@
+import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
+
 import { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { MainLayout, SubLayout } from 'components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import {
   Home,
   CampDetail,
   CampApply,
   Community,
-  UserAuthPage,
+  Login,
+  Register,
   Profile,
   NotFound,
 } from 'pages';
-import SignUpPage from 'pages/UserAuthPage/components/SignUpPage';
-import SignInPage from 'pages/UserAuthPage/components/SignInPage';
 
 const App = () => {
   const AuthStroe = useContext(AuthStore);
@@ -35,9 +37,8 @@ const App = () => {
 
             {!AuthStroe.isLoggedIn && (
               <>
-                <Route path="/auth" element={<UserAuthPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/user/login" element={<Login />} />
+                <Route path="/user/register" element={<Register />} />
               </>
             )}
 

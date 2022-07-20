@@ -18,18 +18,16 @@ export const getSignUp = async (
       return userCredential;
     })
     .catch(error => {
-      console.log(error.message);
-      alert(error.message);
+      alert('회원가입이 실패하였습니다.');
     });
 };
 
 export const getSignIn = async (email: string, password: string) => {
   return authService
     .signInWithEmailAndPassword(email, password)
-    .then(response => console.log(response))
+    .then(response => response)
     .catch(error => {
-      console.log(error.message);
-      alert(error.message);
+      alert('로그인 정보가 맞지 않습니다.');
     });
 };
 

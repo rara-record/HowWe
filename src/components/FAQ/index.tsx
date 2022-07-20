@@ -45,15 +45,18 @@ const Container = styled.ul`
   letter-spacing: 0.02em;
 `;
 
-const ListItem = styled.li``;
+const ListItem = styled.li`
+  width: 100%;
+  height: 100%;
+`;
 
 const Question = styled.div`
   position: relative;
   display: flex;
   padding: 18px 0;
+  padding-right: 15px;
   margin-bottom: 12px;
   font-weight: 600;
-
   border-bottom: 1px solid #eaecee;
   cursor: pointer;
 `;

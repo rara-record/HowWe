@@ -3,8 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 import 'reset-css';
 
 export default createGlobalStyle`
-    * {
+  * {
       box-sizing: border-box;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+      'Malgun Gothic', sans-serif;
     }
 
     a {
@@ -13,11 +16,14 @@ export default createGlobalStyle`
     }
 
     html,body {
-      font-family: Pretendard, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+      'Malgun Gothic', sans-serif;
       color:#202325;
       background-color: white;
       letter-spacing: 0.5px;
       touch-action: pan-y;
+      scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
 
     }
