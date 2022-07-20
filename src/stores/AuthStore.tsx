@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { getSignUp, getSignIn, changeNewPassword } from 'api/userAuth';
 
 class AuthStore {
@@ -11,8 +11,9 @@ class AuthStore {
     makeObservable(this);
   }
 
-  @action signUp = async (email: string, password: string) => {
+  signUp = async (email: string, password: string) => {
     const apiRes = await getSignUp(email, password);
+    console.log(apiRes);
 
     if (apiRes && apiRes.status === 200) {
       const apiData = await apiRes.data;
@@ -22,7 +23,7 @@ class AuthStore {
     }
   };
 
-  @action signIn = async (email: string, password: string) => {
+  signIn = async (email: string, password: string) => {
     const apiRes = await getSignIn(email, password);
 
     if (apiRes && apiRes.status === 200) {
@@ -34,15 +35,12 @@ class AuthStore {
     }
   };
 
-  @action signOut = () => {
+  signOut = () => {
     this.token = null;
     this.isLoggedIn = false;
   };
 
-  @action newPassword = async (
-    token: string | null,
-    enterdNewPassword: string
-  ) => {
+  newPassword = async (token: string | null, enterdNewPassword: string) => {
     if (token) {
       await changeNewPassword(token, enterdNewPassword);
       this.isLoggedIn = false;

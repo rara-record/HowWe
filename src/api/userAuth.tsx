@@ -28,7 +28,7 @@ export const getSignUp = async (
       returnSecureToken: true,
     })
     .then(response => response)
-    .catch(err => alert('로그인 실패'));
+    .catch(err => alert('회원가입 실패'));
 };
 
 export const getSignIn = async (
@@ -57,6 +57,5 @@ export const changeNewPassword = async (token: string, newPassword: string) => {
       if (err.response && err.response.status === 400) {
         console.log('에러');
       }
-    })
-    .finally(() => {});
+    });
 };

@@ -57,7 +57,7 @@ const Navbar = ({ navType }: Props) => {
 
         {!isLoggedIn && (
           <GuestContainer>
-            <Link to="/auth">가입/로그인</Link>
+            <Link to="/user/login">가입/로그인</Link>
           </GuestContainer>
         )}
 

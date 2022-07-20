@@ -1,11 +1,18 @@
 export { default as CampCard } from './UI/Card/CampCard';
 export { default as CommunityCard } from './UI/Card/CommunityCard';
 export { default as Review } from './UI/Card/ReviewCard';
+
+export { default as LoginForm } from './UI/Form/LoginForm';
+export { default as RegisterUserForm } from './UI/Form/RegisterUserForm';
+
 export { default as Comments } from './Comments';
 export { default as Comment } from './Comments/Comment';
 export { default as HomeSlider } from './HomeSlider';
+
 export { default as MainLayout } from './Global/Layout/MainLayout';
 export { default as SubLayout } from './Global/Layout/SubLayout';
+export { default as AuthLayout } from './Global/Layout/AuthLayout';
+
 export { default as Navbar } from './Global/Navbar';
 export { default as Footer } from './Global/Footer';
 export { default as FAQ } from './FAQ';

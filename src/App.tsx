@@ -9,13 +9,11 @@ import {
   CampDetail,
   CampApply,
   Community,
-  UserAuthPage,
+  Login,
+  Register,
   Profile,
   NotFound,
 } from 'pages';
-import SignUpPage from 'pages/UserAuthPage/components/SignUpPage';
-import SignInPage from 'pages/UserAuthPage/components/SignInPage';
-
 const App = () => {
   const AuthStroe = useContext(AuthStore);
 
@@ -32,18 +30,19 @@ const App = () => {
             <Route path="/camp/:campId" element={<CampDetail />} />
             <Route path="community/:communityId" element={<Community />} />
             <Route path="camp/apply" element={<CampApply />} />
-            {!AuthStroe.isLoggedIn && (
-              <>
-                <Route path="/auth" element={<UserAuthPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/signin" element={<SignInPage />} />
-              </>
-            )}
-
-            {AuthStroe.isLoggedIn && (
-              <Route path="/profile" element={<Profile />} />
-            )}
           </Route>
+
+          {!AuthStroe.isLoggedIn && (
+            <>
+              <Route path="/user/login" element={<Login />} />
+              <Route path="/user/register" element={<Register />} />
+            </>
+          )}
+
+          {AuthStroe.isLoggedIn && (
+            <Route path="/profile" element={<Profile />} />
+          )}
+
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
