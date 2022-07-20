@@ -13,15 +13,30 @@ import colors from 'styles/colors';
 import Checkbox from 'components/UI/Checkbox';
 import { CheckList } from 'properties/CheckList';
 
-interface IFormValues {
-  email: string;
-  pwd: string;
-  checkPwd: string;
-}
+const schema = yup.object({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  pwd: yup.string().min(7).max(12).required(),
+  checkPwd: yup
+    .string()
+    .oneOf([yup.ref('pwd'), null])
+    .required(),
+});
+
+type IFormValues = yup.InferType<typeof schema>;
 
 const RegisterUserForm = () => {
   let navigate = useNavigate();
+  const resolver = yupResolver(schema);
   const authStore = useContext(AuthStore);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormValues>({
+    resolver,
+  });
 
   const [isCheckAll, setIsCheckAll] = useState<boolean>(false);
   const [isCheck, setIsCheck] = useState<string[]>([]);
@@ -30,23 +45,6 @@ const RegisterUserForm = () => {
   useEffect(() => {
     setList(CheckList);
   }, [list]);
-
-  const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    pwd: yup.string().min(7).max(12).required(),
-    checkPwd: yup
-      .string()
-      .oneOf([yup.ref('pwd'), null])
-      .required(),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormValues>({
-    resolver: yupResolver(schema),
-  });
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
@@ -65,10 +63,13 @@ const RegisterUserForm = () => {
   };
 
   const onSubmit = async (data: IFormValues) => {
+    const enterdName = data.name;
     const enteredEmail = data.email;
     const enteredPassword = data.pwd;
-    await authStore.signUp(enteredEmail, enteredPassword);
-    !authStore.isAuthFail && navigate('/user/login');
+    setIsLoading(true);
+    await authStore.signUp(enterdName, enteredEmail, enteredPassword);
+    setIsLoading(false);
+    !authStore.isLoggedIn && navigate('/user/login');
   };
 
   return (
@@ -80,6 +81,12 @@ const RegisterUserForm = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
+          <div>
+            <label htmlFor="name">이름</label>
+            <input type="text" {...register('name')} />
+            {errors?.name && <span>이름을 입력해주세요.</span>}
+          </div>
+
           <div>
             <label htmlFor="email">이메일</label>
             <input
@@ -147,9 +154,15 @@ const RegisterUserForm = () => {
         </CheckBoxList>
 
         <ButtonWrapper>
-          <button type="submit" className="register-btn">
-            확인
-          </button>
+          {isLoading ? (
+            <button type="submit" className="register-btn">
+              로딩중
+            </button>
+          ) : (
+            <button type="submit" className="register-btn">
+              확인
+            </button>
+          )}
         </ButtonWrapper>
       </form>
     </Container>
@@ -228,10 +241,6 @@ const InputWrapper = styled.div`
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #ddd;
-
-    &:nth-child(1) {
-      margin-top: 0;
-    }
   }
 
   .error-text {

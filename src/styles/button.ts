@@ -5,6 +5,8 @@ export default {
     blue: '#2a7de1',
     gray1: '#eaecee',
     gray2: '#949ba0',
+    yellow: '#fee500',
+    red: '#dc4e41',
   },
 
   sizes: {

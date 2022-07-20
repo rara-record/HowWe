@@ -46,7 +46,6 @@ const colorStyles = css<{ color: string; outline: boolean }>`
     const selected = button.palette[props.color];
     return props.outline
       ? css`
-          color: ${selected};
           background: none;
           border: 1px solid ${selected};
           &:active {

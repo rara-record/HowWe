@@ -1,7 +1,8 @@
-import { ICampDetail } from '../types/CampDetail';
+import { db } from '../service/firebase';
 import { ICamp } from '../types/Camp';
 import { CampType } from 'types/Camp';
-import { db } from '../service/firebase';
+
+import { ICampDetail } from '../types/CampDetail';
 import { query, where, collection, getDocs } from 'firebase/firestore';
 
 export const getCampsByType = async (type: CampType) => {
