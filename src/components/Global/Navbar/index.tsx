@@ -56,8 +56,13 @@ const Navbar = ({ navType }: Props) => {
         </Logo>
 
         {!isLoggedIn && (
-          <GuestContainer>
-            <Link to="/user/login">가입/로그인</Link>
+          <GuestContainer isScrolled={isScrolled} navType={navType}>
+            <button className="header-login-btn">
+              <Link to="/user/login">로그인</Link>
+            </button>
+            <button className="header-register-btn">
+              <Link to="/user/register">회원가입</Link>
+            </button>
           </GuestContainer>
         )}
 
@@ -108,7 +113,7 @@ const Container = styled.nav<{
   ${props =>
     props.navType === 'sub'
       ? css`
-          background-color: white;
+          background-color: #fff;
         `
       : css`
           background-color: transparent;
@@ -117,7 +122,7 @@ const Container = styled.nav<{
   ${props =>
     props.isScrolled &&
     css`
-      background-color: white;
+      background-color: #fff;
       transition: 0.5s;
     `}
 
@@ -150,7 +155,62 @@ const Profile = styled.button`
   }
 `;
 
-const GuestContainer = styled.div``;
+const GuestContainer = styled.div<{
+  isScrolled: boolean;
+  navType: string;
+}>`
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+
+    ${props =>
+      props.navType === 'sub'
+        ? css`
+            color: ${colors.primary1};
+          `
+        : css`
+            color: #fff;
+          `}
+
+    ${props =>
+      props.isScrolled &&
+      css`
+        color: ${colors.primary1};
+        transition: 0.5s;
+      `}
+  }
+
+  .header-login-btn {
+    position: relative;
+
+    &::after {
+      ${props =>
+        props.navType === 'sub'
+          ? css`
+              background-color: ${colors.primary1};
+            `
+          : css`
+              background-color: #fff;
+            `}
+
+      ${props =>
+        props.isScrolled &&
+        css`
+          background-color: ${colors.primary1};
+          transition: 0.5s;
+        `}
+
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 16px;
+    }
+  }
+`;
 
 const UserContainer = styled.ul``;
 
