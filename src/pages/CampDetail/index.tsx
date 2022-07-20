@@ -30,6 +30,9 @@ const CampDetail = () => {
     campStore.fetchCampById(String(campId));
   }, [campId, campStore]);
 
+  /**
+   * 모든 이미지가 로드 된 후, getHeight 함수를 호출한다.
+   */
   const onloadImages = useCallback(() => {
     if (imgRef.current) {
       const imgs = imgRef.current.querySelectorAll('img');
@@ -42,6 +45,9 @@ const CampDetail = () => {
     }
   }, []);
 
+  /**
+   * 현재 container의 총 높이를 구한다
+   */
   const getHeight = () => {
     if (containerRef.current) {
       setHeight(containerRef.current.clientHeight);
