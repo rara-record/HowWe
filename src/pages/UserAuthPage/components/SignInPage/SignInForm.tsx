@@ -15,8 +15,8 @@ interface IFormValues {
 
 const SignInForm = () => {
   let navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const authStore = useContext(AuthStore);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -34,13 +34,15 @@ const SignInForm = () => {
   const onSubmit = async (data: IFormValues) => {
     const enteredEmail = data.email;
     const enteredPassword = data.pwd;
+    setIsLoading(true);
     await authStore.signIn(enteredEmail, enteredPassword);
+    setIsLoading(false);
     authStore.isLoggedIn && navigate('/');
   };
 
   return (
     <Container>
-      {errors.email || errors.pwd ? (
+      {errors?.email || errors?.pwd ? (
         <span>이메일과 비밀번호 형식을 확인해주세요.</span>
       ) : null}
 
@@ -51,9 +53,13 @@ const SignInForm = () => {
         <label htmlFor="pwd">비밀번호</label>
         <input type="password" {...register('pwd')} />
 
-        <div>
-          <button type="submit">로그인하기</button>
-        </div>
+        {isLoading && <p>로딩중...</p>}
+        {!isLoading && (
+          <div>
+            <button type="submit">로그인하기</button>
+          </div>
+        )}
+
         <Link to="/signUp">회원가입 하기</Link>
       </form>
     </Container>

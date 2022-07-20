@@ -1,15 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Navbar from 'components/Global/Navbar';
 import Footer from 'components/Global/Footer';
+import { useCallback, useState } from 'react';
 
 const SubLayout = () => {
+  const [height, setHeight] = useState<number>(0);
+
+  const HeaderHeightCallbackRef = useCallback(node => {
+    node && setHeight(node.offsetHeight);
+  }, []);
+
   return (
-    <Container>
-      <header>
+    <Container mainHeight={height}>
+      <header ref={HeaderHeightCallbackRef}>
         <Navbar navType={'sub'} />
       </header>
-      <div className="fake-header"></div>
 
       <main>
         <Outlet />
@@ -20,7 +26,7 @@ const SubLayout = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ mainHeight: number }>`
   position: relative;
 
   header {
@@ -29,11 +35,13 @@ const Container = styled.div`
     z-index: 100;
   }
 
-  .fake-header {
-    height: 72px;
-  }
-
   main {
+    ${props =>
+      props.mainHeight &&
+      css`
+        padding-top: ${props.mainHeight}px;
+      `}
+
     min-height: 100vh;
   }
 `;

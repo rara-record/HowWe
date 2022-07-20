@@ -1,5 +1,5 @@
-import { db } from '../service/firebase';
-import { ICommunity } from '../types/Community';
+import { db } from 'service/firebase';
+import { ICommunity } from 'types/Community';
 import { collection, query, getDocs } from 'firebase/firestore';
 
 export const getCommunties = async () => {

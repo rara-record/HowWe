@@ -4,29 +4,30 @@ import AuthStore from 'stores/AuthStore';
 import Button from 'components/UI/Button';
 
 import { observer } from 'mobx-react';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from 'service/firebase';
 
 const ProfileForm = () => {
   let navigate = useNavigate();
   const authStore = useContext(AuthStore);
   const newPasswordInputRef = useRef<HTMLInputElement>(null);
 
-  const submitHandler = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  // const submitHandler = (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
 
-    if (newPasswordInputRef.current) {
-      const enterdNewPassword = newPasswordInputRef.current.value;
-      authStore.newPassword(authStore.token, enterdNewPassword);
-      !authStore.isLoggedIn && !authStore.isAuthFail && navigate('/signIn');
-    }
-  };
+  //   if (newPasswordInputRef.current) {
+  //     const enterdNewPassword = newPasswordInputRef.current.value;
+  //     authStore.newPassword(authStore.token, enterdNewPassword);
+  //     !authStore.isLoggedIn && !authStore.isAuthFail && navigate('/signIn');
+  //   }
+  // };
 
   return (
     <Container>
       <h1>내 클래스룸</h1>
 
-      <form onSubmit={submitHandler}>
+      <form>
         <Control>
           <label htmlFor="new-password">비밀번호 변경하기</label>
           <input

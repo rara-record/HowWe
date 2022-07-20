@@ -32,6 +32,7 @@ const App = () => {
             <Route path="/camp/:campId" element={<CampDetail />} />
             <Route path="community/:communityId" element={<Community />} />
             <Route path="camp/apply" element={<CampApply />} />
+
             {!AuthStroe.isLoggedIn && (
               <>
                 <Route path="/auth" element={<UserAuthPage />} />
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
             )}
           </Route>
+
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
