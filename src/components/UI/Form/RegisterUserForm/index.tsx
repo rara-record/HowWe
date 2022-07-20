@@ -236,7 +236,7 @@ const InputWrapper = styled.div`
 
   .error-text {
     color: #ef4444;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin: 0.8rem 0 1rem;
   }
 `;
