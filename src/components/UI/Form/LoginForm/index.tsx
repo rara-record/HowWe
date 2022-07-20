@@ -51,14 +51,21 @@ const LoginForm = () => {
         현실로 만들 수 있습니다.
       </p>
 
-      {errors.email || errors.pwd ? (
-        <span>이메일과 비밀번호 형식을 확인해주세요.</span>
-      ) : null}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <input type="email" {...register('email')} placeholder="이메일" />
+          {errors.email && (
+            <span className="error-text">
+              올바른 이메일 형식을 입력해주세요.
+            </span>
+          )}
+
           <input type="password" {...register('pwd')} placeholder="비밀번호" />
+          {errors.pwd && (
+            <span className="error-text">
+              비밀번호는 7자리 이상 12자리 이하입니다.
+            </span>
+          )}
         </InputWrapper>
 
         <ButtonWrapper>
@@ -112,6 +119,12 @@ const InputWrapper = styled.div`
       font-size: 0.8rem;
       color: #ccc;
     }
+  }
+
+  .error-text {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin: 0.8rem 0 0.7rem;
   }
 `;
 
