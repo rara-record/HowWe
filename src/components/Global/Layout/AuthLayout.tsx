@@ -22,7 +22,7 @@ const Container = styled.section`
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: rgba(250, 250, 250, 0.9);
 
   .row {
     height: 100%;
