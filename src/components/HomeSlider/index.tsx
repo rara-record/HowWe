@@ -141,13 +141,10 @@ const Container = styled.div<{ isMobile: boolean }>`
 `;
 
 const StyledSwiperScroll = styled.div<{ isMobile: boolean }>`
-  display: inline-flex;
-  justify-content: center;
+  margin-top: -20px;
+  display: flex;
   align-items: center;
-  position: absolute;
-  left: 0;
-
-  bottom: 0;
+  justify-content: flex-start;
 
   ${props =>
     props.isMobile &&
@@ -158,6 +155,7 @@ const StyledSwiperScroll = styled.div<{ isMobile: boolean }>`
     `}
 
   .swiper-scrollbar {
+    position: static;
     width: 225px;
     height: 3px;
     background-color: hsla(0, 0%, 100%, 0.1);
@@ -176,8 +174,8 @@ const StyledSwiperScroll = styled.div<{ isMobile: boolean }>`
 
 const ButtonWrapper = styled.div<{ isMobile: boolean }>`
   display: flex;
-  margin-left: 25px;
-  grid-gap: 20px;
+  margin-left: 33px;
+  grid-gap: 25px;
   z-index: 1;
   cursor: pointer;
 

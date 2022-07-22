@@ -20,7 +20,7 @@ const MainLayout = () => {
 };
 
 const Container = styled.div`
-  header {
+  > header {
     width: 100%;
     position: fixed;
     z-index: 100;

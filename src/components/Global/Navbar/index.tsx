@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import colors from 'styles/colors';
 import AuthStore from 'stores/AuthStore';
 import styled, { css } from 'styled-components';
+import Dropdown from 'components/UI/Dropdown';
 
 interface Props {
   navType: string;
@@ -15,9 +16,9 @@ interface Props {
 const Navbar = ({ navType }: Props) => {
   const navigate = useNavigate();
   const authStore = useContext(AuthStore);
-  const isLoggedIn = authStore.isLoggedIn;
 
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isOn, setIsOn] = useState<boolean>(false);
 
   useEffect(() => {
     changeBackground();
@@ -41,6 +42,7 @@ const Navbar = ({ navType }: Props) => {
   };
 
   const changeLogo = !isScrolled && navType === 'main' ? 'white' : 'primary';
+  const handleClick = () => setIsOn(!isOn);
 
   return (
     <Container
@@ -55,7 +57,7 @@ const Navbar = ({ navType }: Props) => {
           </Link>
         </Logo>
 
-        {!isLoggedIn && (
+        {!authStore.isLoggedIn && (
           <GuestContainer isScrolled={isScrolled} navType={navType}>
             <button className="header-login-btn">
               <Link to="/user/login">로그인</Link>
@@ -66,21 +68,19 @@ const Navbar = ({ navType }: Props) => {
           </GuestContainer>
         )}
 
-        {isLoggedIn && (
+        {authStore.isLoggedIn && (
           <UserContainer>
-            <Link to="/profile">
-              <UserLoginIcon>
-                {/* home에서 스크롤을 하지 않을때만 navar 로고 흰색 */}
-                {!isScrolled && navType === 'main' ? (
-                  <Profile>
-                    <img
-                      className="ic-person"
-                      src={require('assets/images/icons/ic-person-white.png')}
-                      alt="회원 아이콘"
-                    />
-                  </Profile>
-                ) : (
-                  // 그 외
+            <UserLoginIcon onClick={handleClick}>
+              {!isScrolled && navType === 'main' ? (
+                <Profile>
+                  <img
+                    className="ic-person"
+                    src={require('assets/images/icons/ic-person-white.png')}
+                    alt="회원 아이콘"
+                  />
+                </Profile>
+              ) : (
+                <>
                   <Profile>
                     <img
                       className="ic-person"
@@ -88,15 +88,10 @@ const Navbar = ({ navType }: Props) => {
                       alt="회원 아이콘"
                     />
                   </Profile>
-                )}
-              </UserLoginIcon>
-            </Link>
-
-            <UserLogOut>
-              <Link to="/">
-                <button onClick={logoutHandler}>로그아웃</button>
-              </Link>
-            </UserLogOut>
+                </>
+              )}
+            </UserLoginIcon>
+            {isOn && <Dropdown logoutHandler={logoutHandler} />}
           </UserContainer>
         )}
       </div>
@@ -212,13 +207,8 @@ const GuestContainer = styled.div<{
   }
 `;
 
-const UserContainer = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+const UserContainer = styled.div`
+  position: relative;
 `;
 
-const UserLoginIcon = styled.li``;
-
-const UserLogOut = styled.li``;
+const UserLoginIcon = styled.div``;

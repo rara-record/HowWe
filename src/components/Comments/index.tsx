@@ -5,9 +5,10 @@ import Comment from './Comment';
 const Comments = ({ comments }: { comments: IComment[] }) => {
   return (
     <Container>
-      {comments.map((comment, index) => (
-        <Comment key={index} comment={comment} />
-      ))}
+      {comments &&
+        comments.map((comment, index) => (
+          <Comment key={index} comment={comment} />
+        ))}
     </Container>
   );
 };

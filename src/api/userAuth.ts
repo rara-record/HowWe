@@ -28,19 +28,3 @@ export const getSignIn = async (email: string, password: string) => {
       console.log(error.message);
     });
 };
-
-// export const changeNewPassword = async (token: string, newPassword: string) => {
-//   return await httpClient
-//     .post(`/accounts:update?key=${REACT_APP_FIREBASE_API_KEY}`, {
-//       idToken: token,
-//       password: newPassword,
-//       returnSecureToken: false,
-//     })
-//     .then(response => response.data.idToken)
-//     .catch(err => {
-//       if (err.response && err.response.status === 400) {
-//         console.log('에러');
-//       }
-//     })
-//     .finally(() => {});
-// };
