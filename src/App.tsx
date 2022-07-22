@@ -1,8 +1,9 @@
 import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
+import UserStore from 'stores/UserStore';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { MainLayout, SubLayout } from 'components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -19,7 +20,12 @@ import {
 } from 'pages';
 
 const App = () => {
-  const AuthStroe = useContext(AuthStore);
+  const authStore = useContext(AuthStore);
+  const userStore = useContext(UserStore);
+
+  useEffect(() => {
+    userStore.unsubscribe();
+  }, [userStore]);
 
   return (
     <>
@@ -35,14 +41,14 @@ const App = () => {
             <Route path="community/:communityId" element={<Community />} />
             <Route path="camp/apply" element={<CampApply />} />
 
-            {!AuthStroe.isLoggedIn && (
+            {!authStore.isLoggedIn && (
               <>
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/register" element={<Register />} />
               </>
             )}
 
-            {AuthStroe.isLoggedIn && (
+            {authStore.isLoggedIn && (
               <Route path="/profile" element={<Profile />} />
             )}
           </Route>

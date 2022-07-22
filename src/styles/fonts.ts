@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 export default {
   H1: css`
     font-weight: bold;
-    font-size: 28px;
+    font-size: 26px;
     line-height: 38px;
     letter-spacing: -0.01em;
   `,

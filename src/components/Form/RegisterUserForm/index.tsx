@@ -16,7 +16,7 @@ import { CheckList } from 'properties/CheckList';
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
-  pwd: yup.string().min(7).max(12).required(),
+  pwd: yup.string().min(8).max(15).required(),
   checkPwd: yup
     .string()
     .oneOf([yup.ref('pwd'), null])
@@ -75,17 +75,14 @@ const RegisterUserForm = () => {
 
   return (
     <Container>
-      <h1 className="register-logo">
-        <Link to="/">Caffein</Link>
-      </h1>
-      <h2 className="register-title">회원가입</h2>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <div>
             <label htmlFor="name">이름</label>
             <input type="text" {...register('name')} />
-            {errors?.name && <span>이름을 입력해주세요.</span>}
+            {errors?.name && (
+              <span className="error-text">이름을 입력해주세요.</span>
+            )}
           </div>
 
           <div>
@@ -109,7 +106,8 @@ const RegisterUserForm = () => {
             />
             {errors.pwd && (
               <span className="error-text">
-                비밀번호는 7자리 이상 12자리 이하입니다.
+                비밀번호는 문자 숫자 특수문자 조합으로 8자 이상으로
+                입력해주세요.
               </span>
             )}
           </div>
@@ -122,7 +120,7 @@ const RegisterUserForm = () => {
               placeholder="비밀번호를 다시 한 번 입력해주세요"
             />
             {errors.checkPwd && (
-              <span className="error-text">비밀번호가 맞지 않습니다.</span>
+              <span className="error-text">비밀번호가 다릅니다.</span>
             )}
           </div>
         </InputWrapper>
@@ -172,19 +170,6 @@ const RegisterUserForm = () => {
 export default observer(RegisterUserForm);
 
 const Container = styled.section`
-  .register-logo {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: ${colors.primary1};
-    text-transform: uppercase;
-  }
-
-  .register-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 52px 0 1.2rem;
-  }
-
   input {
     &::placeholder {
       font-size: 0.8rem;
@@ -233,7 +218,7 @@ const InputWrapper = styled.div`
   }
 
   label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
 

@@ -29,20 +29,19 @@ const SubLayout = () => {
 const Container = styled.div<{ mainHeight: number }>`
   position: relative;
 
-  header {
+  > header {
     width: 100%;
     position: fixed;
     z-index: 100;
   }
 
-  main {
+  > main {
+    min-height: 100vh;
     ${props =>
       props.mainHeight &&
       css`
         padding-top: ${props.mainHeight}px;
       `}
-
-    min-height: 100vh;
   }
 `;
 

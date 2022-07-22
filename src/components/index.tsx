@@ -2,8 +2,8 @@ export { default as CampCard } from './UI/Card/CampCard';
 export { default as CommunityCard } from './UI/Card/CommunityCard';
 export { default as Review } from './UI/Card/ReviewCard';
 
-export { default as LoginForm } from './UI/Form/LoginForm';
-export { default as RegisterUserForm } from './UI/Form/RegisterUserForm';
+export { default as LoginForm } from './Form/LoginForm';
+export { default as RegisterUserForm } from './Form/RegisterUserForm';
 
 export { default as Checkbox } from './UI/Checkbox';
 

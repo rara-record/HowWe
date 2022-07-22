@@ -14,6 +14,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import CommunityStore from 'stores/CommunityStore';
 import CardSectionSkeleton from 'components/UI/Skeleton/CardSectionSkeleton';
+import UserStore from 'stores/UserStore';
 
 const Home = () => {
   const isDesktop = useMediaQuery({
@@ -21,6 +22,7 @@ const Home = () => {
   });
 
   const campStore = useContext(CampStroe);
+
   const communityStore = useContext(CommunityStore);
 
   useEffect(() => {
@@ -34,7 +36,10 @@ const Home = () => {
       <HeaderSection />
       <main className="contents">
         {campStore.campPopular ? (
-          <CampSection title="인기 부트 캠프" camps={campStore.campPopular} />
+          <CampSection
+            title="지금 가장 인기있는 캠프에요"
+            camps={campStore.campPopular}
+          />
         ) : (
           <CardSectionSkeleton />
         )}
@@ -43,7 +48,7 @@ const Home = () => {
 
         {campStore.campSales ? (
           <CampSection
-            title="특가 할인 캠프"
+            title="곧! 캠프 할인이 마감돼요"
             camps={campStore.campSales}
             isHeadField
           />
@@ -60,7 +65,7 @@ const Home = () => {
 
         {communityStore.communities ? (
           <CommunitySection
-            title="커뮤니티"
+            title="커뮤니티에서 지금 만나요"
             communities={communityStore.communities}
           />
         ) : (
