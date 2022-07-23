@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import fonts from 'styles/fonts';
 
 import { useContext } from 'react';
-import UserStore from 'stores/UserStore';
+import AuthStore from 'stores/AuthStore';
 
 import ProfileForm from './components/ProfileForm';
 
 const ProfilePage = () => {
-  const userStore = useContext(UserStore);
+  const authStore = useContext(AuthStore);
 
   return (
     <Container>
       <ProfileHeader>
-        <h1> {userStore.user && userStore.user.displayName}님 안녕하세요!</h1>
+        <h1> {authStore.user && authStore.user.displayName}님 안녕하세요!</h1>
       </ProfileHeader>
       <ProfileForm />
     </Container>

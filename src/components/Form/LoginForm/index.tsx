@@ -56,7 +56,7 @@ const LoginForm = () => {
 
           <ButtonWrapper>
             <button type="submit" className="login-btn">
-              로그인하기
+              <div>{isLoading ? '로딩중' : '로그인 하기'}</div>
             </button>
             <button className="register-btn">
               <Link to="/user/register">회원가입 하기</Link>
@@ -64,8 +64,6 @@ const LoginForm = () => {
           </ButtonWrapper>
         </form>
       )}
-
-      {authStore.isLoggedIn && <div>로딩중 (스피너 작업중)</div>}
     </Container>
   );
 };

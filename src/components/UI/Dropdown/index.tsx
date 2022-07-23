@@ -1,19 +1,19 @@
 import styled from 'styled-components';
-import UserStore from 'stores/UserStore';
+import AuthStore from 'stores/AuthStore';
 
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DROPDWON_LINK } from 'properties/DropdownLink';
 
 const Dropdown = ({ logoutHandler }) => {
-  const userStore = useContext(UserStore);
-  console.log(userStore.user && userStore.user);
+  const authStore = useContext(AuthStore);
+  console.log(authStore.user && authStore.user);
 
   return (
     <Container>
       <DropdownHeader>
-        <h3>{userStore.user && userStore.user.displayName} 님</h3>
-        <p>{userStore.user && userStore.user.email}</p>
+        <h3>{authStore.user && authStore.user.displayName} 님</h3>
+        <p>{authStore.user && authStore.user.email}</p>
       </DropdownHeader>
 
       <DropdownWrapper>

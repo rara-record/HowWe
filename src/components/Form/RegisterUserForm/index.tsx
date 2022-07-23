@@ -151,15 +151,9 @@ const RegisterUserForm = () => {
         </CheckBoxList>
 
         <ButtonWrapper>
-          {isLoading ? (
-            <button type="submit" className="register-btn">
-              로딩중..
-            </button>
-          ) : (
-            <button type="submit" className="register-btn">
-              확인
-            </button>
-          )}
+          <button type="submit" className="register-btn">
+            {isLoading ? '로딩중' : '확인'}
+          </button>
         </ButtonWrapper>
       </form>
     </Container>

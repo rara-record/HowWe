@@ -14,7 +14,6 @@ import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import CommunityStore from 'stores/CommunityStore';
 import CardSectionSkeleton from 'components/UI/Skeleton/CardSectionSkeleton';
-import UserStore from 'stores/UserStore';
 
 const Home = () => {
   const isDesktop = useMediaQuery({
