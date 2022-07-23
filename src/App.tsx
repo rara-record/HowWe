@@ -2,7 +2,7 @@ import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
 
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { MainLayout, SubLayout } from 'components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -20,12 +20,6 @@ import {
 
 const App = () => {
   const authStore = useContext(AuthStore);
-
-  useEffect(() => {
-    if (authStore.user !== null) {
-      authStore.unsubscribe();
-    }
-  }, [authStore]);
 
   return (
     <>
