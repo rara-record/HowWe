@@ -1,19 +1,16 @@
 import styled from 'styled-components';
-import AuthStore from 'stores/AuthStore';
-
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DROPDWON_LINK } from 'properties/DropdownLink';
+import { authService } from 'service/firebase';
 
 const Dropdown = ({ logoutHandler }) => {
-  const authStore = useContext(AuthStore);
-  console.log(authStore.user && authStore.user);
+  const user = authService.currentUser;
 
   return (
     <Container>
       <DropdownHeader>
-        <h3>{authStore.user && authStore.user.displayName} 님</h3>
-        <p>{authStore.user && authStore.user.email}</p>
+        <h3>{user?.displayName} 님</h3>
+        <p>{user?.email}</p>
       </DropdownHeader>
 
       <DropdownWrapper>

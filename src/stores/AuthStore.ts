@@ -1,8 +1,6 @@
 import { createContext } from 'react';
 import { makeObservable, observable } from 'mobx';
 import { getSignUp, getSignIn } from 'api/userAuth';
-
-import { onAuthStateChanged } from '@firebase/auth';
 import { authService } from 'service/firebase';
 
 interface IUser {
@@ -27,7 +25,6 @@ class AuthStore {
 
   signIn = async (email: string, password: string) => {
     const res = await getSignIn(email, password);
-
     if (res) {
       this.isLoggedIn = true;
     } else {
@@ -36,23 +33,9 @@ class AuthStore {
   };
 
   signOut = () => {
-    this.user = null;
     this.isLoggedIn = false;
+    authService.signOut();
   };
-
-  unsubscribe = onAuthStateChanged(authService, user => {
-    if (user) {
-      const userObj = {
-        uid: user.uid,
-        photoURL: user.photoURL,
-        displayName:
-          user.displayName || authService.currentUser?.displayName || '카페인',
-        email: user.email,
-        createdAt: user.metadata.creationTime,
-      };
-      this.user = userObj;
-    }
-  });
 }
 
 export default createContext(new AuthStore());
