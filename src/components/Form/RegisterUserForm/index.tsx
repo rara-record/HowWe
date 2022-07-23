@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import styled from 'styled-components';
@@ -151,15 +151,9 @@ const RegisterUserForm = () => {
         </CheckBoxList>
 
         <ButtonWrapper>
-          {isLoading ? (
-            <button type="submit" className="register-btn">
-              로딩중..
-            </button>
-          ) : (
-            <button type="submit" className="register-btn">
-              확인
-            </button>
-          )}
+          <button type="submit" className="register-btn">
+            {isLoading ? '로딩중' : '확인'}
+          </button>
         </ButtonWrapper>
       </form>
     </Container>

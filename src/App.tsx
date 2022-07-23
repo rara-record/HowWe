@@ -1,7 +1,6 @@
 import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
-import UserStore from 'stores/UserStore';
 
 import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -21,11 +20,12 @@ import {
 
 const App = () => {
   const authStore = useContext(AuthStore);
-  const userStore = useContext(UserStore);
 
   useEffect(() => {
-    userStore.unsubscribe();
-  }, [userStore]);
+    if (authStore.user !== null) {
+      authStore.unsubscribe();
+    }
+  }, [authStore]);
 
   return (
     <>
