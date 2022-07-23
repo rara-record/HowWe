@@ -11,9 +11,8 @@ const VALIDATOR = {
   password: {
     required: { value: true, message: '비밀번호를 입력해 주세요' },
     pattern: {
-      value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i,
-      message:
-        '비밀번호는 문자 숫자 특수문자 조합으로 8자 이상으로 입력해주세요',
+      value: /^()[A-Za-z\0-9]{8,}$/i,
+      message: '비밀번호는 문자 숫자 8자 이상으로 입력해주세요',
     },
   },
 };

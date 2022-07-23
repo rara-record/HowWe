@@ -106,8 +106,7 @@ const RegisterUserForm = () => {
             />
             {errors.pwd && (
               <span className="error-text">
-                비밀번호는 문자 숫자 특수문자 조합으로 8자 이상으로
-                입력해주세요.
+                비밀번호는 문자 숫자 8자 이상으로 입력해주세요.
               </span>
             )}
           </div>
