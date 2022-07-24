@@ -30,9 +30,7 @@ class AuthStore {
         'user',
         JSON.stringify(authService.currentUser?.uid)
       );
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
+      this.IsUser();
     }
   };
 
