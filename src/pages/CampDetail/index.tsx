@@ -30,12 +30,6 @@ const CampDetail = () => {
     campStore.fetchCampById(String(campId));
   }, [campId, campStore]);
 
-  const getHeight = () => {
-    if (containerRef.current) {
-      setHeight(containerRef.current.clientHeight);
-    }
-  };
-
   useEffect(() => {
     !loading && getHeight();
     window.addEventListener('resize', getHeight);
@@ -43,6 +37,12 @@ const CampDetail = () => {
       window.removeEventListener('resize', getHeight);
     };
   }, [campStore.targetCamp, loading]);
+
+  function getHeight() {
+    if (containerRef.current) {
+      setHeight(containerRef.current.clientHeight);
+    }
+  }
 
   if (campStore.targetCamp) {
     return (
