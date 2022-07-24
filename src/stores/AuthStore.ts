@@ -17,6 +17,7 @@ class AuthStore {
 
   constructor() {
     makeObservable(this);
+    this.isLoggedIn = !!this.IsUser;
   }
 
   signUp = async (name: string, email: string, password: string) => {
@@ -26,6 +27,10 @@ class AuthStore {
   signIn = async (email: string, password: string) => {
     const res = await getSignIn(email, password);
     if (res) {
+      localStorage.setItem(
+        'user',
+        JSON.stringify(authService.currentUser?.uid)
+      );
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
@@ -33,8 +38,13 @@ class AuthStore {
   };
 
   signOut = () => {
+    localStorage.removeItem('user');
     this.isLoggedIn = false;
     authService.signOut();
+  };
+
+  IsUser = () => {
+    localStorage.getItem('user');
   };
 }
 

@@ -13,7 +13,7 @@ const Dropdown = ({ logoutHandler }) => {
         <p>{user?.email}</p>
       </DropdownHeader>
 
-      <DropdownWrapper>
+      <DropdownContents>
         <nav>
           <ul>
             {DROPDWON_LINK.map((item, index) => (
@@ -31,7 +31,7 @@ const Dropdown = ({ logoutHandler }) => {
             </button>
           </Link>
         </LogOutContainer>
-      </DropdownWrapper>
+      </DropdownContents>
     </Container>
   );
 };
@@ -68,7 +68,7 @@ const DropdownHeader = styled.header`
   }
 `;
 
-const DropdownWrapper = styled.main`
+const DropdownContents = styled.main`
   font-size: 0.875rem;
   color: #444;
 
@@ -88,7 +88,7 @@ const DropdownWrapper = styled.main`
   }
 
   a {
-    padding: 0.5rem 0;
+    padding: 0.5rem;
   }
 `;
 

@@ -2,7 +2,7 @@ import './App.css';
 import GlobalStyled from 'styles/global';
 import AuthStore from 'stores/AuthStore';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { MainLayout, SubLayout } from 'components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -20,6 +20,10 @@ import {
 
 const App = () => {
   const authStore = useContext(AuthStore);
+
+  useEffect(() => {
+    authStore.IsUser();
+  }, [authStore]);
 
   return (
     <>

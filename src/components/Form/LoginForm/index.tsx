@@ -19,7 +19,11 @@ const LoginForm = () => {
   const authStore = useContext(AuthStore);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState } = useForm<IFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormValues>({
     mode: 'onChange',
   });
 
@@ -39,20 +43,20 @@ const LoginForm = () => {
           <TextInput
             register={register}
             name={'email'}
-            isError={formState.errors.email === undefined ? false : true}
+            isError={errors.email === undefined ? false : true}
             type={'email'}
             placeholder={'이메일을 입력하세요'}
           />
-          <Error>{formState.errors?.email?.message}</Error>
+          <Error>{errors?.email?.message}</Error>
 
           <TextInput
             type="password"
             register={register}
             name={'password'}
-            isError={formState.errors.password === undefined ? false : true}
+            isError={errors.password === undefined ? false : true}
             placeholder={'비밀번호를 입력하세요'}
           />
-          <Error>{formState.errors?.password?.message}</Error>
+          <Error>{errors?.password?.message}</Error>
 
           <ButtonWrapper>
             <button type="submit" className="login-btn">
