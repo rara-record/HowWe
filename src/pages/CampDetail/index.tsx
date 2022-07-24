@@ -31,6 +31,7 @@ const CampDetail = () => {
   }, [campId, campStore]);
 
   useEffect(() => {
+    setLoading(true);
     !loading && getHeight();
     window.addEventListener('resize', getHeight);
     return () => {
@@ -54,6 +55,7 @@ const CampDetail = () => {
             targetCamp={campStore.targetCamp}
             sidebarheight={height}
           />
+
           <ImageSection isMobile={isMobile}>
             {campStore.targetCamp.images.map((img, index) => (
               <article key={index}>
@@ -66,6 +68,7 @@ const CampDetail = () => {
               </article>
             ))}
           </ImageSection>
+
           <ReviewSection
             reviews={campStore.targetCamp.reviews}
             theme={campStore.targetCamp.theme}
