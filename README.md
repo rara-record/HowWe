@@ -4,9 +4,11 @@
 Caffein은 IT 관련 강의를 게시하고 수강 신청할 수 있는 플랫폼입니다. <br/>
 배포 사이트는 ❤️ [프로젝트 구경하기](https://dhrjfx841etu6.cloudfront.net/) ❤️ 링크에서 확인할 수 있습니다. <br/>
 
-# Documentations
 
-[✨ API 명세서 확인하기](https://documenter.getpostman.com/view/18386784/UVyn2K1y#fc8787f3-d968-4d9d-a68f-d0ab854dc91f)
+
+# Documentations
+기능은 노션에 정리했습니다! [✨ 노션 보러가기](https://chill-silicon-d01.notion.site/Caffein-React-fefde9e16d364ac3bdfe65bd413f457d) <br />
+API 명세서를 확인해보세요! [✨ API 명세서 확인하기](https://documenter.getpostman.com/view/18386784/UVyn2K1y#fc8787f3-d968-4d9d-a68f-d0ab854dc91f)
 
 # Milestone
 
